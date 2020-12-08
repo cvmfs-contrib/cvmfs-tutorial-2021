@@ -1,0 +1,45 @@
+site_name: "CernVM-FS tutorial"
+theme:
+  name: material
+  logo: img/cvmfs_logo.png
+  featres:
+      - instant
+repo_name: CernVM-FS tutorial
+repo_url: https://github.com/cvmfs-contrib/cvmfs-tutorial-2021
+edit_uri: edit/master/docs
+nav:
+  - "Home": index.md
+  - Practical information: 00_practical_info.md
+  - Introduction to CernVM-FS: 01_introduction.md
+  - Getting started: 02_getting_started.md
+  - Stratum-1 + proxies: 03_stratum1_proxies.md
+  - Publishing: 04_publishing.md
+  - Advanced topics: 05_advanced.md
+plugins:
+  # show revision date at bottom of each page
+  - git-revision-date-localized
+  # necessary for search to work
+  - search
+markdown_extensions:
+  # notes, warnings, hints, ...
+  - admonition
+  # code blocks with syntax highlighting, graphs
+  - pymdownx.superfences
+  # clickable details
+  - pymdownx.details
+  # tabbed contents
+  - pymdownx.tabbed
+  - toc:
+      permalink: true
+extra:
+  # add links in bottom right
+  social:
+      #- type: github
+      #icon: octicons/logo-github
+      #link: https://github.com/easybuilders
+      #- icon: fontawesome/brands/twitter
+      #link: https://twitter.com/easy_build
+      #- icon: fontawesome/brands/youtube
+      #link: https://www.youtube.com/c/easybuilders
+      #- icon: fontawesome/solid/book
+      #link: https://easybuild.readthedocs.io
