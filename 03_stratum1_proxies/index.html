@@ -286,8 +286,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#start-apache-and-squid" class="md-nav__link">
-    Start Apache and Squid
+  <a href="#apache-and-squid" class="md-nav__link">
+    Apache and Squid
   </a>
   
 </li>
@@ -314,8 +314,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#make-a-snapshot-cronjob" class="md-nav__link">
-    Make a snapshot cronjob
+  <a href="#make-cronjobs" class="md-nav__link">
+    Make cronjobs
   </a>
   
 </li>
@@ -423,8 +423,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#start-apache-and-squid" class="md-nav__link">
-    Start Apache and Squid
+  <a href="#apache-and-squid" class="md-nav__link">
+    Apache and Squid
   </a>
   
 </li>
@@ -451,8 +451,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#make-a-snapshot-cronjob" class="md-nav__link">
-    Make a snapshot cronjob
+  <a href="#make-cronjobs" class="md-nav__link">
+    Make cronjobs
   </a>
   
 </li>
@@ -520,16 +520,59 @@ How many you need mostly depends on the distribution and number of clients, but 
 <h3 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h3>
 <p>A Stratum 1 servers has similar requirements as a Stratum 1. In addition to port 80, also port 8000 has to be accessible for a Stratum 1. Furthermore, you need a (free) license key for <a href="https://dev.maxmind.com/geoip/geoip2/geolite2/">Maxmind's Geo API</a>, which you can obtain by <a href="https://www.maxmind.com/en/geolite2/signup/">signing up for an account</a>.</p>
 <h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
-<p>For the Stratum 1 you need the same packages to be installed as with a Stratum 0:
+<p>For the Stratum 1 you need to install the following packages:
 <div class="highlight"><pre><span></span><code>sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
 sudo yum install -y epel-release
-sudo yum install -y cvmfs cvmfs-server
+sudo yum install -y cvmfs-server
+sudo yum install -y mod_wsgi
+sudo yum install -y squid
 </code></pre></div></p>
-<h3 id="start-apache-and-squid">Start Apache and Squid<a class="headerlink" href="#start-apache-and-squid" title="Permanent link">&para;</a></h3>
+<h3 id="apache-and-squid">Apache and Squid<a class="headerlink" href="#apache-and-squid" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>port 8080 locally? -&gt; Listen 127.0.0.1:8080
+sudo systemctl enable httpd
+sudo systemctl start httpd
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>/etc/squid/squid.conf:
+
+http_port 80 accel
+http_port 8000 accel
+http_access allow all
+cache_peer localhost parent 8080 0 no-query originserver
+
+acl CVMFSAPI urlpath_regex ^/cvmfs/[^/]*/api/
+cache deny !CVMFSAPI
+
+cache_mem 256 MB
+
+
+ulimit -n 8192 ?
+start squid
+</code></pre></div>
 <h3 id="dns-cache">DNS cache?<a class="headerlink" href="#dns-cache" title="Permanent link">&para;</a></h3>
+<p>Skip this for now and point to the documentation?</p>
 <h3 id="register-the-stratum-1">Register the Stratum 1<a class="headerlink" href="#register-the-stratum-1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>echo &#39;CVMFS_GEO_LICENSE_KEY=YOUR_KEY&#39; &gt;&gt; /etc/cvmfs/server.local
+chmod 600 /etc/cvmfs/server.local
+</code></pre></div>
 <h3 id="make-the-first-snapshot">Make the first snapshot<a class="headerlink" href="#make-the-first-snapshot" title="Permanent link">&para;</a></h3>
-<h3 id="make-a-snapshot-cronjob">Make a snapshot cronjob<a class="headerlink" href="#make-a-snapshot-cronjob" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>cvmfs_server snapshot repo.organization.tld
+</code></pre></div>
+<h3 id="make-cronjobs">Make cronjobs<a class="headerlink" href="#make-cronjobs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>/etc/logrotate.d/cvmfs does not exist!
+To prevent this error message, create the file or use -n option.
+Suggested content:
+/var/log/cvmfs/*.log {
+    weekly
+    missingok
+    notifempty
+}
+
+$ cat /etc/cron.d/cvmfs_stratum1_snapshot
+*/5 * * * * root output=$(/usr/bin/cvmfs_server snapshot -a -i 2&gt;&amp;1) || echo &quot;$output&quot;
+
+$ cat /etc/cron.d/cvmfs_geoip_db_update
+4 2 2 * * root /usr/bin/cvmfs_server update-geodb
+</code></pre></div>
 <h2 id="set-up-a-proxy">Set up a proxy<a class="headerlink" href="#set-up-a-proxy" title="Permanent link">&para;</a></h2>
 <h2 id="client-configuration">Client configuration<a class="headerlink" href="#client-configuration" title="Permanent link">&para;</a></h2>
 <h2 id="homework">Homework<a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
