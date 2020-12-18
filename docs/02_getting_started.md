@@ -7,7 +7,7 @@ In order to get started with CernVM-FS, the first thing you need is a Stratum 0 
 ### Requirements
 Due to the scalable design of CernVM-FS, the host of your Stratum 0 server does not need a lot of resources in terms of CPU cores and memory; just a few cores and a few gigabytes of memory should suffice. Besides this, you need plenty of space to store the contents of your repository. By default, CernVM-FS uses `/var/spool` as scratch space while adding new files to the repository, and `/srv/cvmfs` as central repository storage location, but these locations can be modified in the CernVM-FS server settings later on.
 
-Furthermore, several (popular) Linux distributions are supported, see [these requirements](https://github.com/cvmfs-contrib/cvmfs-tutorial-2021/wiki/Notes#stratum-1--proxies) for a full list. We will only focus on CentOS and Ubuntu/Debian in this tutorial.
+Furthermore, several (popular) Linux distributions are supported, see [these requirements](https://github.com/cvmfs-contrib/cvmfs-tutorial-2021/wiki/Notes#stratum-1--proxies) for a full list. We will only focus on CentOS in this tutorial.
 
 CernVM-FS also offers support for hosting the repository contents in S3 compatible storage, but for this tutorial we will focus on storing the files locally. For this we need an Apache server on the host, and port 80 should be open.
 
@@ -15,19 +15,9 @@ CernVM-FS also offers support for hosting the repository contents in S3 compatib
 The installation of CernVM-FS is simple and only requires some packages to be installed. You can easily do this by adding the CernVM-FS repository and install the packages through your package manager:
 
 ```bash
-# CentOS
 sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
 sudo yum install -y epel-release
 sudo yum install -y cvmfs cvmfs-server
-
-# Debian / Ubuntu
-# TODO: NOT TESTED YET; DO WE WANT THIS?
-wget https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest_all.deb
-sudo dpkg -i cvmfs-release-latest_all.deb
-rm -f cvmfs-release-latest_all.deb
-sudo apt-get update
-sudo apt-get install cvmfs cvmfs-server
-# APACHE?
 ```
 
 Alternatively, you can download the packages from the [CernVM-FS downloads page](https://cernvm.cern.ch/fs/) and install them package manually; note that you need both the client and server package on your Stratum 0.
@@ -76,10 +66,20 @@ sudo cvmfs_server transaction ${MY_REPO_NAME}
 sudo cvmfs_server publish ${MY_REPO_NAME}
 ```
 
-### Cronjobs
-TODO
+### Cronjob for resigning the whitelist
+Each CernVM-FS repository has a whitelist containing fingerprints of certificates that are allowed to sign the repository. This whitelist has an expiration time of, by default, 30 days. This means that you regularly have to resign the whitelist. There are several ways to do this, see for instance [the page about master keys](https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#sct-master-keys) in the documentation.
 
-### Removing repositories?
+If you just keep the master key on our Stratum 0 sever, you can set up a simple cronjob for resigning the whitelist. For instance, make a file `/etc/cron.d/cvmfs_resign` with the following content to do this every Monday at 11:00:
+```
+0 11 * * 1 root /usr/bin/cvmfs_server resign repo.organization.tld
+```
+
+### Remove a repository
+An existing repository can be removed by running:
+```
+sudo cvmfs_server rmfs repo.organization.tld
+```
+
 
 ## Set up a client
 Accessing CernVM-FS repositories on a client machine involves three steps: installing the CernVM-FS client package, adding some configuration files for the repository you want to connect to, and finally run a CernVM-FS setup procedure that will mount the repository.
@@ -90,17 +90,8 @@ Since the client is going to pull in files over an HTTP connection, you need suf
 The installation is the same as for the Stratum 0, except that you only need the `cvmfs` package:
 
 ```bash
-# CentOS
 sudo yum install https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
 sudo yum install -y cvmfs
-
-# Debian / Ubuntu
-# TODO: NOT TESTED YET
-wget https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest_all.deb
-sudo dpkg -i cvmfs-release-latest_all.deb
-rm -f cvmfs-release-latest_all.deb
-sudo apt-get update
-sudo apt-get install cvmfs
 ```
 
 ### Configuration
