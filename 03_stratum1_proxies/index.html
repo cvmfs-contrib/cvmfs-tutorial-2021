@@ -57,7 +57,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#stratum-1-proxies" class="md-skip">
+        <a href="#stratum-1-and-proxies" class="md-skip">
           Skip to content
         </a>
       
@@ -241,9 +241,114 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Stratum-1 + proxies
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
     <a href="./" class="md-nav__link md-nav__link--active">
       Stratum-1 + proxies
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-a-stratum-1-server" class="md-nav__link">
+    Set up a Stratum 1 server
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up a Stratum 1 server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-apache-and-squid" class="md-nav__link">
+    Start Apache and Squid
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns-cache" class="md-nav__link">
+    DNS cache?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-the-stratum-1" class="md-nav__link">
+    Register the Stratum 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-the-first-snapshot" class="md-nav__link">
+    Make the first snapshot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-a-snapshot-cronjob" class="md-nav__link">
+    Make a snapshot cronjob
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-a-proxy" class="md-nav__link">
+    Set up a proxy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#client-configuration" class="md-nav__link">
+    Client configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homework" class="md-nav__link">
+    Homework
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -289,6 +394,97 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-a-stratum-1-server" class="md-nav__link">
+    Set up a Stratum 1 server
+  </a>
+  
+    <nav class="md-nav" aria-label="Set up a Stratum 1 server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-apache-and-squid" class="md-nav__link">
+    Start Apache and Squid
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns-cache" class="md-nav__link">
+    DNS cache?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-the-stratum-1" class="md-nav__link">
+    Register the Stratum 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-the-first-snapshot" class="md-nav__link">
+    Make the first snapshot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-a-snapshot-cronjob" class="md-nav__link">
+    Make a snapshot cronjob
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-a-proxy" class="md-nav__link">
+    Set up a proxy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#client-configuration" class="md-nav__link">
+    Client configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homework" class="md-nav__link">
+    Homework
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -304,13 +500,39 @@
                   </a>
                 
                 
-                <h1 id="stratum-1-proxies">Stratum-1 + proxies<a class="headerlink" href="#stratum-1-proxies" title="Permanent link">&para;</a></h1>
+                <h1 id="stratum-1-and-proxies">Stratum 1 and proxies<a class="headerlink" href="#stratum-1-and-proxies" title="Permanent link">&para;</a></h1>
 <ul>
 <li>short summary previous session</li>
 <li>Stratum-1</li>
 <li>proxy</li>
 <li>hands-on homework</li>
 </ul>
+<p>In the previous section we have set up a Stratum 0 server and a client that directly connects to the Stratum 0.
+Although this worked fine, this setup is neither scalable, nor very reliable, nor secure: it is a single point of failure,
+too open in terms of connectivity, and it will have to serve all possible clients on its own.</p>
+<p>Therefore, this section will show how all these points can be addressed by adding one or more Stratum 1 servers and caching proxy servers. A Stratum 1 is a replica server that keeps mirrors of the repositories served by a Stratum 0.
+It is basically a web server that periodically synchronizes the contents of the repositories,
+and, in contrast to a Stratum 0 server, you can have multiple Stratum 1 servers.
+It is recommended to have several ones that are geographically distributed, so that clients always have a nearby Stratum 1 server.
+How many you need mostly depends on the distribution and number of clients, but often a few is already sufficient. More scalability can be added with proxies, which we will discuss later in this section.</p>
+<p>INSERT IMAGE OF CVMFS INFRA HERE</p>
+<h2 id="set-up-a-stratum-1-server">Set up a Stratum 1 server<a class="headerlink" href="#set-up-a-stratum-1-server" title="Permanent link">&para;</a></h2>
+<h3 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h3>
+<p>A Stratum 1 servers has similar requirements as a Stratum 1. In addition to port 80, also port 8000 has to be accessible for a Stratum 1. Furthermore, you need a (free) license key for <a href="https://dev.maxmind.com/geoip/geoip2/geolite2/">Maxmind's Geo API</a>, which you can obtain by <a href="https://www.maxmind.com/en/geolite2/signup/">signing up for an account</a>.</p>
+<h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
+<p>For the Stratum 1 you need the same packages to be installed as with a Stratum 0:
+<div class="highlight"><pre><span></span><code>sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
+sudo yum install -y epel-release
+sudo yum install -y cvmfs cvmfs-server
+</code></pre></div></p>
+<h3 id="start-apache-and-squid">Start Apache and Squid<a class="headerlink" href="#start-apache-and-squid" title="Permanent link">&para;</a></h3>
+<h3 id="dns-cache">DNS cache?<a class="headerlink" href="#dns-cache" title="Permanent link">&para;</a></h3>
+<h3 id="register-the-stratum-1">Register the Stratum 1<a class="headerlink" href="#register-the-stratum-1" title="Permanent link">&para;</a></h3>
+<h3 id="make-the-first-snapshot">Make the first snapshot<a class="headerlink" href="#make-the-first-snapshot" title="Permanent link">&para;</a></h3>
+<h3 id="make-a-snapshot-cronjob">Make a snapshot cronjob<a class="headerlink" href="#make-a-snapshot-cronjob" title="Permanent link">&para;</a></h3>
+<h2 id="set-up-a-proxy">Set up a proxy<a class="headerlink" href="#set-up-a-proxy" title="Permanent link">&para;</a></h2>
+<h2 id="client-configuration">Client configuration<a class="headerlink" href="#client-configuration" title="Permanent link">&para;</a></h2>
+<h2 id="homework">Homework<a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
                 
                   
                     
@@ -319,7 +541,7 @@
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 8, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 18, 2020</span>
     
   </small>
 </div>
