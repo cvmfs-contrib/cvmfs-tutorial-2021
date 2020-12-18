@@ -24,23 +24,72 @@ INSERT IMAGE OF CVMFS INFRA HERE
 A Stratum 1 servers has similar requirements as a Stratum 1. In addition to port 80, also port 8000 has to be accessible for a Stratum 1. Furthermore, you need a (free) license key for [Maxmind's Geo API](https://dev.maxmind.com/geoip/geoip2/geolite2/), which you can obtain by [signing up for an account](https://www.maxmind.com/en/geolite2/signup/).
 
 ### Installation
-For the Stratum 1 you need the same packages to be installed as with a Stratum 0:
+For the Stratum 1 you need to install the following packages:
 ```bash
 sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
 sudo yum install -y epel-release
-sudo yum install -y cvmfs cvmfs-server
+sudo yum install -y cvmfs-server
+sudo yum install -y mod_wsgi
+sudo yum install -y squid
 ```
 
-### Start Apache and Squid
+### Apache and Squid
+```
+port 8080 locally? -> Listen 127.0.0.1:8080
+sudo systemctl enable httpd
+sudo systemctl start httpd
+```
+
+```
+/etc/squid/squid.conf:
+
+http_port 80 accel
+http_port 8000 accel
+http_access allow all
+cache_peer localhost parent 8080 0 no-query originserver
+
+acl CVMFSAPI urlpath_regex ^/cvmfs/[^/]*/api/
+cache deny !CVMFSAPI
+
+cache_mem 256 MB
+
+
+ulimit -n 8192 ?
+start squid
+```
 
 ### DNS cache?
+Skip this for now and point to the documentation?
 
 ### Register the Stratum 1
+```
+echo 'CVMFS_GEO_LICENSE_KEY=YOUR_KEY' >> /etc/cvmfs/server.local
+chmod 600 /etc/cvmfs/server.local
+
+```
 
 ### Make the first snapshot
+```
+cvmfs_server snapshot repo.organization.tld
+```
 
-### Make a snapshot cronjob
+### Make cronjobs
+```
+/etc/logrotate.d/cvmfs does not exist!
+To prevent this error message, create the file or use -n option.
+Suggested content:
+/var/log/cvmfs/*.log {
+    weekly
+    missingok
+    notifempty
+}
 
+$ cat /etc/cron.d/cvmfs_stratum1_snapshot
+*/5 * * * * root output=$(/usr/bin/cvmfs_server snapshot -a -i 2>&1) || echo "$output"
+
+$ cat /etc/cron.d/cvmfs_geoip_db_update
+4 2 2 * * root /usr/bin/cvmfs_server update-geodb
+```
 
 ## Set up a proxy
 
