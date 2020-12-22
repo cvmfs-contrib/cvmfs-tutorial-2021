@@ -56,6 +56,48 @@ sudo cvmfs_server rollback -t "v0.5" repo.organization.tld
 ```
 
 ## Catalogs
+All metadata about files in your repository is stored in a file catalog, which is a SQLite database. When a client accesses the repository for the first time, it first needs to retrieve this catalog. Only then it can start fetching the files it actually needs. Clients also need to regularly check for new versions of the repository, and redownload it if it has changed.
+
+As this catalog can quickly become quite large when you start adding more and more files, just having a single one would cause significant overhead.  In order to keep them small, you can make use of nested catalogs by having several catalogs for different subtrees of your repository. All metadata for that part of the subtree will not be part of the main catalog anymore, and clients will only download the catalogs for the subtree(s) they are trying to access.
+
+The general recommendation is to have more than 1000 and fewer than 200,000 files/directories per (nested) catalog, and to bundle the files/directories that are often accessed together. For instance, it may make sense to make a catalog per installation directory of a specific version of some software in your repository.
+
+Making nested catalogs manually can be done in two ways, which we will describe in the following subsections. Note that you can also combine both methods.
+
+### .cvmfscatalog files
+By adding an (empty) file named `.cvmfscatalog` into a directory of your repository, each following publish operation will automatically generate a nested catalog for the entire subtree below that directory. You can put these files at as many levels as you like, but do keep the aforementioned recommendations in mind.
+
+### .cvmfsdirtab
+Instead of creating the `.cvmfscatalog` files manually, you can also add a file named `.cvmfsdirtab` to the root of your repository. In this file you can specify a list of relative directory paths (they all start from the root of your repository) that should get a nested catalog, and you can use wildcards to make things easier. For instance, assume you have a typical HPC software module environment in your repository:
+```
+software
+  app1
+     1.0
+     2.0
+   app2
+     20201201
+     20210125
+modules
+  all
+    app1
+      1.0.lua
+      2.0.lua
+    app2
+      20201201.lua
+      20210125.lua
+```
+
+For this structure, the `.cvmfsdirtab` may look like:
+```
+# Nested catalog for each version of each application
+/software/*/*
+
+# Nested catalog containing for all modulefiles
+/modules
+```
+
+After you have added this file to your repository, you should see automatically generated `.cvmfscatalog` files in all the specified directories. You can also run `cvmfs_server list-catalogs` to get a full list of all the nested catalogs.
+
 
 ## Homework
 We prepared a tarball that contains a tree with dummy software installations. You can find the tarball at:
