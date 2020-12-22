@@ -62,7 +62,7 @@ As this catalog can quickly become quite large when you start adding more and mo
 
 The general recommendation is to have more than 1000 and fewer than 200,000 files/directories per (nested) catalog, and to bundle the files/directories that are often accessed together. For instance, it may make sense to make a catalog per installation directory of a specific version of some software in your repository.
 
-Making nested catalogs manually can be done in two ways, which we will describe in the following subsections. Note that you can also combine both methods.
+Making nested catalogs manually can be done in two ways, which we will describe in more detail.
 
 ### .cvmfscatalog files
 By adding an (empty) file named `.cvmfscatalog` into a directory of your repository, each following publish operation will automatically generate a nested catalog for the entire subtree below that directory. You can put these files at as many levels as you like, but do keep the aforementioned recommendations in mind.
@@ -70,7 +70,7 @@ By adding an (empty) file named `.cvmfscatalog` into a directory of your reposit
 ### .cvmfsdirtab
 Instead of creating the `.cvmfscatalog` files manually, you can also add a file named `.cvmfsdirtab` to the root of your repository. In this file you can specify a list of relative directory paths (they all start from the root of your repository) that should get a nested catalog. You can also use wildcards to specify patterns and automatically include future contents, and use exclamation marks to exclude paths from a nested catalog.
 
-For instance, assume you have a typical HPC software module environment in your repository with the following structure:
+As an example, assume you have a typical HPC software module tree in your repository with the following structure:
 ```
 /
 ├─ /software
@@ -101,7 +101,7 @@ For this repository the `.cvmfsdirtab` file may look like:
 /modules
 ```
 
-After you have added this file to your repository, you should see automatically generated `.cvmfscatalog` files in all the specified directories. You can also run `cvmfs_server list-catalogs` to get a full list of all the nested catalogs.
+After you have added this file to your repository, you should see automatically generated `.cvmfscatalog` files in all the specified directories (note that you can still place additional ones manually as well). You can also run `cvmfs_server list-catalogs` to get a full list of all the nested catalogs.
 
 
 ## Homework
