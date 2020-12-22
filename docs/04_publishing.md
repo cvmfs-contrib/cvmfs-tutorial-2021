@@ -63,4 +63,5 @@ TODO: INSERT DETAILS
 
 - Insert this tarball to a directory named `software` in your repository using the `ingest` subcommand;
 - Note that you get some warnings about the catalog containing too many entries;
-- Fix the catalog issue by adding a `.cvmfsdirtab` file to your repo, which automatically makes a catalog for each software installation;
+- Fix the catalog issue by adding a `.cvmfsdirtab` file to the root of your repo, which automatically makes a catalog for each software installation directory;
+- Make sure that the warning is gone when you publish this `.cvmfsdirtab` file. Instead, you may see a message about the catalog being defragmented (because lots of entries were cleaned up).
