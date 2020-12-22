@@ -57,5 +57,10 @@ sudo cvmfs_server rollback -t "v0.5" repo.organization.tld
 
 ## Catalogs
 
-## Homework / Hands-on
-- hands-on: publish prepared software stack
+## Homework
+We prepared a tarball that contains a tree with dummy software installations. You can find the tarball at:
+TODO: INSERT DETAILS
+
+- Insert this tarball to a directory named `software` in your repository using the `ingest` subcommand;
+- Note that you get some warnings about the catalog containing too many entries;
+- Fix the catalog issue by adding a `.cvmfsdirtab` file to your repo, which automatically makes a catalog for each software installation;
