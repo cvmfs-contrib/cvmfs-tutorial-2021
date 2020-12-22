@@ -510,11 +510,12 @@ sudo cvmfs_server tag -l repo.organization.tld
 <p>All metadata about files in your repository is stored in a file catalog, which is a SQLite database. When a client accesses the repository for the first time, it first needs to retrieve this catalog. Only then it can start fetching the files it actually needs. Clients also need to regularly check for new versions of the repository, and redownload it if it has changed.</p>
 <p>As this catalog can quickly become quite large when you start adding more and more files, just having a single one would cause significant overhead.  In order to keep them small, you can make use of nested catalogs by having several catalogs for different subtrees of your repository. All metadata for that part of the subtree will not be part of the main catalog anymore, and clients will only download the catalogs for the subtree(s) they are trying to access.</p>
 <p>The general recommendation is to have more than 1000 and fewer than 200,000 files/directories per (nested) catalog, and to bundle the files/directories that are often accessed together. For instance, it may make sense to make a catalog per installation directory of a specific version of some software in your repository.</p>
-<p>Making nested catalogs manually can be done in two ways, which we will describe in the following subsections. Note that you can also combine both methods.</p>
+<p>Making nested catalogs manually can be done in two ways, which we will describe in more detail.</p>
 <h3 id="cvmfscatalog-files">.cvmfscatalog files<a class="headerlink" href="#cvmfscatalog-files" title="Permanent link">&para;</a></h3>
 <p>By adding an (empty) file named <code>.cvmfscatalog</code> into a directory of your repository, each following publish operation will automatically generate a nested catalog for the entire subtree below that directory. You can put these files at as many levels as you like, but do keep the aforementioned recommendations in mind.</p>
 <h3 id="cvmfsdirtab">.cvmfsdirtab<a class="headerlink" href="#cvmfsdirtab" title="Permanent link">&para;</a></h3>
-<p>Instead of creating the <code>.cvmfscatalog</code> files manually, you can also add a file named <code>.cvmfsdirtab</code> to the root of your repository. In this file you can specify a list of relative directory paths (they all start from the root of your repository) that should get a nested catalog, and you can use wildcards to make things easier. For instance, assume you have a typical HPC software module environment in your repository:
+<p>Instead of creating the <code>.cvmfscatalog</code> files manually, you can also add a file named <code>.cvmfsdirtab</code> to the root of your repository. In this file you can specify a list of relative directory paths (they all start from the root of your repository) that should get a nested catalog. You can also use wildcards to specify patterns and automatically include future contents, and use exclamation marks to exclude paths from a nested catalog.</p>
+<p>As an example, assume you have a typical HPC software module tree in your repository with the following structure:
 <div class="highlight"><pre><span></span><code>/
 ├─ /software
 │  ├─ /software/app1
@@ -532,14 +533,16 @@ sudo cvmfs_server tag -l repo.organization.tld
 │  │  │  ├─ /modules/all/app2/20201201.lua
 │  │  │  ├─ /modules/all/app2/20210125.lua
 </code></pre></div></p>
-<p>For this structure, the <code>.cvmfsdirtab</code> may look like:
+<p>For this repository the <code>.cvmfsdirtab</code> file may look like:
 <div class="highlight"><pre><span></span><code># Nested catalog for each version of each application
 /software/*/*
+# One nested catalog for all software directories
+/software
 
 # Nested catalog containing for all modulefiles
 /modules
 </code></pre></div></p>
-<p>After you have added this file to your repository, you should see automatically generated <code>.cvmfscatalog</code> files in all the specified directories. You can also run <code>cvmfs_server list-catalogs</code> to get a full list of all the nested catalogs.</p>
+<p>After you have added this file to your repository, you should see automatically generated <code>.cvmfscatalog</code> files in all the specified directories (note that you can still place additional ones manually as well). You can also run <code>cvmfs_server list-catalogs</code> to get a full list of all the nested catalogs.</p>
 <h2 id="homework">Homework<a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
 <p>We prepared a tarball that contains a tree with dummy software installations. You can find the tarball at:
 TODO: INSERT DETAILS</p>
