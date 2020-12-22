@@ -515,21 +515,22 @@ sudo cvmfs_server tag -l repo.organization.tld
 <p>By adding an (empty) file named <code>.cvmfscatalog</code> into a directory of your repository, each following publish operation will automatically generate a nested catalog for the entire subtree below that directory. You can put these files at as many levels as you like, but do keep the aforementioned recommendations in mind.</p>
 <h3 id="cvmfsdirtab">.cvmfsdirtab<a class="headerlink" href="#cvmfsdirtab" title="Permanent link">&para;</a></h3>
 <p>Instead of creating the <code>.cvmfscatalog</code> files manually, you can also add a file named <code>.cvmfsdirtab</code> to the root of your repository. In this file you can specify a list of relative directory paths (they all start from the root of your repository) that should get a nested catalog, and you can use wildcards to make things easier. For instance, assume you have a typical HPC software module environment in your repository:
-<div class="highlight"><pre><span></span><code>software
-  app1
-     1.0
-     2.0
-   app2
-     20201201
-     20210125
-modules
-  all
-    app1
-      1.0.lua
-      2.0.lua
-    app2
-      20201201.lua
-      20210125.lua
+<div class="highlight"><pre><span></span><code>/
+├─ /software
+│  ├─ /software/app1
+│  │  ├─ /software/app1/1.0
+│  │  ├─ /software/app1/2.0
+│  ├─ /software/app2
+│  │  ├─ /software/app2/20201201
+│  │  ├─ /software/app2/20210125
+├─ /modules
+│  ├─ /modules/all
+│  │  ├─ /modules/all/app1
+│  │  │  ├─ /modules/all/app1/1.0.lua
+│  │  │  ├─ /modules/all/app1/2.0.lua
+│  │  ├─ /modules/all/app2
+│  │  │  ├─ /modules/all/app2/20201201.lua
+│  │  │  ├─ /modules/all/app2/20210125.lua
 </code></pre></div></p>
 <p>For this structure, the <code>.cvmfsdirtab</code> may look like:
 <div class="highlight"><pre><span></span><code># Nested catalog for each version of each application
