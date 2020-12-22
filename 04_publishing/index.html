@@ -323,8 +323,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#homework-hands-on" class="md-nav__link">
-    Homework / Hands-on
+  <a href="#homework" class="md-nav__link">
+    Homework
   </a>
   
 </li>
@@ -408,8 +408,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#homework-hands-on" class="md-nav__link">
-    Homework / Hands-on
+  <a href="#homework" class="md-nav__link">
+    Homework
   </a>
   
 </li>
@@ -467,9 +467,13 @@ sudo cvmfs_server tag -l repo.organization.tld
 <div class="highlight"><pre><span></span><code>sudo cvmfs_server rollback -t &quot;v0.5&quot; repo.organization.tld
 </code></pre></div></p>
 <h2 id="catalogs">Catalogs<a class="headerlink" href="#catalogs" title="Permanent link">&para;</a></h2>
-<h2 id="homework-hands-on">Homework / Hands-on<a class="headerlink" href="#homework-hands-on" title="Permanent link">&para;</a></h2>
+<h2 id="homework">Homework<a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
+<p>We prepared a tarball that contains a tree with dummy software installations. You can find the tarball at:
+TODO: INSERT DETAILS</p>
 <ul>
-<li>hands-on: publish prepared software stack</li>
+<li>Insert this tarball to a directory named <code>software</code> in your repository using the <code>ingest</code> subcommand;</li>
+<li>Note that you get some warnings about the catalog containing too many entries;</li>
+<li>Fix the catalog issue by adding a <code>.cvmfsdirtab</code> file to your repo, which automatically makes a catalog for each software installation;</li>
 </ul>
                 
                   
