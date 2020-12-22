@@ -70,21 +70,22 @@ By adding an (empty) file named `.cvmfscatalog` into a directory of your reposit
 ### .cvmfsdirtab
 Instead of creating the `.cvmfscatalog` files manually, you can also add a file named `.cvmfsdirtab` to the root of your repository. In this file you can specify a list of relative directory paths (they all start from the root of your repository) that should get a nested catalog, and you can use wildcards to make things easier. For instance, assume you have a typical HPC software module environment in your repository:
 ```
-software
-  app1
-     1.0
-     2.0
-   app2
-     20201201
-     20210125
-modules
-  all
-    app1
-      1.0.lua
-      2.0.lua
-    app2
-      20201201.lua
-      20210125.lua
+/
+├─ /software
+│  ├─ /software/app1
+│  │  ├─ /software/app1/1.0
+│  │  ├─ /software/app1/2.0
+│  ├─ /software/app2
+│  │  ├─ /software/app2/20201201
+│  │  ├─ /software/app2/20210125
+├─ /modules
+│  ├─ /modules/all
+│  │  ├─ /modules/all/app1
+│  │  │  ├─ /modules/all/app1/1.0.lua
+│  │  │  ├─ /modules/all/app1/2.0.lua
+│  │  ├─ /modules/all/app2
+│  │  │  ├─ /modules/all/app2/20201201.lua
+│  │  │  ├─ /modules/all/app2/20210125.lua
 ```
 
 For this structure, the `.cvmfsdirtab` may look like:
