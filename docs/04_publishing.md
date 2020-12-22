@@ -68,7 +68,9 @@ Making nested catalogs manually can be done in two ways, which we will describe 
 By adding an (empty) file named `.cvmfscatalog` into a directory of your repository, each following publish operation will automatically generate a nested catalog for the entire subtree below that directory. You can put these files at as many levels as you like, but do keep the aforementioned recommendations in mind.
 
 ### .cvmfsdirtab
-Instead of creating the `.cvmfscatalog` files manually, you can also add a file named `.cvmfsdirtab` to the root of your repository. In this file you can specify a list of relative directory paths (they all start from the root of your repository) that should get a nested catalog, and you can use wildcards to make things easier. For instance, assume you have a typical HPC software module environment in your repository:
+Instead of creating the `.cvmfscatalog` files manually, you can also add a file named `.cvmfsdirtab` to the root of your repository. In this file you can specify a list of relative directory paths (they all start from the root of your repository) that should get a nested catalog. You can also use wildcards to specify patterns and automatically include future contents, and use exclamation marks to exclude paths from a nested catalog.
+
+For instance, assume you have a typical HPC software module environment in your repository with the following structure:
 ```
 /
 ├─ /software
@@ -88,10 +90,12 @@ Instead of creating the `.cvmfscatalog` files manually, you can also add a file 
 │  │  │  ├─ /modules/all/app2/20210125.lua
 ```
 
-For this structure, the `.cvmfsdirtab` may look like:
+For this repository the `.cvmfsdirtab` file may look like:
 ```
 # Nested catalog for each version of each application
 /software/*/*
+# One nested catalog for all software directories
+/software
 
 # Nested catalog containing for all modulefiles
 /modules
