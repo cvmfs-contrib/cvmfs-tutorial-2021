@@ -10,7 +10,7 @@
       
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.7">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.2">
     
     
       
@@ -18,10 +18,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.19753c6b.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.73f7c429.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.196e0c26.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
         
       
     
@@ -29,7 +29,7 @@
     
       
         
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
@@ -51,6 +51,7 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
       
   
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
@@ -79,18 +80,20 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
     </label>
     <div class="md-header-nav__title" data-md-component="header-title">
-      
-        <div class="md-header-nav__ellipsis">
-          <span class="md-header-nav__topic md-ellipsis">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
             CernVM-FS tutorial
           </span>
-          <span class="md-header-nav__topic md-ellipsis">
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
             
               Publishing
             
           </span>
         </div>
-      
+      </div>
     </div>
     
       <label class="md-header-nav__button md-icon" for="__search">
@@ -149,10 +152,14 @@
         <div class="md-main__inner md-grid">
           
             
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
+
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
@@ -184,6 +191,7 @@
       
 
 
+
   <li class="md-nav__item">
     <a href=".." class="md-nav__link">
       Home
@@ -194,6 +202,7 @@
       
       
       
+
 
 
   <li class="md-nav__item">
@@ -208,6 +217,7 @@
       
 
 
+
   <li class="md-nav__item">
     <a href="../01_introduction/" class="md-nav__link">
       Introduction to CernVM-FS
@@ -218,6 +228,7 @@
       
       
       
+
 
 
   <li class="md-nav__item">
@@ -232,6 +243,7 @@
       
 
 
+
   <li class="md-nav__item">
     <a href="../03_stratum1_proxies/" class="md-nav__link">
       Stratum-1 + proxies
@@ -243,6 +255,7 @@
       
       
 
+
   
 
 
@@ -253,9 +266,72 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Publishing
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
     <a href="./" class="md-nav__link md-nav__link--active">
       Publishing
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#transactions" class="md-nav__link">
+    Transactions
+  </a>
+  
+    <nav class="md-nav" aria-label="Transactions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ingesting-tarballs" class="md-nav__link">
+    Ingesting tarballs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tags" class="md-nav__link">
+    Tags
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#catalogs" class="md-nav__link">
+    Catalogs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homework-hands-on" class="md-nav__link">
+    Homework / Hands-on
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -263,6 +339,7 @@
       
       
       
+
 
 
   <li class="md-nav__item">
@@ -279,7 +356,8 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -288,6 +366,55 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#transactions" class="md-nav__link">
+    Transactions
+  </a>
+  
+    <nav class="md-nav" aria-label="Transactions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ingesting-tarballs" class="md-nav__link">
+    Ingesting tarballs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tags" class="md-nav__link">
+    Tags
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#catalogs" class="md-nav__link">
+    Catalogs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homework-hands-on" class="md-nav__link">
+    Homework / Hands-on
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -305,9 +432,43 @@
                 
                 
                 <h1 id="publishing">Publishing<a class="headerlink" href="#publishing" title="Permanent link">&para;</a></h1>
+<p>The previous sections were mostly about setting up the infrastructure. Now that all the components for hosting and accessing your own CernVM-FS repositories are in place, it is time to really start using it.
+In this section we will give some more details about publishing files.</p>
+<h2 id="transactions">Transactions<a class="headerlink" href="#transactions" title="Permanent link">&para;</a></h2>
+<p>As we already showed in a previous section, the easiest way to add files to your repository is by opening and publishing a transaction on your Stratum 0 server.
+By default, your repository directory under <code>/cvmfs</code> is read-only, but by a transaction makes the directory writable for the user that is owner of the repository.
+<div class="highlight"><pre><span></span><code>sudo cvmfs_server transaction repo.organization.tld
+</code></pre></div></p>
+<p>Once you are done with making changes, the changes can be published using:
+<div class="highlight"><pre><span></span><code>sudo cvmfs_server publish repo.organization.tld
+</code></pre></div></p>
+<p>And you can always abort a transaction, which will undo all the non-published modifications:
+<div class="highlight"><pre><span></span><code>sudo cvmfs_server abort repo.organization.tld
+</code></pre></div></p>
+<h3 id="ingesting-tarballs">Ingesting tarballs<a class="headerlink" href="#ingesting-tarballs" title="Permanent link">&para;</a></h3>
+<p>When you need to compile software that you want to add to your repository, you may want to do the actual compilation on a different machine than your Stratum 0 and copy the resulting installation as a tarball to your Stratum 0. Instead of manually extracting the tarball and doing a transaction, the <code>cvmfs_server</code> command offers a more efficient method for directly publishing the contents of a tarball:
+<div class="highlight"><pre><span></span><code>sudo cvmfs_server ingest -b /some/path repo.organization.tld -t mytarball.tar
+</code></pre></div>
+The <code>-b</code> expects the relative location in your repository where the contents of the tarball, specified with <code>-t</code>, will be extracted. So, in this case, the tarball gets extracted to <code>/cvmfs/repo.organization.tld/some/path</code>. Note that passing <code>/</code> to <code>-b</code> does not work at the moment, but will be supported in a future release of CernVM-FS.</p>
+<p>In case you have a compressed tarball, you can use an appropriate decompression tool and write the output to <code>stdout</code>.
+This output can then be piped to <code>cvmfs_server</code> by setting <code>-t -</code>, e.g. for a <code>.tar.gz</code> file:
+<div class="highlight"><pre><span></span><code>gunzip -c mytarball.tar.gz | sudo cvmfs_server ingest -b /some/path -t -
+</code></pre></div></p>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<p>By default, a newly published version of the repository will automatically get a tag with a timestamp in its name. This allows you to revert back to earlier versions.
+You can also set your own tag name and/or description upon publication:
+<div class="highlight"><pre><span></span><code>sudo cvmfs_server publish [-a tag name] [-m tag description] repo.organization.tld
+</code></pre></div></p>
+<p>The <code>tag</code> subcommand for <code>cvmfs_server</code> allows you to create (<code>-a</code>), remove (<code>-r</code>), inspect (<code>-i</code>), or list (<code>-l</code>) tags of your repository, e.g.:
+<div class="highlight"><pre><span></span><code>sudo cvmfs_server tag -a &quot;v1.0&quot; repo.organization.tld
+sudo cvmfs_server tag -l repo.organization.tld
+</code></pre></div></p>
+<p>With the <code>rollback</code> subcommand you can revert back to an earlier version. By default, this will be the previous version, but with <code>-t</code> you can specify a specific tag to revert to:
+<div class="highlight"><pre><span></span><code>sudo cvmfs_server rollback -t &quot;v0.5&quot; repo.organization.tld
+</code></pre></div></p>
+<h2 id="catalogs">Catalogs<a class="headerlink" href="#catalogs" title="Permanent link">&para;</a></h2>
+<h2 id="homework-hands-on">Homework / Hands-on<a class="headerlink" href="#homework-hands-on" title="Permanent link">&para;</a></h2>
 <ul>
-<li>nested catalogs</li>
-<li>via Stratum-0</li>
 <li>hands-on: publish prepared software stack</li>
 </ul>
                 
@@ -318,7 +479,7 @@
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 8, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 22, 2020</span>
     
   </small>
 </div>
@@ -389,15 +550,15 @@
       
     </div>
     
-      <script src="../assets/javascripts/vendor.0ac82a11.min.js"></script>
-      <script src="../assets/javascripts/bundle.f81dfb4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="../assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
           base: "..",
           features: [],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
