@@ -103,12 +103,14 @@ For this repository the `.cvmfsdirtab` file may look like:
 
 After you have added this file to your repository, you should see automatically generated `.cvmfscatalog` files in all the specified directories (note that you can still place additional ones manually as well). You can also run `cvmfs_server list-catalogs` to get a full list of all the nested catalogs.
 
+One final note: if you use a `.cvmfsdirtab` file, a tarball ingestion using the `cvmfs_server ingest` command will not automatically create the nested catalogs. You will need to do another (empty) transaction right after the ingestion to trigger the creation of the nested catalogs.
+
 
 ## Homework
 We prepared a tarball that contains a tree with dummy software installations. You can find the tarball at:
 TODO: INSERT DETAILS
 
-- Insert this tarball to a directory named `software` in your repository using the `ingest` subcommand;
+- Insert this tarball to a directory named `software` in your repository using the `ingest` subcommand (i.e. without actually extracting the tarball);
 - Note that you get some warnings about the catalog containing too many entries;
 - Fix the catalog issue by adding a `.cvmfsdirtab` file to the root of your repo, which automatically makes a catalog for each software installation directory;
 - Make sure that the warning is gone when you publish this `.cvmfsdirtab` file. Instead, you may see a message about the catalog being defragmented (because lots of entries were cleaned up).
