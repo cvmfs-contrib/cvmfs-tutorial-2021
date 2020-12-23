@@ -543,11 +543,12 @@ sudo cvmfs_server tag -l repo.organization.tld
 /modules
 </code></pre></div></p>
 <p>After you have added this file to your repository, you should see automatically generated <code>.cvmfscatalog</code> files in all the specified directories (note that you can still place additional ones manually as well). You can also run <code>cvmfs_server list-catalogs</code> to get a full list of all the nested catalogs.</p>
+<p>One final note: if you use a <code>.cvmfsdirtab</code> file, a tarball ingestion using the <code>cvmfs_server ingest</code> command will not automatically create the nested catalogs. You will need to do another (empty) transaction right after the ingestion to trigger the creation of the nested catalogs.</p>
 <h2 id="homework">Homework<a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
 <p>We prepared a tarball that contains a tree with dummy software installations. You can find the tarball at:
 TODO: INSERT DETAILS</p>
 <ul>
-<li>Insert this tarball to a directory named <code>software</code> in your repository using the <code>ingest</code> subcommand;</li>
+<li>Insert this tarball to a directory named <code>software</code> in your repository using the <code>ingest</code> subcommand (i.e. without actually extracting the tarball);</li>
 <li>Note that you get some warnings about the catalog containing too many entries;</li>
 <li>Fix the catalog issue by adding a <code>.cvmfsdirtab</code> file to the root of your repo, which automatically makes a catalog for each software installation directory;</li>
 <li>Make sure that the warning is gone when you publish this <code>.cvmfsdirtab</code> file. Instead, you may see a message about the catalog being defragmented (because lots of entries were cleaned up).</li>
@@ -560,7 +561,7 @@ TODO: INSERT DETAILS</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 22, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 23, 2020</span>
     
   </small>
 </div>
