@@ -644,10 +644,12 @@ may corrupt the repository. If you do want to open a transaction, stop the gatew
 sudo yum install -y cvmfs-server
 </code></pre></div></p>
 <h4 id="configuration_1">Configuration<a class="headerlink" href="#configuration_1" title="Permanent link">&para;</a></h4>
-<p>The publisher machine only needs three files with keys:
- - the repository's public key: <code>repo.organization.tld.pub</code>;
- - the repository's public key encoded as X509 certificate: <code>repo.organization.tld.crt</code>;
- - the gateway API key stored in a file named <code>repo.organization.tld.gw</code>.</p>
+<p>The publisher machine only needs three files with keys:</p>
+<ul>
+<li>the repository's public key: <code>repo.organization.tld.pub</code>;</li>
+<li>the repository's public key encoded as X509 certificate: <code>repo.organization.tld.crt</code>;</li>
+<li>the gateway API key stored in a file named <code>repo.organization.tld.gw</code>.</li>
+</ul>
 <p>The first two files can be taken from <code>/etc/cvmfs/keys</code> on your Stratum 0 server.
 The latter can be created manually and should just contain the secret that you used in the gateway configuration.</p>
 <p>Place all these files in some (temporary) directory on your publisher machine.</p>
@@ -657,7 +659,7 @@ The latter can be created manually and should just contain the secret that you u
                        -u gw,/srv/cvmfs/repo.organization.tld/data/txn,http://YOUR_STRATUM0_GATEWAY:4929/api/v1 \
                        -k /path/to/keys/dir -o `whoami` repo.organization.tld
 </code></pre></div>
-Replace both occurences of <code>YOUR_STRATUM0_GATEWAY</code> by the IP address or hostname of your gateway / Stratum 0 server (and change 4929 in case you changed the gateway port), and <code>/path/to/keys/dir</code> by the path where you
+Replace both occurrences of <code>YOUR_STRATUM0_GATEWAY</code> by the IP address or hostname of your gateway / Stratum 0 server (and change 4929 in case you changed the gateway port), and <code>/path/to/keys/dir</code> by the path where you
 stored the keys in the previous step.</p>
 <h4 id="start-publishing">Start publishing!<a class="headerlink" href="#start-publishing" title="Permanent link">&para;</a></h4>
 <p>You should now be able to make changes to the repository by opening a transaction. Note that you can do it
