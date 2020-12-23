@@ -112,6 +112,7 @@ sudo yum install -y cvmfs-server
 
 #### Configuration
 The publisher machine only needs three files with keys:
+
  - the repository's public key: `repo.organization.tld.pub`;
  - the repository's public key encoded as X509 certificate: `repo.organization.tld.crt`;
  - the gateway API key stored in a file named `repo.organization.tld.gw`.
@@ -128,7 +129,7 @@ sudo cvmfs_server mkfs -w http://YOUR_STRATUM0_GATEWAY/cvmfs/repo.organization.t
                        -u gw,/srv/cvmfs/repo.organization.tld/data/txn,http://YOUR_STRATUM0_GATEWAY:4929/api/v1 \
                        -k /path/to/keys/dir -o `whoami` repo.organization.tld
 ```
-Replace both occurences of `YOUR_STRATUM0_GATEWAY` by the IP address or hostname of your gateway / Stratum 0 server (and change 4929 in case you changed the gateway port), and `/path/to/keys/dir` by the path where you
+Replace both occurrences of `YOUR_STRATUM0_GATEWAY` by the IP address or hostname of your gateway / Stratum 0 server (and change 4929 in case you changed the gateway port), and `/path/to/keys/dir` by the path where you
 stored the keys in the previous step.
 
 #### Start publishing!
