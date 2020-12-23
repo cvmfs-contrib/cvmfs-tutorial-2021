@@ -11,7 +11,8 @@ By default, your repository directory under `/cvmfs` is read-only, but by a tran
 sudo cvmfs_server transaction repo.organization.tld
 ```
 
-Once you are done with making changes, the changes can be published using:
+Once you are done with making changes, be sure to change your working directory to somewhere outside of the
+repository (otherwise you will get an error), and publish your changes using:
 ```
 sudo cvmfs_server publish repo.organization.tld
 ```
