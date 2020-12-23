@@ -479,7 +479,8 @@ In this section we will give some more details about publishing files.</p>
 By default, your repository directory under <code>/cvmfs</code> is read-only, but by a transaction makes the directory writable for the user that is owner of the repository.
 <div class="highlight"><pre><span></span><code>sudo cvmfs_server transaction repo.organization.tld
 </code></pre></div></p>
-<p>Once you are done with making changes, the changes can be published using:
+<p>Once you are done with making changes, be sure to change your working directory to somewhere outside of the
+repository (otherwise you will get an error), and publish your changes using:
 <div class="highlight"><pre><span></span><code>sudo cvmfs_server publish repo.organization.tld
 </code></pre></div></p>
 <p>And you can always abort a transaction, which will undo all the non-published modifications:
