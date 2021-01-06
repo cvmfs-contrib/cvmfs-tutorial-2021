@@ -1,6 +1,7 @@
 # Introduction to CernVM-FS
 
-- Stratum-0 + create repo
-	- + add "hello world" bash script
-- client access
-- hands-on homework
+- what is CVMFS
+- terminology
+- pictures
+- refer to cvmfs docs + talk
+- end goal of tutorial/exercises
