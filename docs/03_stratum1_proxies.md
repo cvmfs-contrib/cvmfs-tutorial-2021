@@ -64,8 +64,10 @@ sudo systemctl enable squid
 ```
 
 
-### DNS cache?
-Skip this for now and point to the documentation?
+### DNS cache
+As a Stratum 1 server does a lot of DNS lookups, it is recommended to have a local DNS caching server on that same machine.
+We will not discuss this topic any further here, but you can use `dnsmasq`, `bind`, or `systemd-resolved`.
+See for instance (this tutorial)[https://geekflare.com/linux-server-local-dns-caching/] for setting up `systemd-resolved`.
 
 ### Create the Stratum 1 replica
 With all the required components in place, we can now really set up our Stratum 1 replica server. We first add our Geo API key to the CernVM-FS server settings:
