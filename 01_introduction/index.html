@@ -349,8 +349,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../02_getting_started/" class="md-nav__link">
-        Getting started
+      <a href="../02_stratum0_client/" class="md-nav__link">
+        Stratum 0 + client
       </a>
     </li>
   
@@ -366,7 +366,7 @@
   
     <li class="md-nav__item">
       <a href="../03_stratum1_proxies/" class="md-nav__link">
-        Stratum-1 + proxies
+        Stratum 1 + proxies
       </a>
     </li>
   
@@ -585,7 +585,7 @@ but also High-Performance Computing (HPC) clusters, virtual machines running in 
 and are automatically notified when the contents of the filesystem has changed.</p>
 <p>The filesystem that is mounted on a client (under <code>/cvmfs</code>) is a virtual filesystem, in the sense that
 <em>data is only (down)loaded when it is actually accessed</em> (and cached aggressively to ensure good performance).</p>
-<p>Mounting a CernVM-FS repository on a client will be covered in <a href="../02_getting_started/">first hands-on part of this tutorial</a>.
+<p>Mounting a CernVM-FS repository on a client will be covered in the <a href="../02_stratum0_client/">first hands-on part of this tutorial</a>.
 Extensive documentation on configuring a client is available in the <a href="https://cvmfs.readthedocs.io/en/stable/cpt-configure.html">CernVM-FS documentation</a>.</p>
 <h4 id="stratum-0-repository">Stratum 0 + repository<a class="headerlink" href="#stratum-0-repository" title="Permanent link">&para;</a></h4>
 <p>A CernVM-FS <strong><em>repository</em></strong> is the single source of (new) data for a filesystem.
@@ -599,7 +599,7 @@ as the Stratum 0 server. Providing write access is done by means of a <em>union 
 overlaying a read-only mount of the CernVM-FS filesystem with a writable scratch area.
 Publishing is an atomic operation: adding or changing files in a repository is done by
 <em>ingesting</em> files and creating a <em>transaction</em> that records the changes.</p>
-<p>In the <a href="../02_getting_started/">first hands-on part of this tutorial</a>
+<p>In the <a href="../02_stratum0_client/">first hands-on part of this tutorial</a>
 we will guide you through the process of creating a CernVM-FS repository,
 which is also covered in detail in the <a href="https://cvmfs.readthedocs.io/en/stable/cpt-repo.html">CernVM-FS documentation</a>.</p>
 <p>The <a href="../04_publishing/">3rd hands-on part of this tutorial</a> will focus on the publishing procedure
@@ -670,13 +670,13 @@ More details are available in the <a href="https://cvmfs.readthedocs.io/en/stabl
           </a>
         
         
-          <a href="../02_getting_started/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../02_stratum0_client/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Getting started
+                Stratum 0 + client
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
