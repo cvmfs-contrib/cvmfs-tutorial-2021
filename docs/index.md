@@ -84,3 +84,4 @@ you can use your own resources if you prefer doing so.
 * CernVM-FS website: [https://cernvm.cern.ch/fs](https://cernvm.cern.ch/fs)
 * CernVM-FS documentation: [https://cvmfs.readthedocs.io](https://cvmfs.readthedocs.io)
 * CernVM-FS @ GitHub: [https://github.com/cvmfs](https://github.com/cvmfs)
+* CernVM-FS tutorial @ GitHub: [https://github.com/cvmfs-contrib/cvmfs-tutorial-2021](https://github.com/cvmfs-contrib/cvmfs-tutorial-2021)
