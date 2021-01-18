@@ -91,7 +91,7 @@ and are automatically notified when the contents of the filesystem has changed.
 The filesystem that is mounted on a client (under ``/cvmfs``) is a virtual filesystem, in the sense that
 *data is only (down)loaded when it is actually accessed* (and cached aggressively to ensure good performance).
 
-Mounting a CernVM-FS repository on a client will be covered in [first hands-on part of this tutorial](02_getting_started.md).
+Mounting a CernVM-FS repository on a client will be covered in the [first hands-on part of this tutorial](02_stratum0_client.md).
 Extensive documentation on configuring a client is available in the [CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html).
 
 #### Stratum 0 + repository
@@ -110,7 +110,7 @@ overlaying a read-only mount of the CernVM-FS filesystem with a writable scratch
 Publishing is an atomic operation: adding or changing files in a repository is done by
 *ingesting* files and creating a *transaction* that records the changes.
 
-In the [first hands-on part of this tutorial](02_getting_started.md)
+In the [first hands-on part of this tutorial](02_stratum0_client.md)
 we will guide you through the process of creating a CernVM-FS repository,
 which is also covered in detail in the [CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-repo.html).
 

@@ -1,4 +1,4 @@
-# Getting started
+# Stratum 0 + client
 
 In order to get started with CernVM-FS, the first thing you need is a Stratum 0 server. This is the central server that hosts your repositories and makes it available to other machines. There can be only one Stratum 0 server for each repository, and from a security perspective it is usually recommended to restrict the access to this machine. We will look more into that later; for now, we are going to set up a Stratum 0, make a repository, and connect from a client machine directly to the Stratum 0.
 
