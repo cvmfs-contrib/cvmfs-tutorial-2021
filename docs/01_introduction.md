@@ -24,7 +24,7 @@ but there are various aspects to it that are quite different.
 
 The files and directories that are made available via CernVM-FS are always located
 in a subdirectory of ``/cvmfs``, and are provisioned via a network of servers that
-can basically by viewed as web servers since only outgoing ***HTTP*** connections are used.
+can basically be viewed as web servers since only outgoing ***HTTP*** connections are used.
 This makes it easy to use CernVM-FS in environments that are protected by a strict firewall.
 
 CernVM-FS is a ***read-only*** filesystem for those who access it; only those who administer it
