@@ -9,12 +9,12 @@ repo_url: https://github.com/cvmfs-contrib/cvmfs-tutorial-2021
 edit_uri: edit/master/docs
 nav:
   - "Home": index.md
-  - Azure cloud resources: 00_azure_cloud_resources.md
-  - Introduction to CernVM-FS: 01_introduction.md
-  - Stratum 0 + client: 02_stratum0_client.md
-  - Stratum 1 + proxies: 03_stratum1_proxies.md
-  - Publishing: 04_publishing.md
-  - Advanced topics: 05_advanced.md
+  - 0. Azure cloud resources: 00_azure_cloud_resources.md
+  - 1. Introduction to CernVM-FS: 01_introduction.md
+  - 2. Stratum 0 + client: 02_stratum0_client.md
+  - 3. Stratum 1 + proxies: 03_stratum1_proxies.md
+  - 4. Publishing: 04_publishing.md
+  - 5. Advanced topics: 05_advanced.md
 plugins:
   # show revision date at bottom of each page
   - git-revision-date-localized
