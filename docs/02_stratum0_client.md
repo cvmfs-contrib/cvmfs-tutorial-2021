@@ -8,6 +8,10 @@ We will look more into that later.
 
 For now, we are going to set up a Stratum 0, create a repository, and access it by connecting from a client machine directly to the Stratum 0 server.
 
+<p align="center">
+<img src="../img/stratum0_client.png" alt="CernVM-FS - Stratum 0 + client" width="350px"/>
+</p>
+
 !!! warning
     **Directly connecting to the Stratum 0 is** ***not*** **recommended**, but it is a good way to get started.
 
