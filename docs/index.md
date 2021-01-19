@@ -64,12 +64,12 @@ You can use your own resources if you prefer doing so.
 
 ## Tutorial contents
 
-1. [Azure cloud resources](00_azure_cloud_resources.md)
-- [Introduction to CernVM-FS](01_introduction.md)
-- [Stratum 0 + client](02_stratum0_client.md) ``(*)``
-- [Stratum 1 + proxies](03_stratum1_proxies.md) ``(*)``
-- [Publishing](04_publishing.md) ``(*)``
-- [Advanced topics](05_advanced.md)
+- [0. Azure cloud resources](00_azure_cloud_resources.md)
+- [1. Introduction to CernVM-FS](01_introduction.md)
+- [2. Stratum 0 + client](02_stratum0_client.md) ``(*)``
+- [3. Stratum 1 + proxies](03_stratum1_proxies.md) ``(*)``
+- [4. Publishing](04_publishing.md) ``(*)``
+- [5. Advanced topics](05_advanced.md)
 
 *(sections indicated with* ``(*)`` *involve hands-on exercises)*
 
