@@ -135,7 +135,7 @@ echo 'echo hello' >> /cvmfs/${MY_REPO_NAME}/hello.sh
 chmod a+x /cvmfs/${MY_REPO_NAME}/hello.sh
 ```
 
-Complete the transaction by publishing the changes using `cvmfs_server publish <name_of_repo>`:
+Complete the transaction by publishing the changes using:
 
 ```bash
 sudo cvmfs_server publish ${MY_REPO_NAME}
