@@ -171,8 +171,8 @@ Obviously you should only do this when you actually *want* to get rid of the rep
 Accessing a CernVM-FS repository on a client system involves three steps:
 
 1. installing the CernVM-FS client package;
-- adding some configuration files for the repository you want to connect to;
-- running the CernVM-FS setup procedure that will mount the repository.
+2. adding some configuration files for the repository you want to connect to;
+3. running the CernVM-FS setup procedure that will mount the repository.
 
 The client is going to pull in files from the repository over an HTTP connection.
 CernVM-FS maintains a local cache on the client, so you need sufficient space for storing it.
