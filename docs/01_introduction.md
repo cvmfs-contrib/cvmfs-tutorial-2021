@@ -56,8 +56,7 @@ for example via automatic file de-duplication and compression.
 #### Scalable and reliable
 
 CernVM-FS was designed to be ***scalable and reliable***, with known deployments involving hundreds of millions
-of files and many thousands of clients. It was originally created to fulfill the software distribution needs of the
-[Large Hadron Collider (LHC) project at CERN](https://home.cern/science/accelerators/large-hadron-collider).
+of files and many tens of thousands of clients. It was originally created to fulfill the software distribution needs of the [experiments at the Large Hadron Collider (LHC)](https://home.cern/science/experiments) at CERN.
 
 The network of (web) servers that make a CernVM-FS instance accessible is constructed such that it is robust
 against problems like network disconnects and hardware failures, and so it can be extended and tweaked on demand
