@@ -101,7 +101,7 @@ sudo yum install -y cvmfs
 Many popular/large organizations hosting CernVM-FS repositories offer a client package that you can install to do most of the configuration. For our repository, we are going to do this manually. All required configuration files will have to be stored somewhere under `/etc/cvmfs`. We will discuss them one by one, where we use `repo.organization.tld` as repository name, and hence `organization.tld` as domain.
 
 #### /etc/cvmfs/keys/organization.tld/repo.organization.tld.pub
-This file contains the public key of the repository you want to access. You can copy this file from your Stratum 0 server, where it should be stored at the same location.
+This file contains the public key of the repository you want to access. You can copy this file from your Stratum 0 server, where it should be stored under /etc/cvmfs/keys.
 
 #### /etc/cvmfs/config.d/repo.organization.tld.conf
 This file contains the main configuration for the repository you want to access, which should minimally contain the URL(s) of the Stratum 1 servers and the location of the public key. Because we do not have a Stratum 1 server yet, we are going to (mis)use our Stratum 0 as a Stratum 1. You should not do this in production!
