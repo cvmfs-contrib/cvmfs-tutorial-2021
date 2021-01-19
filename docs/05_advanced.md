@@ -20,13 +20,13 @@ This should return `OK`.  To make sure that your configuration is really picked 
 (because of the hierarchical structure of the configuration, it is easily possible that some parameter gets overwritten by another configuration file),
 you can dump the effective configuration for your repository using:
 ```
-sudo cvmfs_config showconfig repo.organization.tld
+cvmfs_config showconfig repo.organization.tld
 ```
 Make sure that at least `CVMFS_HTTP_PROXY` and `CVMFS_SERVER_URL` are set correctly, and that the directory pointed to by `CVMFS_KEYS_DIR` really contains the (correct) public key file.
 
 The `probe` subcommand can be used for (re)trying to mount the repository, and should normally return `OK`:
 ```
-sudo cvmfs_config probe repo.organization.tld
+cvmfs_config probe repo.organization.tld
 Probing /cvmfs/repo.organization.tld... OK
 ```
 
@@ -39,7 +39,7 @@ Now we unmount the repository, re-run the setup step, and try to probe it again:
 ```
 sudo cvmfs_config umount
 sudo cvmfs_config setup
-sudo cvmfs_config probe repo.organization.tld
+cvmfs_config probe repo.organization.tld
 ```
 
 You can now check your debug log file, and look for any error messages near the bottom of the file; they may reveal more details about the issue.
@@ -189,8 +189,7 @@ Replace both occurrences of `YOUR_STRATUM0_GATEWAY` by the IP address or hostnam
 stored the keys in the previous step.
 
 #### Start publishing!
-You should now be able to make changes to the repository by opening a transaction. Note that you can do it
-as the regular user:
+You should now be able to make changes to the repository by opening a transaction:
 ```
 cvmfs_server transaction repo.organization.tld
 

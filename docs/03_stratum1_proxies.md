@@ -94,7 +94,7 @@ sudo cvmfs_server rmfs repo.organization.tld
 The Stratum 1 has been registered, so now we should try to do a first synchronization.
 You can do this by running the following command:
 ```
-sudo cvmfs_server snapshot repo.organization.tld
+cvmfs_server snapshot repo.organization.tld
 ```
 As there is not much in the repository yet, this should complete within a few seconds.
 

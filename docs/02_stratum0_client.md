@@ -58,13 +58,12 @@ A new repository automatically gets a file `new_repository` in its root (`/cvmfs
 ```bash
 MY_REPO_NAME=repo.organization.tld
 
-sudo cvmfs_server transaction ${MY_REPO_NAME}
+cvmfs_server transaction ${MY_REPO_NAME}
 
 # Now make some changes in /cvmfs/${MY_REPO_NAME},
 # e.g. by adding files or directories.
-# If you made $USER the owner of the repository, you can do this without sudo.
 
-sudo cvmfs_server publish ${MY_REPO_NAME}
+cvmfs_server publish ${MY_REPO_NAME}
 ```
 
 ### Cronjob for resigning the whitelist
