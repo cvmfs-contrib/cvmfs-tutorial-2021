@@ -17,7 +17,8 @@ That's a mouthful, so let's break it down a bit...
 #### Read-only filesystem over HTTP
 
 CernVM-FS is a ***network filesystem***,
-which you can mount in Linux or macOS via [FUSE (Filesystem in Userspace)](https://github.com/libfuse/libfuse).
+which you can mount in Linux or macOS via [FUSE (Filesystem in Userspace)](https://github.com/libfuse/libfuse)
+and on Windows in a [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-win10) virtualized Linux environment.
 In some ways it is similar to other network filesystems like [NFS](https://en.wikipedia.org/wiki/Network_File_System)
 or [AFS](https://en.wikipedia.org/wiki/Andrew_File_System),
 but there are various aspects to it that are quite different.
