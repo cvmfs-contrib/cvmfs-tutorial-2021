@@ -8,6 +8,61 @@
 - exploding containers + use via Singularity
 	- demo
 
+## Debugging issues
+If you are experiencing issues with your CernVM-FS setup, there are various ways to start debugging.
+Most issues are caused by wrongly configured clients (either a configuration issue, or a wrong public key) and connection or firewall issues.
+
+In order to find the cause of the issue, we should first find out where the issue is being caused. You can start by checking the client configuration for syntax errors:
+```
+sudo cvmfs_config chksetup
+```
+This should return `OK`.  To make sure that your configuration is really picked up and set correctly
+(because of the hierarchical structure of the configuration, it is easily possible that some parameter gets overwritten by another configuration file),
+you can dump the effective configuration for your repository using:
+```
+sudo cvmfs_config showconfig repo.organization.tld
+```
+Make sure that at least `CVMFS_HTTP_PROXY` and `CVMFS_SERVER_URL` are set correctly, and that the directory pointed to by `CVMFS_KEYS_DIR` really contains the (correct) public key file.
+
+The `probe` subcommand can be used for (re)trying to mount the repository, and should normally return `OK`:
+```
+sudo cvmfs_config probe repo.organization.tld
+Probing /cvmfs/repo.organization.tld... OK
+```
+
+But, since you were debugging an issue, it probably returns an error. So, let's enable some debugging output by adding the following line to your `/etc/cvmfs/default.local`:
+```
+CVMFS_DEBUGLOG=/path/to/cvmfs.log
+```
+Now we unmount the repository, re-run the setup step, and try to probe it again:
+
+```
+sudo cvmfs_config umount
+sudo cvmfs_config setup
+sudo cvmfs_config probe repo.organization.tld
+```
+
+You can now check your debug log file, and look for any error messages near the bottom of the file; they may reveal more details about the issue.
+
+If it turns out to be some kind of connection issue, you can trace it down further by manually checking the connections to your proxy and/or Stratum 1 server.
+First, let's rule out that it is some kind of firewall issue by verifying that you can actually connect to the appropriate ports on those servers:
+```
+telnet url-to-your-proxy 3128
+telnet url-to-your-stratum1 80
+```
+
+If this does work, probably something is wrong with the services running on these machines.
+Every CernVM-FS repository has a file named `.cvmfspublished`, and you can try to fetch it manually using `curl`, both directly from the Stratum 1 and via your proxy:
+```
+# Without your own proxy, i.e. directly go to the Stratum 1:
+curl --head http://url-to-your-stratum1/cvmfs/repo.organization.tld/.cvmfspublished
+
+# With your caching proxy between the client and Stratum 1:
+curl --proxy http://url-to-your-proxy:3128 --head http://url-to-your-stratum1/cvmfs/repo.organization.tld/.cvmfspublished
+```
+
+These commands should return `HTTP/1.1 200 OK`. If the first command returns something else, you should inspect your CernVM-FS, Apache, and Squid configuration (and log) files on the Stratum 1 server. If the first `curl` command does work, but the second does not, there is something wrong with your Squid proxy; make sure that it is running, configured, and able to access your Stratum 1 server.
+
 
 ## Gateway and Publishers
 
