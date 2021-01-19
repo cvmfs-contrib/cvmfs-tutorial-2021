@@ -30,7 +30,7 @@ CernVM-FS server configuration settings later on.
 #### Operating system
 
 Several (popular) Linux distributions are supported by CernVM-FS,
-see [these requirements](https://github.com/cvmfs-contrib/cvmfs-tutorial-2021/wiki/Notes#stratum-1--proxies) for a full list.
+see [the Getting Started page of the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-quickstart.html#getting-the-software) for a full list.
 
 In this tutorial we will use CentOS 8 on ``x86_64``, but it should be relatively straightforward to use another OS or CPU architecture instead.
 
