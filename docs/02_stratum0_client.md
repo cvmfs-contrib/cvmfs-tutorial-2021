@@ -109,7 +109,7 @@ This file contains the main configuration for the repository you want to access,
 A typical, minimal configuration should look as follows:
 ```
 CVMFS_SERVER_URL="http://your-stratum0/cvmfs/@fqrn@"
-CVMFS_PUBLIC_KEY="/etc/cvmfs/keys/organization.tld/repo.organization.tld.pub"
+CVMFS_KEYS_DIR="/etc/cvmfs/keys/organization.tld"
 ```
 Note that the `CVMFS_SERVER_URL` should have the `/cvmfs/@fqrn`; the last part will automatically be replaced by the full name of your repository.
 
