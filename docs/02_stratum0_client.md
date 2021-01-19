@@ -85,7 +85,9 @@ sudo cvmfs_server rmfs repo.organization.tld
 ## Set up a client
 Accessing CernVM-FS repositories on a client machine involves three steps: installing the CernVM-FS client package, adding some configuration files for the repository you want to connect to, and finally run a CernVM-FS setup procedure that will mount the repository.
 
-Since the client is going to pull in files over an HTTP connection, you need sufficient space for storing a local cache on the client machine. You can define the maximum size of your cache in the settings; the larger your cache is, the less often you have to pull in files again, and the faster your applications will start. Note that you can add more cache layers by adding a proxy nearby your client; this will be covered in a later section.
+Since the client is going to pull in files over an HTTP connection, you need sufficient space for storing a local cache on the client machine. You can define the maximum size of your cache in the settings; the larger your cache is, the less often you have to pull in files again, and the faster your applications will start.
+Typical client cache sizes range from 4GB to 50GB.
+Note that you can add more cache layers by adding a proxy nearby your client; this will be covered in a later section.
 
 ### Installation
 The installation is the same as for the Stratum 0, except that you only need the `cvmfs` package:
