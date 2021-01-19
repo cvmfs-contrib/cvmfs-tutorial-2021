@@ -70,7 +70,7 @@ sudo cvmfs_server publish ${MY_REPO_NAME}
 ### Cronjob for resigning the whitelist
 Each CernVM-FS repository has a whitelist containing fingerprints of certificates that are allowed to sign the repository. This whitelist has an expiration time of, by default, 30 days. This means that you regularly have to resign the whitelist. There are several ways to do this, see for instance [the page about master keys](https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#sct-master-keys) in the documentation.
 
-If you just keep the master key on our Stratum 0 sever, you can set up a simple cronjob for resigning the whitelist. For instance, make a file `/etc/cron.d/cvmfs_resign` with the following content to do this every Monday at 11:00:
+If you just keep the master key on our Stratum 0 server, you can set up a simple cronjob for resigning the whitelist. For instance, make a file `/etc/cron.d/cvmfs_resign` with the following content to do this every Monday at 11:00:
 ```
 0 11 * * 1 root /usr/bin/cvmfs_server resign repo.organization.tld
 ```
