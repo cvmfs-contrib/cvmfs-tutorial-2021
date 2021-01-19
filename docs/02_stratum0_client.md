@@ -5,7 +5,8 @@ In order to get started with CernVM-FS, the first thing you need is a Stratum 0 
 ## Set up the Stratum 0
 
 ### Requirements
-Due to the scalable design of CernVM-FS, the host of your Stratum 0 server does not need a lot of resources in terms of CPU cores and memory; just a few cores and a few gigabytes of memory should suffice. Besides this, you need plenty of space to store the contents of your repository. By default, CernVM-FS uses `/var/spool` as scratch space while adding new files to the repository, and `/srv/cvmfs` as central repository storage location, but these locations can be modified in the CernVM-FS server settings later on.
+Due to the scalable design of CernVM-FS, the host of your Stratum 0 server does not need a lot of resources in terms of CPU cores and memory; just a few cores and a few gigabytes of memory should suffice. Besides this, you need plenty of space to store the contents of your repository. CernVM-FS uses `/var/spool/cvmfs` as scratch space while adding new files to the repository, and `/srv/cvmfs` as central repository storage location.
+To change these locations, you can create either of the paths as a symbolic link to a different directory.
 
 Furthermore, several (popular) Linux distributions are supported, see [these requirements](https://github.com/cvmfs-contrib/cvmfs-tutorial-2021/wiki/Notes#stratum-1--proxies) for a full list. We will only focus on CentOS in this tutorial.
 
@@ -103,7 +104,7 @@ This file contains the public key of the repository you want to access. You can 
 #### /etc/cvmfs/config.d/repo.organization.tld.conf
 This file contains the main configuration for the repository you want to access, which should minimally contain the URL(s) of the Stratum 1 servers and the location of the public key. Because we do not have a Stratum 1 server yet, we are going to (mis)use our Stratum 0 as a Stratum 1. You should not do this in production!
 
-A typical, minimal configuration should look as follows:  
+A typical, minimal configuration should look as follows:
 ```
 CVMFS_SERVER_URL="http://your-stratum0/cvmfs/@fqrn@"
 CVMFS_PUBLIC_KEY="/etc/cvmfs/keys/organization.tld/repo.organization.tld.pub"
