@@ -126,7 +126,8 @@ When your configuration is complete, you can run the following command as root t
 ```
 sudo cvmfs_config setup
 ```
-This should not return any error message.
+This should not return any error message. If you do run into an issue, check out
+[the debugging section on the Advanced topics page](05_advanced.md#debugging-issues).
 
 ## Browse the repository
 Finally, we can try to access our repository on the client machine. Note that CernVM-FS uses `autofs`, which means that you may not see the repository when you do `ls /cvmfs`. Your repository will only be actually mounted when you access it, and may be unmounted after not using it for a while. So, the following should work and show the contents of your repository:
