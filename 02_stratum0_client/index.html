@@ -742,7 +742,8 @@ Note that the <code>CVMFS_SERVER_URL</code> should have the <code>/cvmfs/@fqrn</
 <p>When your configuration is complete, you can run the following command as root to mount the repository:
 <div class="highlight"><pre><span></span><code>sudo cvmfs_config setup
 </code></pre></div>
-This should not return any error message.</p>
+This should not return any error message. If you do run into an issue, check out
+<a href="../05_advanced/#debugging-issues">the debugging section on the Advanced topics page</a>.</p>
 <h2 id="browse-the-repository">Browse the repository<a class="headerlink" href="#browse-the-repository" title="Permanent link">&para;</a></h2>
 <p>Finally, we can try to access our repository on the client machine. Note that CernVM-FS uses <code>autofs</code>, which means that you may not see the repository when you do <code>ls /cvmfs</code>. Your repository will only be actually mounted when you access it, and may be unmounted after not using it for a while. So, the following should work and show the contents of your repository:
 <div class="highlight"><pre><span></span><code>ls /cvmfs/repo.organization.tld
@@ -763,7 +764,7 @@ This should not return any error message.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 18, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 19, 2021</span>
     
   </small>
 </div>

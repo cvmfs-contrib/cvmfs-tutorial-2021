@@ -322,6 +322,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#debugging-issues" class="md-nav__link">
+    Debugging issues
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gateway-and-publishers" class="md-nav__link">
     Gateway and Publishers
   </a>
@@ -456,6 +463,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#debugging-issues" class="md-nav__link">
+    Debugging issues
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gateway-and-publishers" class="md-nav__link">
     Gateway and Publishers
   </a>
@@ -588,6 +602,45 @@
 </ul>
 </li>
 </ul>
+<h2 id="debugging-issues">Debugging issues<a class="headerlink" href="#debugging-issues" title="Permanent link">&para;</a></h2>
+<p>If you are experiencing issues with your CernVM-FS setup, there are various ways to start debugging.
+Most issues are caused by wrongly configured clients (either a configuration issue, or a wrong public key) and connection or firewall issues.</p>
+<p>In order to find the cause of the issue, we should first find out where the issue is being caused. You can start by checking the client configuration for syntax errors:
+<div class="highlight"><pre><span></span><code>sudo cvmfs_config chksetup
+</code></pre></div>
+This should return <code>OK</code>.  To make sure that your configuration is really picked up and set correctly
+(because of the hierarchical structure of the configuration, it is easily possible that some parameter gets overwritten by another configuration file),
+you can dump the effective configuration for your repository using:
+<div class="highlight"><pre><span></span><code>sudo cvmfs_config showconfig repo.organization.tld
+</code></pre></div>
+Make sure that at least <code>CVMFS_HTTP_PROXY</code> and <code>CVMFS_SERVER_URL</code> are set correctly, and that the directory pointed to by <code>CVMFS_KEYS_DIR</code> really contains the (correct) public key file.</p>
+<p>The <code>probe</code> subcommand can be used for (re)trying to mount the repository, and should normally return <code>OK</code>:
+<div class="highlight"><pre><span></span><code>sudo cvmfs_config probe repo.organization.tld
+Probing /cvmfs/repo.organization.tld... OK
+</code></pre></div></p>
+<p>But, since you were debugging an issue, it probably returns an error. So, let's enable some debugging output by adding the following line to your <code>/etc/cvmfs/default.local</code>:
+<div class="highlight"><pre><span></span><code>CVMFS_DEBUGLOG=/path/to/cvmfs.log
+</code></pre></div>
+Now we unmount the repository, re-run the setup step, and try to probe it again:</p>
+<div class="highlight"><pre><span></span><code>sudo cvmfs_config umount
+sudo cvmfs_config setup
+sudo cvmfs_config probe repo.organization.tld
+</code></pre></div>
+<p>You can now check your debug log file, and look for any error messages near the bottom of the file; they may reveal more details about the issue.</p>
+<p>If it turns out to be some kind of connection issue, you can trace it down further by manually checking the connections to your proxy and/or Stratum 1 server.
+First, let's rule out that it is some kind of firewall issue by verifying that you can actually connect to the appropriate ports on those servers:
+<div class="highlight"><pre><span></span><code>telnet url-to-your-proxy 3128
+telnet url-to-your-stratum1 80
+</code></pre></div></p>
+<p>If this does work, probably something is wrong with the services running on these machines.
+Every CernVM-FS repository has a file named <code>.cvmfspublished</code>, and you can try to fetch it manually using <code>curl</code>, both directly from the Stratum 1 and via your proxy:
+<div class="highlight"><pre><span></span><code># Without your own proxy, i.e. directly go to the Stratum 1:
+curl --head http://url-to-your-stratum1/cvmfs/repo.organization.tld/.cvmfspublished
+
+# With your caching proxy between the client and Stratum 1:
+curl --proxy http://url-to-your-proxy:3128 --head http://url-to-your-stratum1/cvmfs/repo.organization.tld/.cvmfspublished
+</code></pre></div></p>
+<p>These commands should return <code>HTTP/1.1 200 OK</code>. If the first command returns something else, you should inspect your CernVM-FS, Apache, and Squid configuration (and log) files on the Stratum 1 server. If the first <code>curl</code> command does work, but the second does not, there is something wrong with your Squid proxy; make sure that it is running, configured, and able to access your Stratum 1 server.</p>
 <h2 id="gateway-and-publishers">Gateway and Publishers<a class="headerlink" href="#gateway-and-publishers" title="Permanent link">&para;</a></h2>
 <p>Only being able to modify your repository on the Stratum 0 server can be a bit of a limitation,
 especially when multiple people have to maintain the repository.</p>
@@ -700,7 +753,7 @@ cvmfs_server publish repo.organization.tld
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 12, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 19, 2021</span>
     
   </small>
 </div>
