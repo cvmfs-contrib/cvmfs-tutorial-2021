@@ -84,6 +84,12 @@ Now we make the replica by giving the URL to the repository on the Stratum 0 ser
 sudo cvmfs_server add-replica -o $USER http://YOUR_STRATUM0/cvmfs/repo.organization.tld /etc/cvmfs/keys/organization.tld/repo.organization.tld
 ```
 
+#### Remove the replica
+If you ever want to remove the replica again, you can use the `rmfs` subcommand in the same way as on a Stratum 0:
+```
+sudo cvmfs_server rmfs repo.organization.tld
+```
+
 ### Manually synchronize the Stratum 1
 The Stratum 1 has been registered, so now we should try to do a first synchronization.
 You can do this by running the following command:
