@@ -330,6 +330,19 @@
     Create the Stratum 1 replica
   </a>
   
+    <nav class="md-nav" aria-label="Create the Stratum 1 replica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remove-the-replica" class="md-nav__link">
+    Remove the replica
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -531,6 +544,19 @@
     Create the Stratum 1 replica
   </a>
   
+    <nav class="md-nav" aria-label="Create the Stratum 1 replica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remove-the-replica" class="md-nav__link">
+    Remove the replica
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -705,6 +731,10 @@ sudo chmod 600 /etc/cvmfs/server.local
 <p>Now we make the replica by giving the URL to the repository on the Stratum 0 server (which is always like <code>http://host:port/cvmfs/repository</code>) and the path to the corresponding public key:
 <div class="highlight"><pre><span></span><code>sudo cvmfs_server add-replica -o $USER http://YOUR_STRATUM0/cvmfs/repo.organization.tld /etc/cvmfs/keys/organization.tld/repo.organization.tld
 </code></pre></div></p>
+<h4 id="remove-the-replica">Remove the replica<a class="headerlink" href="#remove-the-replica" title="Permanent link">&para;</a></h4>
+<p>If you ever want to remove the replica again, you can use the <code>rmfs</code> subcommand in the same way as on a Stratum 0:
+<div class="highlight"><pre><span></span><code>sudo cvmfs_server rmfs repo.organization.tld
+</code></pre></div></p>
 <h3 id="manually-synchronize-the-stratum-1">Manually synchronize the Stratum 1<a class="headerlink" href="#manually-synchronize-the-stratum-1" title="Permanent link">&para;</a></h3>
 <p>The Stratum 1 has been registered, so now we should try to do a first synchronization.
 You can do this by running the following command:
@@ -808,7 +838,7 @@ sudo systemctl enable squid
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 7, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 19, 2021</span>
     
   </small>
 </div>
