@@ -45,9 +45,9 @@ For each repository that you create, a set of keys will be generated in `/etc/cv
  - `repo.organization.tld.crt` -  the repository’s public key (encoded as X509 certificate);
  - `repo.organization.tld.key` - the repository's private key;
  - `repo.organization.tld.masterkey` - the repository's private master key;
- - `repo.organization.tld.pub` -  repository’s public key (RSA).
+ - `repo.organization.tld.pub` -  repository’s public master key (RSA).
 
-The public key is the one that is needed by clients in order to access the repository; we will need this later on. The master key is used to sign a whitelist of known publisher certificates; this whitelist is, by default, valid for 30 days, so the signing has to be done regularly.
+The public master key is the one that is needed by clients in order to access the repository; we will need this later on. The private master key is used to sign a whitelist of known publisher certificates; this whitelist is, by default, valid for 30 days, so the signing has to be done regularly.
 
 For now we are going to use one master key per repository, but in practice it is recommended to use the same master key for all repositories under a single domain, so that clients only need a single public key to access all repositories under this domain. We will explain this in more detail in the advanced section.
 TODO: DO WE WANT TO EXPLAIN THIS?
