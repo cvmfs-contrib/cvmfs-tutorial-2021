@@ -107,8 +107,8 @@ which involves creating the file catalog(s), compressing files, calculating cont
 A read-writable copy of a CernVM-FS repository is (only) available on a *publisher* system, which can be the same system
 as the Stratum 0 server. Providing write access is done by means of a *union filesystem*, which involves
 overlaying a read-only mount of the CernVM-FS filesystem with a writable scratch area.
-Publishing is an atomic operation: adding or changing files in a repository is done by
-*ingesting* files and creating a *transaction* that records the changes.
+Publishing is an atomic operation: adding or changing files in a repository is done
+in a *transaction* that records and collectively commits a set of file system changes.
 
 In the [first hands-on part of this tutorial](02_stratum0_client.md)
 we will guide you through the process of creating a CernVM-FS repository,
