@@ -237,7 +237,7 @@ CVMFS_PUBLIC_KEY="/etc/cvmfs/keys/organization.tld/repo.organization.tld.pub"
 
 ***Replace the ``<IP>`` part with the IP address of your Stratum 0 server!***
 
-Note that the `CVMFS_SERVER_URL` should include the part `/cvmfs/@fqrn` exactly like that;
+Note that the `CVMFS_SERVER_URL` should include the part `/cvmfs/@fqrn@` exactly like that;
 the last part (`@fqrn@`) will be replaced automatically by the full name of your repository.
 
 
