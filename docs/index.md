@@ -66,8 +66,8 @@ You can use your own resources if you prefer doing so.
 
 - [0. Azure cloud resources](00_azure_cloud_resources.md)
 - [1. Introduction to CernVM-FS](01_introduction.md)
-- [2. Stratum 0 + client](02_stratum0_client.md) ``(*)``
-- [3. Stratum 1 + proxies](03_stratum1_proxies.md) ``(*)``
+- [2. Stratum 0 and client](02_stratum0_client.md) ``(*)``
+- [3. Stratum 1 and proxies](03_stratum1_proxies.md) ``(*)``
 - [4. Publishing](04_publishing.md) ``(*)``
 - [5. Advanced topics](05_advanced.md)
 
