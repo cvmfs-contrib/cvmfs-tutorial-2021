@@ -498,35 +498,35 @@ In this section we will give some more details about publishing files.</p>
 <h2 id="transactions">Transactions<a class="headerlink" href="#transactions" title="Permanent link">&para;</a></h2>
 <p>As we already showed in a previous section, the easiest way to add files to your repository is by opening and publishing a transaction on your Stratum 0 server.
 By default, your repository directory under <code>/cvmfs</code> is read-only, but by a transaction makes the directory writable for the user that is owner of the repository.
-<div class="highlight"><pre><span></span><code>sudo cvmfs_server transaction repo.organization.tld
+<div class="highlight"><pre><span></span><code>cvmfs_server transaction repo.organization.tld
 </code></pre></div></p>
 <p>Once you are done with making changes, be sure to change your working directory to somewhere outside of the
 repository (otherwise you will get an error), and publish your changes using:
-<div class="highlight"><pre><span></span><code>sudo cvmfs_server publish repo.organization.tld
+<div class="highlight"><pre><span></span><code>cvmfs_server publish repo.organization.tld
 </code></pre></div></p>
 <p>And you can always abort a transaction, which will undo all the non-published modifications:
-<div class="highlight"><pre><span></span><code>sudo cvmfs_server abort repo.organization.tld
+<div class="highlight"><pre><span></span><code>cvmfs_server abort repo.organization.tld
 </code></pre></div></p>
 <h3 id="ingesting-tarballs">Ingesting tarballs<a class="headerlink" href="#ingesting-tarballs" title="Permanent link">&para;</a></h3>
 <p>When you need to compile software that you want to add to your repository, you may want to do the actual compilation on a different machine than your Stratum 0 and copy the resulting installation as a tarball to your Stratum 0. Instead of manually extracting the tarball and doing a transaction, the <code>cvmfs_server</code> command offers a more efficient method for directly publishing the contents of a tarball:
-<div class="highlight"><pre><span></span><code>sudo cvmfs_server ingest -b /some/path repo.organization.tld -t mytarball.tar
+<div class="highlight"><pre><span></span><code>cvmfs_server ingest -b /some/path repo.organization.tld -t mytarball.tar
 </code></pre></div>
 The <code>-b</code> expects the relative location in your repository where the contents of the tarball, specified with <code>-t</code>, will be extracted. So, in this case, the tarball gets extracted to <code>/cvmfs/repo.organization.tld/some/path</code>. Note that passing <code>/</code> to <code>-b</code> does not work at the moment, but will be supported in a future release of CernVM-FS.</p>
 <p>In case you have a compressed tarball, you can use an appropriate decompression tool and write the output to <code>stdout</code>.
 This output can then be piped to <code>cvmfs_server</code> by setting <code>-t -</code>, e.g. for a <code>.tar.gz</code> file:
-<div class="highlight"><pre><span></span><code>gunzip -c mytarball.tar.gz | sudo cvmfs_server ingest -b /some/path -t -
+<div class="highlight"><pre><span></span><code>gunzip -c mytarball.tar.gz | cvmfs_server ingest -b /some/path -t -
 </code></pre></div></p>
 <h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
 <p>By default, a newly published version of the repository will automatically get a tag with a timestamp in its name. This allows you to revert back to earlier versions.
 You can also set your own tag name and/or description upon publication:
-<div class="highlight"><pre><span></span><code>sudo cvmfs_server publish [-a tag name] [-m tag description] repo.organization.tld
+<div class="highlight"><pre><span></span><code>cvmfs_server publish [-a tag name] [-m tag description] repo.organization.tld
 </code></pre></div></p>
 <p>The <code>tag</code> subcommand for <code>cvmfs_server</code> allows you to create (<code>-a</code>), remove (<code>-r</code>), inspect (<code>-i</code>), or list (<code>-l</code>) tags of your repository, e.g.:
-<div class="highlight"><pre><span></span><code>sudo cvmfs_server tag -a &quot;v1.0&quot; repo.organization.tld
-sudo cvmfs_server tag -l repo.organization.tld
+<div class="highlight"><pre><span></span><code>cvmfs_server tag -a &quot;v1.0&quot; repo.organization.tld
+cvmfs_server tag -l repo.organization.tld
 </code></pre></div></p>
 <p>With the <code>rollback</code> subcommand you can revert back to an earlier version. By default, this will be the previous version, but with <code>-t</code> you can specify a specific tag to revert to:
-<div class="highlight"><pre><span></span><code>sudo cvmfs_server rollback -t &quot;v0.5&quot; repo.organization.tld
+<div class="highlight"><pre><span></span><code>cvmfs_server rollback -t &quot;v0.5&quot; repo.organization.tld
 </code></pre></div></p>
 <h2 id="catalogs">Catalogs<a class="headerlink" href="#catalogs" title="Permanent link">&para;</a></h2>
 <p>All metadata about files in your repository is stored in a file catalog, which is a SQLite database. When a client accesses the repository for the first time, it first needs to retrieve this catalog. Only then it can start fetching the files it actually needs. Clients also need to regularly check for new versions of the repository, and redownload it if it has changed.</p>
@@ -583,7 +583,7 @@ TODO: INSERT DETAILS</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 23, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 19, 2021</span>
     
   </small>
 </div>

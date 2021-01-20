@@ -393,8 +393,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#main-configuration-for-repository" class="md-nav__link">
-    Main configuration for repository
+  <a href="#main-repository-configuration" class="md-nav__link">
+    Main repository configuration
   </a>
   
 </li>
@@ -637,8 +637,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#main-configuration-for-repository" class="md-nav__link">
-    Main configuration for repository
+  <a href="#main-repository-configuration" class="md-nav__link">
+    Main repository configuration
   </a>
   
 </li>
@@ -719,9 +719,9 @@ replica server and squid proxy, and accessing the repository that way instead.</
 <h4 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h4>
 <p>Due to the scalable design of CernVM-FS, the Stratum 0 server does not need a lot of resources in terms of CPU cores and memory;
 just a few cores and a couple gigabytes of memory is sufficient.</p>
-<p>Besides this, you do need sufficient storage space to store the contents of your repository. By default, CernVM-FS uses <code>/var/spool</code> as scratch space
-while adding new files to the repository, and <code>/srv/cvmfs</code> as central repository storage location, but these locations can be modified in the
-CernVM-FS server configuration settings later on.</p>
+<p>Besides this, you do need sufficient storage space to store the contents of your repository.
+CernVM-FS uses <code>/var/spool/cvmfs</code> as scratch space while adding new files to the repository, and <code>/srv/cvmfs</code> as central repository storage location.
+To change these locations, you can create either of the paths as a symbolic link to a different directory.</p>
 <h4 id="operating-system">Operating system<a class="headerlink" href="#operating-system" title="Permanent link">&para;</a></h4>
 <p>Several (popular) Linux distributions are supported by CernVM-FS,
 see <a href="https://cvmfs.readthedocs.io/en/stable/cpt-quickstart.html#getting-the-software">the Getting Started page of the CernVM-FS documentation</a> for a full list.</p>
@@ -765,15 +765,15 @@ first name. Feel free to use something else than your first name, of course.</p>
 <ul>
 <li><code>*.crt</code>:  the repository’s public key (encoded as an X509 certificate);</li>
 <li><code>*.key</code>: the repository's private key;</li>
-<li><code>*.masterkey</code>: the repository's (private) <em>master</em> key;</li>
-<li><code>*.pub</code>: repository’s public key (RSA).</li>
+<li><code>*.masterkey</code>: the repository's private <em>master</em> key;</li>
+<li><code>*.pub</code>: repository’s public <em>master</em> key (RSA).</li>
 </ul>
-<p>The public key (<code>repo.organization.tld.crt</code> + <code>repo.organization.tld.pub</code>) is the one that is needed by clients in order to access the repository, so we will need this later on.
-The corresponding private key (<code>repo.organization.tld.key</code>) should <em>not</em> be shared.</p>
-<p>The master key (<code>repo.organization.tld.masterkey</code>) is used to sign a whitelist of known publisher certificates.
-This whitelist is, by default, valid for 30 days, so the signing has to be done regularly (for example via a cron job).</p>
+<p>The public master key (<code>repo.organization.tld.pub</code>) is the one that is needed by clients in order to access the repository, so we will need this later on.</p>
+<p>The private master key (<code>repo.organization.tld.masterkey</code>) is used to sign a whitelist of known publisher certificates,
+and should <em>not</em> be shared with others.
+This whitelist is (by default) valid for 30 days, so the signing has to be done regularly (for example via a cron job).</p>
 <p>Although you can use a different master key per repository, it is recommended to use the same master key
-for all repositories under a single domain, so that clients only need a single public key to access all repositories under this domain.
+for all repositories under a single domain, so that clients only need a single public master key to access all repositories under this domain.
 For more information, see the CernVM-FS documentation:
 <a href="https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#master-keys">https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#master-keys</a>.</p>
 <h3 id="216-adding-files-to-the-repository">2.1.6 Adding files to the repository<a class="headerlink" href="#216-adding-files-to-the-repository" title="Permanent link">&para;</a></h3>
@@ -783,7 +783,7 @@ For more information, see the CernVM-FS documentation:
 <div class="highlight"><pre><span></span><code><span class="c1"># Change this to your repository/domain name!</span>
 <span class="nv">MY_REPO_NAME</span><span class="o">=</span>repo.organization.tld
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>sudo cvmfs_server transaction <span class="si">${</span><span class="nv">MY_REPO_NAME</span><span class="si">}</span>
+<div class="highlight"><pre><span></span><code>cvmfs_server transaction <span class="si">${</span><span class="nv">MY_REPO_NAME</span><span class="si">}</span>
 </code></pre></div>
 <p>Next, add the file to the repository (in <code>/cvmfs/${MY_REPO_NAME}</code>).
 If you made the current user the owner of the repository, you can do this without <code>sudo</code> since you have write
@@ -793,7 +793,7 @@ permissions to your repository:</p>
 chmod a+x /cvmfs/<span class="si">${</span><span class="nv">MY_REPO_NAME</span><span class="si">}</span>/hello.sh
 </code></pre></div>
 <p>Complete the transaction by publishing the changes using:</p>
-<div class="highlight"><pre><span></span><code>sudo cvmfs_server publish <span class="si">${</span><span class="nv">MY_REPO_NAME</span><span class="si">}</span>
+<div class="highlight"><pre><span></span><code>cvmfs_server publish <span class="si">${</span><span class="nv">MY_REPO_NAME</span><span class="si">}</span>
 </code></pre></div>
 <h3 id="217-cron-job-for-resigning-the-whitelist">2.1.7 Cron job for resigning the whitelist<a class="headerlink" href="#217-cron-job-for-resigning-the-whitelist" title="Permanent link">&para;</a></h3>
 <p>Each CernVM-FS repository has a whitelist containing fingerprints of certificates that are allowed to sign the repository.
@@ -819,7 +819,8 @@ in the CernVM-FS documentation.</p>
 <p>The client is going to pull in files from the repository over an HTTP connection.
 CernVM-FS maintains a local cache on the client, so you need sufficient space for storing it.</p>
 <p>You can define the maximum size of your cache in the client configuration.
-The larger your cache is, the less often you have to pull in files again, and the faster your applications will start.</p>
+The larger your cache is, the less often you have to pull in files again, and the faster your applications will start.
+Typical client cache sizes range from 4GB to 50GB.</p>
 <p>Note that you can add more cache layers by adding a proxy nearby your client,
 which will be covered in the <a href="../03_stratum1_proxies/">2nd hands-on part of this tutorial</a>.</p>
 <div class="admonition note">
@@ -845,14 +846,15 @@ For the sake of this tutorial, we are going to do this manually for our reposito
 <p><code>/etc/cvmfs/keys/organization.tld/repo.organization.tld.pub</code></p>
 <p>This file contains the public key of the repository you want to access.</p>
 <p>You can copy this file from your Stratum 0 server, where it is stored under <code>/etc/cvmfs/keys/</code>.</p>
-<h4 id="main-configuration-for-repository">Main configuration for repository<a class="headerlink" href="#main-configuration-for-repository" title="Permanent link">&para;</a></h4>
+<h4 id="main-repository-configuration">Main repository configuration<a class="headerlink" href="#main-repository-configuration" title="Permanent link">&para;</a></h4>
 <p><code>/etc/cvmfs/config.d/repo.organization.tld.conf</code></p>
-<p>This file contains the main configuration for the repository you want to access, which should minimally contain the URL(s) of the Stratum 1 servers and the location of the public key.</p>
-<p>We do not have a Stratum 1 server yet (we'll set that up in <a href="../03_stratum1_proxies/">the next hands-on part of this tutorial</a>),
+<p>This file contains the main configuration for the repository you want to access, which should minimally contain the
+URL(s) of the Stratum 1 servers and the location of the keys.</p>
+<p>We do not have a Stratum 1 server yet (we will set that up in <a href="../03_stratum1_proxies/">the next hands-on part of this tutorial</a>),
 so we are going to connect directly to our Stratum 0 server instead. <strong>You should not do this in production!</strong></p>
-<p>A typical, minimal configuration should look as follows:  </p>
+<p>A typical, minimal configuration should look as follows:</p>
 <div class="highlight"><pre><span></span><code>CVMFS_SERVER_URL=&quot;http://&lt;IP&gt;/cvmfs/@fqrn@&quot;
-CVMFS_PUBLIC_KEY=&quot;/etc/cvmfs/keys/organization.tld/repo.organization.tld.pub&quot;
+CVMFS_KEYS_DIR=&quot;/etc/cvmfs/keys/organization.tld&quot;
 </code></pre></div>
 <p><strong><em>Replace the <code>&lt;IP&gt;</code> part with the IP address of your Stratum 0 server!</em></strong></p>
 <p>Note that the <code>CVMFS_SERVER_URL</code> should include the part <code>/cvmfs/@fqrn@</code> exactly like that;
@@ -867,8 +869,8 @@ server (actually, Stratum 0 at this point):
 <div class="highlight"><pre><span></span><code>CVMFS_HTTP_PROXY=DIRECT
 </code></pre></div></p>
 <p>You can also use this file to specify a maximum size (in megabytes) for the cache.
-For example, to use a local cache of maximum 2.5GB:
-<div class="highlight"><pre><span></span><code>CVMFS_QUOTA_LIMIT=2500
+For example, to use a local cache of maximum 5GB:
+<div class="highlight"><pre><span></span><code>CVMFS_QUOTA_LIMIT=5000
 </code></pre></div></p>
 <h3 id="223-mounting-the-repositories">2.2.3 Mounting the repositories<a class="headerlink" href="#223-mounting-the-repositories" title="Permanent link">&para;</a></h3>
 <p>When your client configuration is complete, you can run the following command as root to mount the repository:</p>
@@ -886,14 +888,14 @@ Your repository will only be actually mounted when you access it, and may be unm
 <div class="highlight"><pre><span></span><code>ls /cvmfs/repo.organization.tld
 </code></pre></div></p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
-<p>Time to get your hands dirty: try this yourself:</p>
+<p>Time to get your hands dirty! Try this yourself:</p>
 <ul>
 <li>Set up your own CernVM-FS repository on Stratum 0 server in a virtual machine.</li>
 <li>Create a repository with a suitable name (for example, <code>exercise.&lt;your_first_name&gt;.org</code>).</li>
 <li>Add a simple bash script to the repository, which, for instance, prints <code>Hello world!</code>.</li>
-<li>Install and configure the CernVM-FS client on another virtual machine; access your repository directly via Stratum
-  0 for now.</li>
-<li>Try to access your repository, and run your bash script on the client!</li>
+<li>Install and configure the CernVM-FS client on another virtual machine.
+  Access your repository directly via Stratum 0 for now.</li>
+<li>Try to access your repository, and run your bash script on the client.</li>
 </ul>
                 
                   
@@ -903,7 +905,7 @@ Your repository will only be actually mounted when you access it, and may be unm
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 19, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 20, 2021</span>
     
   </small>
 </div>

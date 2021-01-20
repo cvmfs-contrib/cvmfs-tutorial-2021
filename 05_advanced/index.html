@@ -611,11 +611,11 @@ Most issues are caused by wrongly configured clients (either a configuration iss
 This should return <code>OK</code>.  To make sure that your configuration is really picked up and set correctly
 (because of the hierarchical structure of the configuration, it is easily possible that some parameter gets overwritten by another configuration file),
 you can dump the effective configuration for your repository using:
-<div class="highlight"><pre><span></span><code>sudo cvmfs_config showconfig repo.organization.tld
+<div class="highlight"><pre><span></span><code>cvmfs_config showconfig repo.organization.tld
 </code></pre></div>
 Make sure that at least <code>CVMFS_HTTP_PROXY</code> and <code>CVMFS_SERVER_URL</code> are set correctly, and that the directory pointed to by <code>CVMFS_KEYS_DIR</code> really contains the (correct) public key file.</p>
 <p>The <code>probe</code> subcommand can be used for (re)trying to mount the repository, and should normally return <code>OK</code>:
-<div class="highlight"><pre><span></span><code>sudo cvmfs_config probe repo.organization.tld
+<div class="highlight"><pre><span></span><code>cvmfs_config probe repo.organization.tld
 Probing /cvmfs/repo.organization.tld... OK
 </code></pre></div></p>
 <p>But, since you were debugging an issue, it probably returns an error. So, let's enable some debugging output by adding the following line to your <code>/etc/cvmfs/default.local</code>:
@@ -624,7 +624,7 @@ Probing /cvmfs/repo.organization.tld... OK
 Now we unmount the repository, re-run the setup step, and try to probe it again:</p>
 <div class="highlight"><pre><span></span><code>sudo cvmfs_config umount
 sudo cvmfs_config setup
-sudo cvmfs_config probe repo.organization.tld
+cvmfs_config probe repo.organization.tld
 </code></pre></div>
 <p>You can now check your debug log file, and look for any error messages near the bottom of the file; they may reveal more details about the issue.</p>
 <p>If it turns out to be some kind of connection issue, you can trace it down further by manually checking the connections to your proxy and/or Stratum 1 server.
@@ -737,8 +737,7 @@ The latter can be created manually and should just contain the secret that you u
 Replace both occurrences of <code>YOUR_STRATUM0_GATEWAY</code> by the IP address or hostname of your gateway / Stratum 0 server (and change 4929 in case you changed the gateway port), and <code>/path/to/keys/dir</code> by the path where you
 stored the keys in the previous step.</p>
 <h4 id="start-publishing">Start publishing!<a class="headerlink" href="#start-publishing" title="Permanent link">&para;</a></h4>
-<p>You should now be able to make changes to the repository by opening a transaction. Note that you can do it
-as the regular user:
+<p>You should now be able to make changes to the repository by opening a transaction:
 <div class="highlight"><pre><span></span><code>cvmfs_server transaction repo.organization.tld
 
 # MAKE CHANGES TO /cvmfs/repo.organization.tld

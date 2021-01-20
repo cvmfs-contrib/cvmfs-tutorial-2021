@@ -682,7 +682,7 @@ How many you need mostly depends on the distribution and number of clients, but 
 <p>INSERT IMAGE OF CVMFS INFRA HERE</p>
 <h2 id="set-up-a-stratum-1-server">Set up a Stratum 1 server<a class="headerlink" href="#set-up-a-stratum-1-server" title="Permanent link">&para;</a></h2>
 <h3 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h3>
-<p>A Stratum 1 servers has similar requirements as a Stratum 1 in terms of resources. Regarding the storage, it could do with less, because the Stratum 1 stores a deduplicated and compressed version of the repositories.</p>
+<p>A Stratum 1 servers has similar requirements as a Stratum 1 in terms of resources.</p>
 <p>In addition to port 80, also port 8000 has to be accessible for a Stratum 1. Furthermore, you need a (free) license key for <a href="https://dev.maxmind.com/geoip/geoip2/geolite2/">Maxmind's Geo API</a>, which you can obtain by <a href="https://www.maxmind.com/en/geolite2/signup/">signing up for an account</a>.</p>
 <h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
 <p>For the Stratum 1 you need to install the following packages:
@@ -738,7 +738,7 @@ sudo chmod 600 /etc/cvmfs/server.local
 <h3 id="manually-synchronize-the-stratum-1">Manually synchronize the Stratum 1<a class="headerlink" href="#manually-synchronize-the-stratum-1" title="Permanent link">&para;</a></h3>
 <p>The Stratum 1 has been registered, so now we should try to do a first synchronization.
 You can do this by running the following command:
-<div class="highlight"><pre><span></span><code>sudo cvmfs_server snapshot repo.organization.tld
+<div class="highlight"><pre><span></span><code>cvmfs_server snapshot repo.organization.tld
 </code></pre></div>
 As there is not much in the repository yet, this should complete within a few seconds.</p>
 <h3 id="make-cronjobs">Make cronjobs<a class="headerlink" href="#make-cronjobs" title="Permanent link">&para;</a></h3>

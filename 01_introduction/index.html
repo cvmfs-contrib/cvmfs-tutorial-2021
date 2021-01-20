@@ -532,7 +532,8 @@ which is implemented as a read-only POSIX filesystem in user space (a FUSE modul
 <p>That's a mouthful, so let's break it down a bit...</p>
 <h4 id="111-read-only-filesystem-over-http">1.1.1 Read-only filesystem over HTTP<a class="headerlink" href="#111-read-only-filesystem-over-http" title="Permanent link">&para;</a></h4>
 <p>CernVM-FS is a <strong><em>network filesystem</em></strong>,
-which you can mount in Linux or macOS via <a href="https://github.com/libfuse/libfuse">FUSE (Filesystem in Userspace)</a>.
+which you can mount in Linux or macOS via <a href="https://github.com/libfuse/libfuse">FUSE (Filesystem in Userspace)</a>
+and on Windows in a <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">WSL2</a> virtualized Linux environment.
 In some ways it is similar to other network filesystems like <a href="https://en.wikipedia.org/wiki/Network_File_System">NFS</a>
 or <a href="https://en.wikipedia.org/wiki/Andrew_File_System">AFS</a>,
 but there are various aspects to it that are quite different.</p>
@@ -559,8 +560,7 @@ CernVM-FS is heavily tuned to cater to this use case, with aggressive caching an
 for example via automatic file de-duplication and compression.</p>
 <h4 id="113-scalable-and-reliable">1.1.3 Scalable and reliable<a class="headerlink" href="#113-scalable-and-reliable" title="Permanent link">&para;</a></h4>
 <p>CernVM-FS was designed to be <strong><em>scalable and reliable</em></strong>, with known deployments involving hundreds of millions
-of files and many thousands of clients. It was originally created to fulfill the software distribution needs of the
-<a href="https://home.cern/science/accelerators/large-hadron-collider">Large Hadron Collider (LHC) project at CERN</a>.</p>
+of files and many tens of thousands of clients. It was originally created to fulfill the software distribution needs of the <a href="https://home.cern/science/experiments">experiments at the Large Hadron Collider (LHC)</a> at CERN.</p>
 <p>The network of (web) servers that make a CernVM-FS instance accessible is constructed such that it is robust
 against problems like network disconnects and hardware failures, and so it can be extended and tweaked on demand
 for optimal performance.</p>
@@ -597,8 +597,8 @@ which involves creating the file catalog(s), compressing files, calculating cont
 <p>A read-writable copy of a CernVM-FS repository is (only) available on a <em>publisher</em> system, which can be the same system
 as the Stratum 0 server. Providing write access is done by means of a <em>union filesystem</em>, which involves
 overlaying a read-only mount of the CernVM-FS filesystem with a writable scratch area.
-Publishing is an atomic operation: adding or changing files in a repository is done by
-<em>ingesting</em> files and creating a <em>transaction</em> that records the changes.</p>
+Publishing is an atomic operation: adding or changing files in a repository is done
+in a <em>transaction</em> that records and collectively commits a set of file system changes.</p>
 <p>In the <a href="../02_stratum0_client/">first hands-on part of this tutorial</a>
 we will guide you through the process of creating a CernVM-FS repository,
 which is also covered in detail in the <a href="https://cvmfs.readthedocs.io/en/stable/cpt-repo.html">CernVM-FS documentation</a>.</p>
@@ -632,7 +632,7 @@ More details are available in the <a href="https://cvmfs.readthedocs.io/en/stabl
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 19, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 20, 2021</span>
     
   </small>
 </div>
