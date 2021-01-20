@@ -17,7 +17,8 @@ That's a mouthful, so let's break it down a bit...
 #### 1.1.1 Read-only filesystem over HTTP
 
 CernVM-FS is a ***network filesystem***,
-which you can mount in Linux or macOS via [FUSE (Filesystem in Userspace)](https://github.com/libfuse/libfuse).
+which you can mount in Linux or macOS via [FUSE (Filesystem in Userspace)](https://github.com/libfuse/libfuse)
+and on Windows in a [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-win10) virtualized Linux environment.
 In some ways it is similar to other network filesystems like [NFS](https://en.wikipedia.org/wiki/Network_File_System)
 or [AFS](https://en.wikipedia.org/wiki/Andrew_File_System),
 but there are various aspects to it that are quite different.
@@ -55,8 +56,7 @@ for example via automatic file de-duplication and compression.
 #### 1.1.3 Scalable and reliable
 
 CernVM-FS was designed to be ***scalable and reliable***, with known deployments involving hundreds of millions
-of files and many thousands of clients. It was originally created to fulfill the software distribution needs of the
-[Large Hadron Collider (LHC) project at CERN](https://home.cern/science/accelerators/large-hadron-collider).
+of files and many tens of thousands of clients. It was originally created to fulfill the software distribution needs of the [experiments at the Large Hadron Collider (LHC)](https://home.cern/science/experiments) at CERN.
 
 The network of (web) servers that make a CernVM-FS instance accessible is constructed such that it is robust
 against problems like network disconnects and hardware failures, and so it can be extended and tweaked on demand
@@ -107,8 +107,8 @@ which involves creating the file catalog(s), compressing files, calculating cont
 A read-writable copy of a CernVM-FS repository is (only) available on a *publisher* system, which can be the same system
 as the Stratum 0 server. Providing write access is done by means of a *union filesystem*, which involves
 overlaying a read-only mount of the CernVM-FS filesystem with a writable scratch area.
-Publishing is an atomic operation: adding or changing files in a repository is done by
-*ingesting* files and creating a *transaction* that records the changes.
+Publishing is an atomic operation: adding or changing files in a repository is done
+in a *transaction* that records and collectively commits a set of file system changes.
 
 In the [first hands-on part of this tutorial](02_stratum0_client.md)
 we will guide you through the process of creating a CernVM-FS repository,

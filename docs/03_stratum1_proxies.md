@@ -16,7 +16,7 @@ INSERT IMAGE OF CVMFS INFRA HERE
 
 
 ### Requirements
-A Stratum 1 servers has similar requirements as a Stratum 1 in terms of resources. Regarding the storage, it could do with less, because the Stratum 1 stores a deduplicated and compressed version of the repositories.
+A Stratum 1 servers has similar requirements as a Stratum 1 in terms of resources.
 
 In addition to port 80, also port 8000 has to be accessible for a Stratum 1. Furthermore, you need a (free) license key for [Maxmind's Geo API](https://dev.maxmind.com/geoip/geoip2/geolite2/), which you can obtain by [signing up for an account](https://www.maxmind.com/en/geolite2/signup/).
 
@@ -94,7 +94,7 @@ sudo cvmfs_server rmfs repo.organization.tld
 The Stratum 1 has been registered, so now we should try to do a first synchronization.
 You can do this by running the following command:
 ```
-sudo cvmfs_server snapshot repo.organization.tld
+cvmfs_server snapshot repo.organization.tld
 ```
 As there is not much in the repository yet, this should complete within a few seconds.
 

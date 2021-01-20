@@ -27,9 +27,9 @@ For now, we are going to set up a Stratum 0, create a repository, and access it 
 Due to the scalable design of CernVM-FS, the Stratum 0 server does not need a lot of resources in terms of CPU cores and memory;
 just a few cores and a couple gigabytes of memory is sufficient.
 
-Besides this, you do need sufficient storage space to store the contents of your repository. By default, CernVM-FS uses `/var/spool` as scratch space
-while adding new files to the repository, and `/srv/cvmfs` as central repository storage location, but these locations can be modified in the
-CernVM-FS server configuration settings later on.
+Besides this, you do need sufficient storage space to store the contents of your repository.
+CernVM-FS uses `/var/spool/cvmfs` as scratch space while adding new files to the repository, and `/srv/cvmfs` as central repository storage location.
+To change these locations, you can create either of the paths as a symbolic link to a different directory.
 
 #### Operating system
 
@@ -95,20 +95,20 @@ This makes the client configuration much easier, also in case new repositories w
 ### 2.1.5 Repository keys
 
 For each repository that you create, a set of keys will be generated in `/etc/cvmfs/keys`:
-
+ 
 - `*.crt`:  the repository’s public key (encoded as an X509 certificate);
 - `*.key`: the repository's private key;
-- `*.masterkey`: the repository's (private) *master* key;
-- `*.pub`: repository’s public key (RSA).
+- `*.masterkey`: the repository's private *master* key;
+- `*.pub`: repository’s public *master* key (RSA).
 
-The public key (`repo.organization.tld.crt` + `repo.organization.tld.pub`) is the one that is needed by clients in order to access the repository, so we will need this later on.
-The corresponding private key (`repo.organization.tld.key`) should *not* be shared.
+The public master key (`repo.organization.tld.pub`) is the one that is needed by clients in order to access the repository, so we will need this later on.
 
-The master key (`repo.organization.tld.masterkey`) is used to sign a whitelist of known publisher certificates.
-This whitelist is, by default, valid for 30 days, so the signing has to be done regularly (for example via a cron job).
+The private master key (`repo.organization.tld.masterkey`) is used to sign a whitelist of known publisher certificates,
+and should *not* be shared with others.
+This whitelist is (by default) valid for 30 days, so the signing has to be done regularly (for example via a cron job).
 
 Although you can use a different master key per repository, it is recommended to use the same master key
-for all repositories under a single domain, so that clients only need a single public key to access all repositories under this domain.
+for all repositories under a single domain, so that clients only need a single public master key to access all repositories under this domain.
 For more information, see the CernVM-FS documentation:
 [https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#master-keys](https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#master-keys).
 
@@ -126,7 +126,7 @@ MY_REPO_NAME=repo.organization.tld
 ```
 
 ```bash
-sudo cvmfs_server transaction ${MY_REPO_NAME}
+cvmfs_server transaction ${MY_REPO_NAME}
 ```
 
 Next, add the file to the repository (in `/cvmfs/${MY_REPO_NAME}`).
@@ -142,7 +142,7 @@ chmod a+x /cvmfs/${MY_REPO_NAME}/hello.sh
 Complete the transaction by publishing the changes using:
 
 ```bash
-sudo cvmfs_server publish ${MY_REPO_NAME}
+cvmfs_server publish ${MY_REPO_NAME}
 ```
 
 ### 2.1.7 Cron job for resigning the whitelist
@@ -183,6 +183,7 @@ CernVM-FS maintains a local cache on the client, so you need sufficient space fo
 
 You can define the maximum size of your cache in the client configuration.
 The larger your cache is, the less often you have to pull in files again, and the faster your applications will start.
+Typical client cache sizes range from 4GB to 50GB.
 
 Note that you can add more cache layers by adding a proxy nearby your client,
 which will be covered in the [2nd hands-on part of this tutorial](03_stratum1_proxies.md).
@@ -223,20 +224,21 @@ This file contains the public key of the repository you want to access.
 
 You can copy this file from your Stratum 0 server, where it is stored under `/etc/cvmfs/keys/`.
 
-#### Main configuration for repository
+#### Main repository configuration
 
 `/etc/cvmfs/config.d/repo.organization.tld.conf`
 
-This file contains the main configuration for the repository you want to access, which should minimally contain the URL(s) of the Stratum 1 servers and the location of the public key.
+This file contains the main configuration for the repository you want to access, which should minimally contain the
+URL(s) of the Stratum 1 servers and the location of the keys.
 
-We do not have a Stratum 1 server yet (we'll set that up in [the next hands-on part of this tutorial](03_stratum1_proxies.md)),
+We do not have a Stratum 1 server yet (we will set that up in [the next hands-on part of this tutorial](03_stratum1_proxies.md)),
 so we are going to connect directly to our Stratum 0 server instead. **You should not do this in production!**
 
-A typical, minimal configuration should look as follows:  
+A typical, minimal configuration should look as follows:
 
 ```
 CVMFS_SERVER_URL="http://<IP>/cvmfs/@fqrn@"
-CVMFS_PUBLIC_KEY="/etc/cvmfs/keys/organization.tld/repo.organization.tld.pub"
+CVMFS_KEYS_DIR="/etc/cvmfs/keys/organization.tld"
 ```
 
 ***Replace the ``<IP>`` part with the IP address of your Stratum 0 server!***
@@ -262,9 +264,9 @@ CVMFS_HTTP_PROXY=DIRECT
 ```
 
 You can also use this file to specify a maximum size (in megabytes) for the cache.
-For example, to use a local cache of maximum 2.5GB:
+For example, to use a local cache of maximum 5GB:
 ```
-CVMFS_QUOTA_LIMIT=2500
+CVMFS_QUOTA_LIMIT=5000
 ```
 
 ### 2.2.3 Mounting the repositories
@@ -297,11 +299,11 @@ ls /cvmfs/repo.organization.tld
 
 ## Exercise
 
-Time to get your hands dirty: try this yourself:
+Time to get your hands dirty! Try this yourself:
 
 - Set up your own CernVM-FS repository on Stratum 0 server in a virtual machine.
 - Create a repository with a suitable name (for example, `exercise.<your_first_name>.org`).
 - Add a simple bash script to the repository, which, for instance, prints `Hello world!`.
-- Install and configure the CernVM-FS client on another virtual machine; access your repository directly via Stratum
-  0 for now.
-- Try to access your repository, and run your bash script on the client!
+- Install and configure the CernVM-FS client on another virtual machine.
+  Access your repository directly via Stratum 0 for now.
+- Try to access your repository, and run your bash script on the client.
