@@ -264,8 +264,8 @@ acl local_nodes src YOUR_CLIENT_IPS
 #acl stratum_ones dstdomain .YOURDOMAIN.ORG
 #acl stratum_ones dstdom_regex YOUR_REGEX
 
-# Squid port (default: 3128)
-# http_port 3128
+# Squid port
+http_port 3128
 
 # Deny access to anything which is not part of our stratum_ones ACL.
 http_access deny !stratum_ones
