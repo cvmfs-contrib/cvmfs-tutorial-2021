@@ -50,26 +50,26 @@ This tutorial is being organised during the **[4th EasyBuild User Meeting](https
 More information about the CernVM-FS tutorial sessions is available at [https://easybuild.io/eum/#cvmfs-tutorial](https://easybuild.io/eum/#cvmfs-tutorial).
 
 
-**Note that registration for this tutorial is required!**.
+**[Registration](https://easybuild.io/eum/#registration) for this tutorial is required in order to get access to the provided cloud resources!**
 
 <img src="img/microsoft_azure_logo.png" alt="Microsoft Azure logo" width="150px"/></br>
 
 Dedicated cloud resources in **[Microsoft Azure](https://azure.microsoft.com)** (sponsored by Microsoft) will be available *only
 to registered tutorial attendees* for working on the hands-on exercises during the the week of Jan 25-29 2021.
 
-Note that nothing in this tutorial, other than the [section of using the provided
-Azure cloud resources](00_azure_cloud_resources.md), is specific to Azure;
-you can use your own resources if you prefer doing so.
+Nothing in this tutorial, other than the [section of using the provided
+Azure cloud resources](00_azure_cloud_resources.md), is specific to Azure.
+You can use your own resources if you prefer doing so.
 
 
 ## Tutorial contents
 
-1. [Azure cloud resources](00_azure_cloud_resources.md)
-- [Introduction to CernVM-FS](01_introduction.md)
-- [Stratum 0 + client](02_stratum0_client.md) ``(*)``
-- [Stratum 1 + proxies](03_stratum1_proxies.md) ``(*)``
-- [Publishing](04_publishing.md) ``(*)``
-- [Advanced topics](05_advanced.md)
+- [0. Azure cloud resources](00_azure_cloud_resources.md)
+- [1. Introduction to CernVM-FS](01_introduction.md)
+- [2. Stratum 0 + client](02_stratum0_client.md) ``(*)``
+- [3. Stratum 1 + proxies](03_stratum1_proxies.md) ``(*)``
+- [4. Publishing](04_publishing.md) ``(*)``
+- [5. Advanced topics](05_advanced.md)
 
 *(sections indicated with* ``(*)`` *involve hands-on exercises)*
 

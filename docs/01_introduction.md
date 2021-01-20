@@ -1,6 +1,6 @@
-# Introduction to CernVM-FS
+# 1. Introduction to CernVM-FS
 
-## What is CernVM-FS?
+## 1.1 What is CernVM-FS?
 
 Let's get started with explaining in detail what CernVM-FS is...
 
@@ -14,7 +14,7 @@ Let's get started with explaining in detail what CernVM-FS is...
 That's a mouthful, so let's break it down a bit...
 
 
-#### Read-only filesystem over HTTP
+#### 1.1.1 Read-only filesystem over HTTP
 
 CernVM-FS is a ***network filesystem***,
 which you can mount in Linux or macOS via [FUSE (Filesystem in Userspace)](https://github.com/libfuse/libfuse)
@@ -35,7 +35,7 @@ Internally, CernVM-FS uses content-addressable storage and Merkle trees in order
 but the filesystem it exposes is a standard [POSIX filesystem](https://en.wikipedia.org/wiki/POSIX).
 
 
-#### Software distribution system
+#### 1.1.2 Software distribution system
 
 The primary use case of CernVM-FS is to easily ***distribute software*** around the world,
 which is reflected in various ways in the features implemented by CernVM-FS.
@@ -53,7 +53,7 @@ CernVM-FS is heavily tuned to cater to this use case, with aggressive caching an
 for example via automatic file de-duplication and compression.
 
 
-#### Scalable and reliable
+#### 1.1.3 Scalable and reliable
 
 CernVM-FS was designed to be ***scalable and reliable***, with known deployments involving hundreds of millions
 of files and many tens of thousands of clients. It was originally created to fulfill the software distribution needs of the [experiments at the Large Hadron Collider (LHC)](https://home.cern/science/experiments) at CERN.
@@ -65,7 +65,7 @@ for optimal performance.
 
 More details are available in the [CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-overview.html).
 
-## Terminology
+## 1.2 Terminology
 
 Before we get our hands dirty, let's cover some of the terminology used by the CernVM-FS project.
 
@@ -79,7 +79,7 @@ The figure included below shows the different components of the CernVM-FS networ
 <img src="../img/cvmfs_network.png" alt="CernVM-FS network" width="700px"/>
 </p>
 
-#### Clients
+#### 1.2.1 Clients
 
 A ***client*** in the context of CernVM-FS is any system that mounts the filesystem.
 This includes laptops or personal workstations who need access to the provided software installations,
@@ -94,7 +94,7 @@ The filesystem that is mounted on a client (under ``/cvmfs``) is a virtual files
 Mounting a CernVM-FS repository on a client will be covered in the [first hands-on part of this tutorial](02_stratum0_client.md).
 Extensive documentation on configuring a client is available in the [CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html).
 
-#### Stratum 0 + repository
+#### 1.2.2 Stratum 0 + repository
 
 A CernVM-FS ***repository*** is the single source of (new) data for a filesystem.
 This single source is also called the ***Stratum 0***, which can be viewed as the central server
@@ -117,7 +117,7 @@ which is also covered in detail in the [CernVM-FS documentation](https://cvmfs.r
 The [3rd hands-on part of this tutorial](04_publishing.md) will focus on the publishing procedure
 to update the contents of a CernVM-FS repository.
 
-#### Stratum 1 replica servers
+#### 1.2.3 Stratum 1 replica servers
 
 A ***Stratum 1 replica server*** is a *standard web server* that provides a ***read-only mirror***
 of a CernVM-FS repository served by a Stratum 0.
@@ -135,7 +135,7 @@ Setting up a Stratum 1 replica server will be covered in the [second hands-on pa
 and is also covered in detail in the [CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-replica.html).
 
 
-#### Squid proxies
+#### 1.2.4 Squid proxies
 
 To reduce load on Stratum 1 servers and to help reduce latency on clients, it is recommended to set up a
 [Squid forward proxy servers](http://www.squid-cache.org/).
