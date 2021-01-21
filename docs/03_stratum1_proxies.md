@@ -366,15 +366,27 @@ More proxies can be added to that list by separating them with a pipe symbol.
 
 For more (complex) examples, see the [CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#proxy-list-examples).
 
+### 3.3.3 Test the new configuration
+
+Now you can test your new configuration by checking if you can still access the repository.
+Furthermore, you may want to check if you are really using your Squid proxy. You can do this by running:
+```
+cvmfs_config stat -v repo.organization.tld
+```
+
+This should show a line that looks like:
+```
+Connection: http://<STRATUM1_IP>/cvmfs/repo.organization.tld through proxy http://<PROXY_IP>:3128 (online)
+```
+Make sure that it lists your proxy here (and not `DIRECT`), and that it is marked as `online`.
 
 ## Exercise
 
 1) Set up a Stratum 1 server. Make sure that it includes:
-- a proper Geo API license key;
-- cron jobs for automatically synchronizing the database and updating the Geo database;
+- a proper Geo API license key (if you do not want to request an account, you can use the described method to bypass this, but again: do not do this in production!);
+- cron job for automatically synchronizing the database;
 - properly configured Apache and Squid services;
 
 2) Set up a separate Squid proxy. Though it is recommended to at least have two in production, one is enough for now.
 
 3) Reconfigure the client that you set up in the previous section and make sure that it uses your Stratum 1 and Squid proxy.
-- #TODO: reuse or set up a new client?? Add firewall rules to the Stratum 0?
