@@ -14,7 +14,7 @@
     
     
       
-        <title>2. Stratum 0 + client - CernVM-FS tutorial</title>
+        <title>2. Stratum 0 and client - CernVM-FS tutorial</title>
       
     
     
@@ -58,7 +58,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#2-stratum-0-client" class="md-skip">
+        <a href="#2-stratum-0-and-client" class="md-skip">
           Skip to content
         </a>
       
@@ -89,7 +89,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              2. Stratum 0 + client
+              2. Stratum 0 and client
             
           </span>
         </div>
@@ -252,12 +252,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          2. Stratum 0 + client
+          2. Stratum 0 and client
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        2. Stratum 0 + client
+        2. Stratum 0 and client
       </a>
       
         
@@ -455,7 +455,7 @@
   
     <li class="md-nav__item">
       <a href="../03_stratum1_proxies/" class="md-nav__link">
-        3. Stratum 1 + proxies
+        3. Stratum 1 and proxies
       </a>
     </li>
   
@@ -698,7 +698,7 @@
                   </a>
                 
                 
-                <h1 id="2-stratum-0-client">2. Stratum 0 + client<a class="headerlink" href="#2-stratum-0-client" title="Permanent link">&para;</a></h1>
+                <h1 id="2-stratum-0-and-client">2. Stratum 0 and client<a class="headerlink" href="#2-stratum-0-and-client" title="Permanent link">&para;</a></h1>
 <p>In order to get started with CernVM-FS, the first thing you need is a Stratum 0 server.</p>
 <p>The Stratum 0 is the <em>central server</em> that hosts your repositories and makes it available to other systems.
 <strong>There can be only one Stratum 0 server for each CernVM-FS repository</strong>, and from a security perspective it is recommended to restrict the access to this system.
@@ -853,10 +853,10 @@ URL(s) of the Stratum 1 servers and the location of the keys.</p>
 <p>We do not have a Stratum 1 server yet (we will set that up in <a href="../03_stratum1_proxies/">the next hands-on part of this tutorial</a>),
 so we are going to connect directly to our Stratum 0 server instead. <strong>You should not do this in production!</strong></p>
 <p>A typical, minimal configuration should look as follows:</p>
-<div class="highlight"><pre><span></span><code>CVMFS_SERVER_URL=&quot;http://&lt;IP&gt;/cvmfs/@fqrn@&quot;
+<div class="highlight"><pre><span></span><code>CVMFS_SERVER_URL=&quot;http://&lt;STRATUM0_IP&gt;/cvmfs/@fqrn@&quot;
 CVMFS_KEYS_DIR=&quot;/etc/cvmfs/keys/organization.tld&quot;
 </code></pre></div>
-<p><strong><em>Replace the <code>&lt;IP&gt;</code> part with the IP address of your Stratum 0 server!</em></strong></p>
+<p><strong><em>Replace the <code>&lt;STRATUM0_IP&gt;</code> part with the IP address of your Stratum 0 server!</em></strong></p>
 <p>Note that the <code>CVMFS_SERVER_URL</code> should include the part <code>/cvmfs/@fqrn@</code> exactly like that;
 the last part (<code>@fqrn@</code>) will be replaced automatically by the full name of your repository.</p>
 <h4 id="local-client-configuration">Local client configuration<a class="headerlink" href="#local-client-configuration" title="Permanent link">&para;</a></h4>
@@ -949,7 +949,7 @@ Your repository will only be actually mounted when you access it, and may be unm
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                3. Stratum 1 + proxies
+                3. Stratum 1 and proxies
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

@@ -14,7 +14,7 @@
     
     
       
-        <title>3. Stratum 1 + proxies - CernVM-FS tutorial</title>
+        <title>3. Stratum 1 and proxies - CernVM-FS tutorial</title>
       
     
     
@@ -58,7 +58,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#stratum-1-and-proxies" class="md-skip">
+        <a href="#3-stratum-1-and-proxies" class="md-skip">
           Skip to content
         </a>
       
@@ -89,7 +89,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              3. Stratum 1 + proxies
+              3. Stratum 1 and proxies
             
           </span>
         </div>
@@ -244,7 +244,7 @@
   
     <li class="md-nav__item">
       <a href="../02_stratum0_client/" class="md-nav__link">
-        2. Stratum 0 + client
+        2. Stratum 0 and client
       </a>
     </li>
   
@@ -268,12 +268,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          3. Stratum 1 + proxies
+          3. Stratum 1 and proxies
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        3. Stratum 1 + proxies
+        3. Stratum 1 and proxies
       </a>
       
         
@@ -290,48 +290,103 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#set-up-a-stratum-1-server" class="md-nav__link">
-    Set up a Stratum 1 server
+  <a href="#31-setting-up-the-stratum-1-server" class="md-nav__link">
+    3.1 Setting up the Stratum 1 server
   </a>
   
-    <nav class="md-nav" aria-label="Set up a Stratum 1 server">
+    <nav class="md-nav" aria-label="3.1 Setting up the Stratum 1 server">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
-    Requirements
+  <a href="#311-requirements" class="md-nav__link">
+    3.1.1 Requirements
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
+  <a href="#312-installation" class="md-nav__link">
+    3.1.2 Installation
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#apache-and-squid-configuration" class="md-nav__link">
-    Apache and Squid configuration
+  <a href="#313-configuring-apache-and-squid-proxy" class="md-nav__link">
+    3.1.3 Configuring Apache and Squid proxy
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dns-cache" class="md-nav__link">
-    DNS cache
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-the-stratum-1-replica" class="md-nav__link">
-    Create the Stratum 1 replica
-  </a>
-  
-    <nav class="md-nav" aria-label="Create the Stratum 1 replica">
+    <nav class="md-nav" aria-label="3.1.3 Configuring Apache and Squid proxy">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apache-configuration" class="md-nav__link">
+    Apache configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#squid-configuration" class="md-nav__link">
+    Squid configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-enable-services" class="md-nav__link">
+    Start &amp; enable services
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#314-dns-cache" class="md-nav__link">
+    3.1.4 DNS cache
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#315-creating-the-stratum-1-replica" class="md-nav__link">
+    3.1.5 Creating the Stratum 1 replica
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1.5 Creating the Stratum 1 replica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-and-add-geo-api-key-optional" class="md-nav__link">
+    Create and add Geo API key (optional)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-repository-master-public-key" class="md-nav__link">
+    Add repository master public key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-replica" class="md-nav__link">
+    Create replica
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bypassing-the-geo-api-license-key" class="md-nav__link">
+    Bypassing the Geo API license key
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#remove-the-replica" class="md-nav__link">
@@ -346,15 +401,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#manually-synchronize-the-stratum-1" class="md-nav__link">
-    Manually synchronize the Stratum 1
+  <a href="#316-manually-synchronize-the-stratum-1" class="md-nav__link">
+    3.1.6 Manually synchronize the Stratum 1
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#make-cronjobs" class="md-nav__link">
-    Make cronjobs
+  <a href="#317-adding-cron-jobs" class="md-nav__link">
+    3.1.7 Adding cron jobs
   </a>
   
 </li>
@@ -365,37 +420,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#set-up-a-proxy" class="md-nav__link">
-    Set up a proxy
+  <a href="#32-setting-up-a-proxy" class="md-nav__link">
+    3.2 Setting up a proxy
   </a>
   
-    <nav class="md-nav" aria-label="Set up a proxy">
+    <nav class="md-nav" aria-label="3.2 Setting up a proxy">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#requirements_1" class="md-nav__link">
-    Requirements
+  <a href="#321-requirements" class="md-nav__link">
+    3.2.1 Requirements
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#installation_1" class="md-nav__link">
-    Installation
+  <a href="#322-installation" class="md-nav__link">
+    3.2.2 Installation
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    Configuration
+  <a href="#323-configuration" class="md-nav__link">
+    3.2.3 Configuration
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#starting-squid" class="md-nav__link">
-    Starting Squid
+  <a href="#324-verifying-squid-configuration" class="md-nav__link">
+    3.2.4 Verifying Squid configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#325-starting-and-enabling-squid" class="md-nav__link">
+    3.2.5 Starting and enabling Squid
   </a>
   
 </li>
@@ -406,23 +468,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#client-configuration" class="md-nav__link">
-    Client configuration
+  <a href="#33-re-configuring-the-client" class="md-nav__link">
+    3.3 Re-configuring the client
   </a>
   
-    <nav class="md-nav" aria-label="Client configuration">
+    <nav class="md-nav" aria-label="3.3 Re-configuring the client">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#connect-to-the-stratum-1" class="md-nav__link">
-    Connect to the Stratum 1
+  <a href="#331-connect-to-the-stratum-1" class="md-nav__link">
+    3.3.1 Connect to the Stratum 1
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#use-the-squid-proxy" class="md-nav__link">
-    Use the Squid proxy
+  <a href="#332-use-the-squid-proxy" class="md-nav__link">
+    3.3.2 Use the Squid proxy
   </a>
   
 </li>
@@ -433,8 +495,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#homework" class="md-nav__link">
-    Homework
+  <a href="#exercise" class="md-nav__link">
+    Exercise
   </a>
   
 </li>
@@ -504,48 +566,103 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#set-up-a-stratum-1-server" class="md-nav__link">
-    Set up a Stratum 1 server
+  <a href="#31-setting-up-the-stratum-1-server" class="md-nav__link">
+    3.1 Setting up the Stratum 1 server
   </a>
   
-    <nav class="md-nav" aria-label="Set up a Stratum 1 server">
+    <nav class="md-nav" aria-label="3.1 Setting up the Stratum 1 server">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
-    Requirements
+  <a href="#311-requirements" class="md-nav__link">
+    3.1.1 Requirements
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
+  <a href="#312-installation" class="md-nav__link">
+    3.1.2 Installation
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#apache-and-squid-configuration" class="md-nav__link">
-    Apache and Squid configuration
+  <a href="#313-configuring-apache-and-squid-proxy" class="md-nav__link">
+    3.1.3 Configuring Apache and Squid proxy
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dns-cache" class="md-nav__link">
-    DNS cache
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-the-stratum-1-replica" class="md-nav__link">
-    Create the Stratum 1 replica
-  </a>
-  
-    <nav class="md-nav" aria-label="Create the Stratum 1 replica">
+    <nav class="md-nav" aria-label="3.1.3 Configuring Apache and Squid proxy">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apache-configuration" class="md-nav__link">
+    Apache configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#squid-configuration" class="md-nav__link">
+    Squid configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-enable-services" class="md-nav__link">
+    Start &amp; enable services
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#314-dns-cache" class="md-nav__link">
+    3.1.4 DNS cache
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#315-creating-the-stratum-1-replica" class="md-nav__link">
+    3.1.5 Creating the Stratum 1 replica
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1.5 Creating the Stratum 1 replica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-and-add-geo-api-key-optional" class="md-nav__link">
+    Create and add Geo API key (optional)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-repository-master-public-key" class="md-nav__link">
+    Add repository master public key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-replica" class="md-nav__link">
+    Create replica
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bypassing-the-geo-api-license-key" class="md-nav__link">
+    Bypassing the Geo API license key
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#remove-the-replica" class="md-nav__link">
@@ -560,15 +677,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#manually-synchronize-the-stratum-1" class="md-nav__link">
-    Manually synchronize the Stratum 1
+  <a href="#316-manually-synchronize-the-stratum-1" class="md-nav__link">
+    3.1.6 Manually synchronize the Stratum 1
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#make-cronjobs" class="md-nav__link">
-    Make cronjobs
+  <a href="#317-adding-cron-jobs" class="md-nav__link">
+    3.1.7 Adding cron jobs
   </a>
   
 </li>
@@ -579,37 +696,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#set-up-a-proxy" class="md-nav__link">
-    Set up a proxy
+  <a href="#32-setting-up-a-proxy" class="md-nav__link">
+    3.2 Setting up a proxy
   </a>
   
-    <nav class="md-nav" aria-label="Set up a proxy">
+    <nav class="md-nav" aria-label="3.2 Setting up a proxy">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#requirements_1" class="md-nav__link">
-    Requirements
+  <a href="#321-requirements" class="md-nav__link">
+    3.2.1 Requirements
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#installation_1" class="md-nav__link">
-    Installation
+  <a href="#322-installation" class="md-nav__link">
+    3.2.2 Installation
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    Configuration
+  <a href="#323-configuration" class="md-nav__link">
+    3.2.3 Configuration
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#starting-squid" class="md-nav__link">
-    Starting Squid
+  <a href="#324-verifying-squid-configuration" class="md-nav__link">
+    3.2.4 Verifying Squid configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#325-starting-and-enabling-squid" class="md-nav__link">
+    3.2.5 Starting and enabling Squid
   </a>
   
 </li>
@@ -620,23 +744,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#client-configuration" class="md-nav__link">
-    Client configuration
+  <a href="#33-re-configuring-the-client" class="md-nav__link">
+    3.3 Re-configuring the client
   </a>
   
-    <nav class="md-nav" aria-label="Client configuration">
+    <nav class="md-nav" aria-label="3.3 Re-configuring the client">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#connect-to-the-stratum-1" class="md-nav__link">
-    Connect to the Stratum 1
+  <a href="#331-connect-to-the-stratum-1" class="md-nav__link">
+    3.3.1 Connect to the Stratum 1
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#use-the-squid-proxy" class="md-nav__link">
-    Use the Squid proxy
+  <a href="#332-use-the-squid-proxy" class="md-nav__link">
+    3.3.2 Use the Squid proxy
   </a>
   
 </li>
@@ -647,8 +771,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#homework" class="md-nav__link">
-    Homework
+  <a href="#exercise" class="md-nav__link">
+    Exercise
   </a>
   
 </li>
@@ -670,37 +794,59 @@
                   </a>
                 
                 
-                <h1 id="stratum-1-and-proxies">Stratum 1 and proxies<a class="headerlink" href="#stratum-1-and-proxies" title="Permanent link">&para;</a></h1>
+                <h1 id="3-stratum-1-and-proxies">3. Stratum 1 and proxies<a class="headerlink" href="#3-stratum-1-and-proxies" title="Permanent link">&para;</a></h1>
 <p>In the previous section we have set up a Stratum 0 server and a client that directly connects to the Stratum 0.
-Although this worked fine, this setup is neither scalable, nor very reliable, nor secure: it is a single point of failure,
-too open in terms of connectivity, and it will have to serve all possible clients on its own.</p>
-<p>Therefore, this section will show how all these points can be addressed by adding one or more Stratum 1 servers and caching proxy servers. A Stratum 1 is a replica server that keeps mirrors of the repositories served by a Stratum 0.
-It is basically a web server that periodically synchronizes the contents of the repositories,
-and, in contrast to a Stratum 0 server, you can have multiple Stratum 1 servers.
-It is recommended to have several ones that are geographically distributed, so that clients always have a nearby Stratum 1 server.
-How many you need mostly depends on the distribution and number of clients, but often a few is already sufficient. More scalability can be added with proxies, which we will discuss later in this section.</p>
-<p>INSERT IMAGE OF CVMFS INFRA HERE</p>
-<h2 id="set-up-a-stratum-1-server">Set up a Stratum 1 server<a class="headerlink" href="#set-up-a-stratum-1-server" title="Permanent link">&para;</a></h2>
-<h3 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h3>
-<p>A Stratum 1 servers has similar requirements as a Stratum 1 in terms of resources.</p>
-<p>In addition to port 80, also port 8000 has to be accessible for a Stratum 1. Furthermore, you need a (free) license key for <a href="https://dev.maxmind.com/geoip/geoip2/geolite2/">Maxmind's Geo API</a>, which you can obtain by <a href="https://www.maxmind.com/en/geolite2/signup/">signing up for an account</a>.</p>
-<h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
-<p>For the Stratum 1 you need to install the following packages:
-<div class="highlight"><pre><span></span><code>sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
-sudo yum install -y epel-release
-sudo yum install -y cvmfs-server
-sudo yum install -y mod_wsgi
-sudo yum install -y squid
-</code></pre></div></p>
-<h3 id="apache-and-squid-configuration">Apache and Squid configuration<a class="headerlink" href="#apache-and-squid-configuration" title="Permanent link">&para;</a></h3>
-<p>We will be running Apache with a Squid frontend (reverse proxy); Apache will be listening internally on port 8080, while Squid needs to listen (externally) on port 80 and 8000, which are the default Stratum 1 ports.</p>
-<p>For this we first edit <code>/etc/httpd/conf/httpd.conf</code> and change the default:
+Although this worked fine this is <em>not recommended</em>, since this setup is neither scalable, nor very reliable, nor secure:
+it is a single point of failure, too open in terms of connectivity, and it will have to serve all clients on its own.</p>
+<p>Therefore, we will show how all these points can be addressed by adding a <strong>Stratum 1 server</strong> and a <strong>caching proxy server</strong>.</p>
+<p>Quick reminder: a Stratum 1 is a <em>replica server</em> that keeps <em>mirrors</em> of the repositories served by a Stratum 0.
+It is a web server that periodically synchronizes the contents of the repositories.</p>
+<p>In contrast to the central Stratum 0 server you can have <em>multiple</em> Stratum 1 servers,
+and it is recommended to have them geographically distributed, so that clients always have a nearby Stratum 1.</p>
+<p>How many Stratum 1 servers you need mostly depends on the number of clients and how they are
+distributed geographically, but often a few is already sufficient.</p>
+<p>Scalability and performance can be improved with proxies, which we will discuss later in this section.</p>
+<p align="center">
+<img src="../img/stratum1_proxy.png" alt="CernVM-FS - Stratum 1 + proxy" width="700px"/>
+</p>
+
+<h2 id="31-setting-up-the-stratum-1-server">3.1 Setting up the Stratum 1 server<a class="headerlink" href="#31-setting-up-the-stratum-1-server" title="Permanent link">&para;</a></h2>
+<h3 id="311-requirements">3.1.1 Requirements<a class="headerlink" href="#311-requirements" title="Permanent link">&para;</a></h3>
+<p>A Stratum 1 server has <a href="../02_stratum0_client/#211-requirements">similar requirements as a Stratum 0 in terms of resources</a>.</p>
+<p>In addition to port 80 (for the Apache web server), port 8000 also has to be accessible for a Stratum 1
+(for the Squid proxy frontend).</p>
+<p>Furthermore, you need a (free) license key for <a href="https://dev.maxmind.com/geoip/geoip2/geolite2/">Maxmind's Geo API</a>,
+which you can obtain by <a href="https://www.maxmind.com/en/geolite2/signup/">signing up for an account</a>. This is used
+by CernVM-FS to allow clients to determine which Stratum 1 server is geographically located closest.</p>
+<h3 id="312-installation">3.1.2 Installation<a class="headerlink" href="#312-installation" title="Permanent link">&para;</a></h3>
+<p>For the Stratum 1 you need to install the following packages:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># sudo yum install -y epel-release  # only needed on CentOS 7</span>
+sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
+sudo yum install -y cvmfs-server squid
+<span class="c1"># sudo yum install -y mod_wsgi # on CentOS 7</span>
+sudo yum install -y python3-mod_wsgi  <span class="c1"># on CenOS 8</span>
+</code></pre></div>
+<p>This is:</p>
+<ul>
+<li><code>cvmfs-server</code>: the CermVM-FS server package (just like for Stratum 0);</li>
+<li><code>mod_wsgi</code>: an Apache module that provides a WSGI compliant
+  interface for hosting Python based web applications within Apache,
+  which is required by CernVM-FS to query the Geo API (more on that later);</li>
+<li><code>squid</code>: the Squid proxy package;</li>
+</ul>
+<h3 id="313-configuring-apache-and-squid-proxy">3.1.3 Configuring Apache and Squid proxy<a class="headerlink" href="#313-configuring-apache-and-squid-proxy" title="Permanent link">&para;</a></h3>
+<p>On the Stratum 1, we will be running Apache with a Squid frontend (reverse proxy).</p>
+<p>The Apache web server will be listening internally on port 8080,
+while the Squid proxy needs to listen (externally) on port 80 and 8000, which are the default Stratum 1 ports.</p>
+<h4 id="apache-configuration">Apache configuration<a class="headerlink" href="#apache-configuration" title="Permanent link">&para;</a></h4>
+<p>First, we modify the Apache webserver configuration, by editing <code>/etc/httpd/conf/httpd.conf</code> and change the default:
 <div class="highlight"><pre><span></span><code>Listen 80
 </code></pre></div>
 to:
 <div class="highlight"><pre><span></span><code>Listen 127.0.0.1:8080
 </code></pre></div></p>
-<p>Next, we replace the default contents of <code>/etc/squid/squid.conf:</code> with the following:
+<h4 id="squid-configuration">Squid configuration<a class="headerlink" href="#squid-configuration" title="Permanent link">&para;</a></h4>
+<p>Next, we replace the default contents of <code>/etc/squid/squid.conf</code> with the following:
 <div class="highlight"><pre><span></span><code>http_port 80 accel
 http_port 8000 accel
 http_access allow all
@@ -711,39 +857,81 @@ cache deny !CVMFSAPI
 
 cache_mem 128 MB
 </code></pre></div></p>
-<p>Finally, we start and enable Apache and Squid:
+<p>To clarify:</p>
+<ul>
+<li><a href="http://www.squid-cache.org/Doc/config/http_port"><code>http_port</code></a> specifies on which ports Squid will listen for HTTP requests;</li>
+<li><a href="http://www.squid-cache.org/Doc/config/http_access"><code>http_access</code></a> specifies access restrictions for HTTP traffic (none, in this case);</li>
+<li><a href="http://www.squid-cache.org/Doc/config/cache_peer"><code>cache_peer</code></a> specifies that the Apache web server is listening on port 8080;</li>
+<li><a href="http://www.squid-cache.org/Doc/config/acl"><code>acl</code></a> specifies the access list for CernVM-FS: only paths under <code>/cvmfs/*/api/</code> are relevant;</li>
+<li><a href="http://www.squid-cache.org/Doc/config/cache"><code>cache</code></a> specifies which paths should be cached by the Squid proxy (only
+  paths that match the regular expression on the line above);</li>
+<li><a href="http://www.squid-cache_mem.org/Doc/config/cache_mem"><code>cache_mem</code></a> specifies the amount of memory that Squid is allowed to use;</li>
+</ul>
+<p>For more information, see the Squid documentation: <a href="http://www.squid-cache.org/Doc/config/">http://www.squid-cache.org/Doc/config/</a>.</p>
+<h4 id="start-enable-services">Start &amp; enable services<a class="headerlink" href="#start-enable-services" title="Permanent link">&para;</a></h4>
+<p>Finally, we start and enable both the Apache and Squid services:</p>
 <div class="highlight"><pre><span></span><code>sudo systemctl start httpd
 sudo systemctl start squid
-sudo systemctl enable httpd
-sudo systemctl enable squid
-</code></pre></div></p>
-<h3 id="dns-cache">DNS cache<a class="headerlink" href="#dns-cache" title="Permanent link">&para;</a></h3>
-<p>As a Stratum 1 server does a lot of DNS lookups, it is recommended to have a local DNS caching server on that same machine.
-We will not discuss this topic any further here, but you can use <code>dnsmasq</code>, <code>bind</code>, or <code>systemd-resolved</code>.
-See for instance (this tutorial)[https://geekflare.com/linux-server-local-dns-caching/] for setting up <code>systemd-resolved</code>.</p>
-<h3 id="create-the-stratum-1-replica">Create the Stratum 1 replica<a class="headerlink" href="#create-the-stratum-1-replica" title="Permanent link">&para;</a></h3>
-<p>With all the required components in place, we can now really set up our Stratum 1 replica server. We first add our Geo API key to the CernVM-FS server settings:
-<div class="highlight"><pre><span></span><code>echo &#39;CVMFS_GEO_LICENSE_KEY=YOUR_KEY&#39; | sudo tee -a /etc/cvmfs/server.local
-sudo chmod 600 /etc/cvmfs/server.local
-</code></pre></div></p>
-<p>We also need to have the public keys of all repositories we want to mirror to be available on our Stratum 1. This can be done by copying all the corresponding <code>.pub</code> files from <code>/etc/cvmfs/keys</code> on your Stratum 0 server to
-<code>/etc/cvmfs/keys/organization.tld/</code> (note the extra level!) on your Stratum 1 server.</p>
-<p>Now we make the replica by giving the URL to the repository on the Stratum 0 server (which is always like <code>http://host:port/cvmfs/repository</code>) and the path to the corresponding public key:
-<div class="highlight"><pre><span></span><code>sudo cvmfs_server add-replica -o $USER http://YOUR_STRATUM0/cvmfs/repo.organization.tld /etc/cvmfs/keys/organization.tld/repo.organization.tld
-</code></pre></div></p>
+sudo systemctl <span class="nb">enable</span> httpd
+sudo systemctl <span class="nb">enable</span> squid
+</code></pre></div>
+<h3 id="314-dns-cache">3.1.4 DNS cache<a class="headerlink" href="#314-dns-cache" title="Permanent link">&para;</a></h3>
+<p>As a Stratum 1 server does a lot of DNS lookups, it is recommended to have a local DNS caching server on that same
+system.</p>
+<p>We will not discuss this topic any further here, but you can use <code>dnsmasq</code>, <code>bind</code>, or <code>systemd-resolved</code>.
+See for instance <a href="https://geekflare.com/linux-server-local-dns-caching/">this tutorial</a> for setting up <code>systemd-resolved</code>.</p>
+<h3 id="315-creating-the-stratum-1-replica">3.1.5 Creating the Stratum 1 replica<a class="headerlink" href="#315-creating-the-stratum-1-replica" title="Permanent link">&para;</a></h3>
+<p>With all the required components in place, we can now really set up our Stratum 1 replica server.</p>
+<h4 id="create-and-add-geo-api-key-optional">Create and add Geo API key (optional)<a class="headerlink" href="#create-and-add-geo-api-key-optional" title="Permanent link">&para;</a></h4>
+<p>We first add our Geo API key to the CernVM-FS server settings, by creating it
+and then running these commands:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s1">&#39;CVMFS_GEO_LICENSE_KEY=YOUR_KEY&#39;</span> <span class="p">|</span> sudo tee -a /etc/cvmfs/server.local
+sudo chmod <span class="m">600</span> /etc/cvmfs/server.local
+</code></pre></div>
+<p><em>Replace <code>YOUR_KEY</code> with your Geo API license key; see <a href="https://www.maxmind.com/en/accounts/YOUR_ACCOUNT_ID/license-key">https://www.maxmind.com/en/accounts/YOUR_ACCOUNT_ID/license-key</a>!</em></p>
+<p>Note that this is not strictly required for the sake of this tutorial, but it's highly recommended.</p>
+<h4 id="add-repository-master-public-key">Add repository master public key<a class="headerlink" href="#add-repository-master-public-key" title="Permanent link">&para;</a></h4>
+<p>We also need to have the public master key of each repository we want to mirror to be available on our Stratum 1.</p>
+<p>This can be done by copying the <code>.pub</code> file(s) from <code>/etc/cvmfs/keys</code> on the Stratum 0 server to
+<code>/etc/cvmfs/keys/organization.tld/</code> (note the extra level!) on the Stratum 1 server, just like we did on the client.</p>
+<h4 id="create-replica">Create replica<a class="headerlink" href="#create-replica" title="Permanent link">&para;</a></h4>
+<p>Now we make the replica by giving the URL to the repository on the Stratum 0 server
+(which is always like <code>http://host:port/cvmfs/repository</code>, with the <code>:port</code> part optional)
+and the path to the corresponding public master key:</p>
+<div class="highlight"><pre><span></span><code>sudo cvmfs_server add-replica -o <span class="nv">$USER</span> http://&lt;STRATUM0_IP&gt;/cvmfs/repo.organization.tld /etc/cvmfs/keys/organization.tld/
+</code></pre></div>
+<p><strong><em>Replace the <code>&lt;STRATUM0_IP&gt;</code> part with the IP address of your Stratum 0 server,
+and adjust for the name and domain of your CernVM-FS repository!</em></strong></p>
+<p>Executing the <code>add-replica</code> command should produce output reporting on the steps being performed,
+and only take a couple of moments to complete.</p>
+<p><em>If no output is produced and the command seems to be hanging, make sure that port 80 on your Stratum 0 server
+is accessible via the IP address you are using!</em></p>
+<h4 id="bypassing-the-geo-api-license-key">Bypassing the Geo API license key<a class="headerlink" href="#bypassing-the-geo-api-license-key" title="Permanent link">&para;</a></h4>
+<p>If you prefer not to create a MaxMind account and Geo API license key for the sake of this tutorial,
+you can bypass the "<code>CVMFS_GEO_LICENSE_KEY not set</code>" error message
+produced by <code>cvmfs_server add-replica</code> by setting the server variable <code>CVMFS_GEO_DB_FILE</code> 
+to <code>NONE</code> before running the command:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># only do this if you do not want to provide a Geo API key (not recommended!)</span>
+<span class="nb">echo</span> <span class="s1">&#39;CVMFS_GEO_DB_FILE=NONE&#39;</span> <span class="p">|</span> sudo tee -a /etc/cvmfs/server.local
+</code></pre></div>
 <h4 id="remove-the-replica">Remove the replica<a class="headerlink" href="#remove-the-replica" title="Permanent link">&para;</a></h4>
-<p>If you ever want to remove the replica again, you can use the <code>rmfs</code> subcommand in the same way as on a Stratum 0:
+<p>If you ever want to remove the repository replica again, you can use the <code>rmfs</code> subcommand in the same way as on Stratum 0:</p>
 <div class="highlight"><pre><span></span><code>sudo cvmfs_server rmfs repo.organization.tld
-</code></pre></div></p>
-<h3 id="manually-synchronize-the-stratum-1">Manually synchronize the Stratum 1<a class="headerlink" href="#manually-synchronize-the-stratum-1" title="Permanent link">&para;</a></h3>
-<p>The Stratum 1 has been registered, so now we should try to do a first synchronization.
-You can do this by running the following command:
-<div class="highlight"><pre><span></span><code>cvmfs_server snapshot repo.organization.tld
+</code></pre></div>
+<h3 id="316-manually-synchronize-the-stratum-1">3.1.6 Manually synchronize the Stratum 1<a class="headerlink" href="#316-manually-synchronize-the-stratum-1" title="Permanent link">&para;</a></h3>
+<p>Now that the Stratum 1 has been registered, we should try to do a first synchronization.
+You can do this by running the following command:</p>
+<p><div class="highlight"><pre><span></span><code>sudo cvmfs_server snapshot repo.organization.tld
 </code></pre></div>
 As there is not much in the repository yet, this should complete within a few seconds.</p>
-<h3 id="make-cronjobs">Make cronjobs<a class="headerlink" href="#make-cronjobs" title="Permanent link">&para;</a></h3>
-<p>Whenever you make changes to the repository, the changes have to be synchronized to all Stratum 1 servers. Furthermore, the Geo database has to be updated regularly.</p>
-<p>Both tasks can be automated by setting up cronjobs that periodically run <code>cvmfs_server update-geodb</code> and <code>cvmfs_server snapshot -a</code>, where <code>-a</code> does the synchronization for all active repositories. This option will give an error if no log rotation has been configured for CernVM-FS, so we first have to create a file <code>/etc/logrotate.d/cvmfs</code> with the following contents:</p>
+<p>The output should end with something like:</p>
+<div class="highlight"><pre><span></span><code>Serving revision 2
+Fetched 2 new chunks out of 3 processed chunks
+</code></pre></div>
+<h3 id="317-adding-cron-jobs">3.1.7 Adding cron jobs<a class="headerlink" href="#317-adding-cron-jobs" title="Permanent link">&para;</a></h3>
+<p>Whenever you make changes to the repository, the changes have to be synchronized to all Stratum 1 servers.
+Furthermore, the GeoIP database has to be updated regularly.</p>
+<p>Both tasks can be automated by setting up cron jobs that periodically run <code>cvmfs_server update-geodb</code> and <code>cvmfs_server snapshot -a</code>, where <code>-a</code> does the synchronization for all active repositories. This option will give an error if no log rotation has been configured for CernVM-FS, so we first have to create a file <code>/etc/logrotate.d/cvmfs</code> with the following contents:</p>
 <div class="highlight"><pre><span></span><code>/var/log/cvmfs/*.log {
     weekly
     missingok
@@ -756,19 +944,23 @@ As there is not much in the repository yet, this should complete within a few se
 <p>And another cronjob <code>/etc/cron.d/cvmfs_geoip_db_update</code> for updating the Geo database:
 <div class="highlight"><pre><span></span><code>4 2 2 * * root /usr/bin/cvmfs_server update-geodb
 </code></pre></div></p>
-<h2 id="set-up-a-proxy">Set up a proxy<a class="headerlink" href="#set-up-a-proxy" title="Permanent link">&para;</a></h2>
-<p>If you have a lot of local machines, e.g. a cluster, that need to access your repositories, you also want another cache layer close to these machines. This can be done by adding Squid proxies between your local machine(s) and the layer of Stratum 1 servers.
-Usually it is recommended to have at least two of them for reliability and load-balancing reasons.</p>
-<h3 id="requirements_1">Requirements<a class="headerlink" href="#requirements_1" title="Permanent link">&para;</a></h3>
-<p>Just as with the other components, the squid proxy server does not need a lot of resources.
+<h2 id="32-setting-up-a-proxy">3.2 Setting up a proxy<a class="headerlink" href="#32-setting-up-a-proxy" title="Permanent link">&para;</a></h2>
+<p>If you have a lot of local machines, e.g. an HPC cluster, that need to access your repositories, you also want another cache layer close to these machines.</p>
+<p>This can be done by adding one or more Squid proxies between your local machine(s) and the Stratum 1 server(s).
+It is recommended to have at least two proxies, for reliability and load-balancing reasons.</p>
+<h3 id="321-requirements">3.2.1 Requirements<a class="headerlink" href="#321-requirements" title="Permanent link">&para;</a></h3>
+<p>Just as with the other components, the Squid proxy server does not need a lot of resources.
 Just a few cores and few gigabytes of memory should be enough. The more disk space you allocate
-for this machine, the larger the cache can be, and the better the performance will be. Do note that this machine will only store a part of the (deduplicated and compressed) repository, so it does not need as much space as your Stratum 1.</p>
-<h3 id="installation_1">Installation<a class="headerlink" href="#installation_1" title="Permanent link">&para;</a></h3>
-<p>The proxy server only requires Squid to be installed:
+for this machine, the larger the cache can be, and the better the performance will be.</p>
+<p>Note that this system will only store a part of the (deduplicated and compressed) repository,
+so it does not need as much storage space as Stratum 0 or Stratum 1 server.</p>
+<h3 id="322-installation">3.2.2 Installation<a class="headerlink" href="#322-installation" title="Permanent link">&para;</a></h3>
+<p>On the proxy server only Squid needs to be installed:
 <div class="highlight"><pre><span></span><code>sudo yum install -y squid
 </code></pre></div></p>
-<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
-<p>The configuration of a standalone Squid is slightly different from the one that we used for our Stratum 1. You can use the following template to set up your own configuration:</p>
+<h3 id="323-configuration">3.2.3 Configuration<a class="headerlink" href="#323-configuration" title="Permanent link">&para;</a></h3>
+<p>The configuration of a standalone Squid proxy is slightly different from the one that we used for our Stratum 1.</p>
+<p>You can use the following <em>template</em> to set up your own Squid configuration for your proxy server (in <code>/etc/squid/squid.conf</code>):</p>
 <div class="highlight"><pre><span></span><code># List of local IP addresses (separate IPs and/or CIDR notation) allowed to access your local proxy
 acl local_nodes src YOUR_CLIENT_IPS
 
@@ -776,8 +968,8 @@ acl local_nodes src YOUR_CLIENT_IPS
 #acl stratum_ones dstdomain .YOURDOMAIN.ORG
 #acl stratum_ones dstdom_regex YOUR_REGEX
 
-# Squid port (default: 3128)
-# http_port 3128
+# Squid port
+http_port 3128
 
 # Deny access to anything which is not part of our stratum_ones ACL.
 http_access deny !stratum_ones
@@ -794,42 +986,73 @@ maximum_object_size 1024 MB
 
 cache_mem 128 MB
 maximum_object_size_in_memory 128 KB
-# 50 GB disk cache
-cache_dir ufs /var/spool/squid 50000 16 256
+# 5 GB disk cache
+cache_dir ufs /var/spool/squid 5000 16 256
 </code></pre></div>
-<p>You should use the <code>local_nodes</code> ACL here to specify which clients are allowed to use this proxy; you can use <a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation">CIDR notation</a>.</p>
-<p>Furthermore, you probably also want to have an ACL that specifies that your Squid should only cache the Stratum 1 servers. The template uses a <code>stratum_ones</code> ACL for this, and you can make use of either <code>dstdomain</code> (in case you have a single domain for all your Stratum 1 servers) or <code>dstdom_regex</code> for more complex situations.</p>
-<p>More information about Squid ACLs can be found in the (Squid documentation)[http://www.squid-cache.org/Doc/config/acl/].</p>
+<p>In this template, there are a two things you must change in the Access Control List (ACL) settings:</p>
+<ul>
+<li>
+<p>The line starting with <code>acl local_nodes</code> specifies which clients are allowed to use this proxy.
+  You can use <a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation">CIDR notation</a>.
+  For the sake of this tutorial, you can just replace <code>YOUR_CLIENT_IPS</code> with the IP of your client system.
+  For example:
+  <div class="highlight"><pre><span></span><code>acl local_nodes src 1.2.3.4
+</code></pre></div></p>
+</li>
+<li>
+<p>You will need to add a line starting with <code>acl stratum_ones</code> to specify an ACL for
+  the allowed destination domains.
+  For the sake of this tutorial, we can just "hardcode" this to our Stratum 1 server via <code>dst</code> (destination):
+  <div class="highlight"><pre><span></span><code>acl stratum_ones dst &lt;STRATUM1_IP&gt;
+</code></pre></div>
+  (where you need to change <code>&lt;STRATUM1_IP&gt;</code> with the IP address of your Stratum 1 server)</p>
+</li>
+</ul>
+<p>The <code>stratum_ones</code> ACL you defined is used to specify that the Squid should only cache the Stratum 1 server,
+via the first <code>http_access deny</code> line.</p>
+<p>More information about Squid ACLs can be found in the <a href="http://www.squid-cache.org/Doc/config/acl/">Squid documentation</a>.</p>
 <p>Finally, there are some settings regarding the size of your cache. Make sure that you have enough disk space for the value that you provide.</p>
-<h3 id="starting-squid">Starting Squid<a class="headerlink" href="#starting-squid" title="Permanent link">&para;</a></h3>
-<p>Before you actually start Squid, you can verify the correctness of your configuration with <code>sudo squid -k parse</code>. When you are sure things are okay, start and enable Squid:
+<h3 id="324-verifying-squid-configuration">3.2.4 Verifying Squid configuration<a class="headerlink" href="#324-verifying-squid-configuration" title="Permanent link">&para;</a></h3>
+<p>To verify the correctness of your Squid configuration, you can run:</p>
+<div class="highlight"><pre><span></span><code>sudo squid -k parse
+</code></pre></div>
+<p>When things look OK (no errors or warnings are printed, exit code zero), you can start and enable Squid.</p>
+<h3 id="325-starting-and-enabling-squid">3.2.5 Starting and enabling Squid<a class="headerlink" href="#325-starting-and-enabling-squid" title="Permanent link">&para;</a></h3>
+<p>To start and enable Squid, run:</p>
 <div class="highlight"><pre><span></span><code>sudo systemctl start squid
 sudo systemctl enable squid
-</code></pre></div></p>
-<h2 id="client-configuration">Client configuration<a class="headerlink" href="#client-configuration" title="Permanent link">&para;</a></h2>
-<p>Now that we have a Stratum 0, one ore more Stratum 1 servers, and one or more local Squid proxies, all the infrastructure for a production-ready CernVM-FS setup is in place. This means that we can now configure our client properly, and start using the repository.</p>
+</code></pre></div>
+<h2 id="33-re-configuring-the-client">3.3 Re-configuring the client<a class="headerlink" href="#33-re-configuring-the-client" title="Permanent link">&para;</a></h2>
+<p>Now that we have a Stratum 0 server, a Stratum 1 server, and a Squid proxy,
+we have the (minimal) infrastructure in place for a production-ready CernVM-FS setup.</p>
+<p>So we can now configure our client properly, and start using the repository.</p>
 <p>In the previous section we connected our client directly to the Stratum 0. We are going to reuse that configuration, and only need to change two things.</p>
-<h3 id="connect-to-the-stratum-1">Connect to the Stratum 1<a class="headerlink" href="#connect-to-the-stratum-1" title="Permanent link">&para;</a></h3>
+<h3 id="331-connect-to-the-stratum-1">3.3.1 Connect to the Stratum 1<a class="headerlink" href="#331-connect-to-the-stratum-1" title="Permanent link">&para;</a></h3>
 <p>We used the URL of the Stratum 0 in the file <code>/etc/cvmfs/config.d/repo.organization.tld.conf</code>. We should now change this URL, and point to the Stratum 1 instead:
-<div class="highlight"><pre><span></span><code>CVMFS_SERVER_URL=&quot;http://your-stratum1/cvmfs/@fqrn@&quot;
+<div class="highlight"><pre><span></span><code>CVMFS_SERVER_URL=&quot;http://&lt;STRATUM1_IP&gt;/cvmfs/@fqrn@&quot;
 </code></pre></div></p>
+<p><strong><em>Replace the <code>&lt;STRATUM1_IP&gt;</code> part with the IP address of your Stratum 1 server!</em></strong></p>
 <p>When you have more Stratum 1 servers inside the organization, you can make it a semicolon-separated list of servers. The Geo API will make sure that your client always connects to the geographically closest Stratum 1 server.</p>
-<h3 id="use-the-squid-proxy">Use the Squid proxy<a class="headerlink" href="#use-the-squid-proxy" title="Permanent link">&para;</a></h3>
-<p>In order to use the local cache layer of our proxy, we have to instruct the client to send all requests through the proxy. This needs one small change in <code>/etc/cvmfs/default.local</code>, where you will have to set:
-<div class="highlight"><pre><span></span><code>CVMFS_HTTP_PROXY=&quot;http://your-proxy:3128&quot;
+<h3 id="332-use-the-squid-proxy">3.3.2 Use the Squid proxy<a class="headerlink" href="#332-use-the-squid-proxy" title="Permanent link">&para;</a></h3>
+<p>In order to use the local cache layer of our proxy, we have to instruct the client to send all requests through the proxy.</p>
+<p>This needs one small change in <code>/etc/cvmfs/default.local</code>, where you will have to replace <code>DIRECT</code>
+with IP address of your Squid proxy service, plus the (default) port 3128 at which Squid is running: 
+<div class="highlight"><pre><span></span><code>CVMFS_HTTP_PROXY=&quot;http://&lt;PROXY_IP&gt;:3128&quot;
 </code></pre></div></p>
-<p>More proxies can be added to that list by separating them with a pipe symbol. See for more (complex) examples <a href="https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#proxy-list-examples">this documentation page</a>.</p>
-<h2 id="homework">Homework<a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Set up a Stratum 1 server. Make sure that it includes:</li>
-<li>a proper Geo API license key;</li>
-<li>cronjobs for automatically synchronizing the database and updating the Geo database;</li>
-<li>properly configured Apache and Squid services;</li>
-<li>Set up a separate Squid proxy. Though it is recommended to at least have two in production, one is enough for now.</li>
-<li>
-<h1 id="todo-reuse-or-set-up-a-new-client-add-firewall-rules-to-the-stratum-0">TODO: reuse or set up a new client?? Add firewall rules to the Stratum 0?<a class="headerlink" href="#todo-reuse-or-set-up-a-new-client-add-firewall-rules-to-the-stratum-0" title="Permanent link">&para;</a></h1>
-  Reconfigure the client that you set up in the previous section and make sure that it uses your Stratum 1 and Squid proxy.</li>
-</ul>
+<p><strong><em>Replace the <code>&lt;PROXY_IP&gt;</code> part with the IP address of your Squid proxy server!</em></strong></p>
+<p>After changing the local configuration file, make sure to reload the CernVM-FS client configuration:</p>
+<div class="highlight"><pre><span></span><code>sudo cvmfs_config reload repo.organization.tld
+</code></pre></div>
+<p>More proxies can be added to that list by separating them with a pipe symbol.</p>
+<p>For more (complex) examples, see the <a href="https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#proxy-list-examples">CernVM-FS documentation</a>.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>1) Set up a Stratum 1 server. Make sure that it includes:
+- a proper Geo API license key;
+- cron jobs for automatically synchronizing the database and updating the Geo database;
+- properly configured Apache and Squid services;</p>
+<p>2) Set up a separate Squid proxy. Though it is recommended to at least have two in production, one is enough for now.</p>
+<p>3) Reconfigure the client that you set up in the previous section and make sure that it uses your Stratum 1 and Squid proxy.
+- #TODO: reuse or set up a new client?? Add firewall rules to the Stratum 0?</p>
                 
                   
                     
@@ -838,7 +1061,7 @@ sudo systemctl enable squid
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 19, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 21, 2021</span>
     
   </small>
 </div>
@@ -870,7 +1093,7 @@ sudo systemctl enable squid
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                2. Stratum 0 + client
+                2. Stratum 0 and client
               </div>
             </div>
           </a>
