@@ -329,6 +329,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#garbage-collection" class="md-nav__link">
+    Garbage collection
+  </a>
+  
+    <nav class="md-nav" aria-label="Garbage collection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-the-lifetime-of-automatically-generated-tags" class="md-nav__link">
+    Setting the lifetime of automatically generated tags
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleaning-up-tags-marked-for-removal" class="md-nav__link">
+    Cleaning up tags marked for removal
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gateway-and-publishers" class="md-nav__link">
     Gateway and Publishers
   </a>
@@ -466,6 +493,33 @@
   <a href="#debugging-issues" class="md-nav__link">
     Debugging issues
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#garbage-collection" class="md-nav__link">
+    Garbage collection
+  </a>
+  
+    <nav class="md-nav" aria-label="Garbage collection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-the-lifetime-of-automatically-generated-tags" class="md-nav__link">
+    Setting the lifetime of automatically generated tags
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleaning-up-tags-marked-for-removal" class="md-nav__link">
+    Cleaning up tags marked for removal
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -641,6 +695,29 @@ curl --head http://url-to-your-stratum1/cvmfs/repo.organization.tld/.cvmfspublis
 curl --proxy http://url-to-your-proxy:3128 --head http://url-to-your-stratum1/cvmfs/repo.organization.tld/.cvmfspublished
 </code></pre></div></p>
 <p>These commands should return <code>HTTP/1.1 200 OK</code>. If the first command returns something else, you should inspect your CernVM-FS, Apache, and Squid configuration (and log) files on the Stratum 1 server. If the first <code>curl</code> command does work, but the second does not, there is something wrong with your Squid proxy; make sure that it is running, configured, and able to access your Stratum 1 server.</p>
+<h2 id="garbage-collection">Garbage collection<a class="headerlink" href="#garbage-collection" title="Permanent link">&para;</a></h2>
+<p>As mentioned in <a href="../04_publishing/">the section about publishing</a>, the default configuration of a Stratum 0 enables automatic tagging,
+which automatically assigns a timestamped tag to each published transaction.
+However, by default, these automatically generated tags will not be removed automatically.
+This means, for instance, that files that you remove in later transactions will still take up space in your repository.</p>
+<h3 id="setting-the-lifetime-of-automatically-generated-tags">Setting the lifetime of automatically generated tags<a class="headerlink" href="#setting-the-lifetime-of-automatically-generated-tags" title="Permanent link">&para;</a></h3>
+<p>Instead of removing tags manually, you can automatically mark these automatically generated tags for removal after a certain period by setting the following variable
+in the file <code>/etc/cvmfs/repositories.d/repo.organization.tld/server.conf</code> on your Stratum 0:
+<div class="highlight"><pre><span></span><code>CVMFS_AUTO_TAG_TIMESPAN=&quot;30 days ago&quot;
+</code></pre></div>
+This should be a string that can be parsed by the <code>date</code> command, and defines the lifetime of the tags.</p>
+<h3 id="cleaning-up-tags-marked-for-removal">Cleaning up tags marked for removal<a class="headerlink" href="#cleaning-up-tags-marked-for-removal" title="Permanent link">&para;</a></h3>
+<p>In order to actually clean up unreferenced data, garbage collection has to be enabled for this repository by setting <code>CVMFS_GARBAGE_COLLECTION=true</code> in the aforementioned server configuration file.</p>
+<p>The garbage collector of the CernVM-FS server can then be run using:
+<div class="highlight"><pre><span></span><code>sudo cvmfs_server gc repo.organization.tld
+</code></pre></div></p>
+<p>The <code>gc</code> subcommand has several options; a useful way to run it is, especially if you want to do this with a cron job:
+<div class="highlight"><pre><span></span><code>sudo cvmfs_server gc -a -l -f
+</code></pre></div>
+The <code>-a</code> option will automatically run the garbage collection for all your repositories that have garbage collection enabled and log to <code>/var/log/cvmfs/gc.log</code>,
+the <code>-l</code> will print which objects are actually removed,
+while <code>-f</code> will not prompt for confirmation.</p>
+<p>Note that you cannot run the garbage collection while a publish operation is ongoing.</p>
 <h2 id="gateway-and-publishers">Gateway and Publishers<a class="headerlink" href="#gateway-and-publishers" title="Permanent link">&para;</a></h2>
 <p>Only being able to modify your repository on the Stratum 0 server can be a bit of a limitation,
 especially when multiple people have to maintain the repository.</p>
@@ -752,7 +829,7 @@ cvmfs_server publish repo.organization.tld
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 19, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 21, 2021</span>
     
   </small>
 </div>
