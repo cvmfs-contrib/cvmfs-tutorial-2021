@@ -106,8 +106,8 @@ which involves creating catalogs which represent directory structure and metadat
 Publishing is done on a dedicated release manager machine or *publisher* system which interfaces with the stratum 0.
 
 Read-write access to a CernVM-FS repository is only available on a stratum 0 system or publisher system
-(and the publisher and stratum 0 could be the same system). 
-Write access is provided via a *union filesystem*, which overlays a writable scratch area on top of the read-only mount of the CernVM-FS repository.
+(the publisher and stratum 0 could be the same system). 
+Write access is provided via a *union filesystem*, which overlays a writable scratch area and the read-only mount of the CernVM-FS repository.
 Publishing is an atomic operation: adding or changing files in a repository is done
 in a *transaction* that records and collectively commits a set of file system changes, 
 preventing partial or incomplete updates of the repository and ensuring that changes are either applied completely, or not at all.
@@ -131,7 +131,7 @@ and instead rely on the Stratum 1 replica servers to provide client access.
 
 There usually are multiple Stratum 1 servers in a CernVM-FS network, which are typically distributed across geographic regions.
 A repository may be replicated to arbitrarily many stratum 1 servers, but for reasons related to caching efficiency of HTTP proxies, it is best to use only a modest number of stratum 1 servers, not an excessive amount. 
-While it depends on the specific context and circumstances under consideration, a reasonable guideline would be approximately one stratum 1 per continent for a deployment that is global in scope, and one stratum 1 per geographic region of a country for a deployment that is national in scope. 
+While it depends on the specific context and circumstances under consideration, a reasonable rule of thumb would be approximately one stratum 1 per continent for a deployment that is global in scope, and one stratum 1 per geographic region of a country for a deployment that is national in scope. 
 
 Stratum 1 servers enable clients to determine which Stratum 1 is geographically closest to connect to,
 via the Geo API which uses a [GeoIP database](https://dev.maxmind.com/geoip/geoip2/geolite2/) that
