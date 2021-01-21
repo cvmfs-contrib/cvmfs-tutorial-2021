@@ -96,20 +96,20 @@ Extensive documentation on configuring a client is available in the [CernVM-FS d
 
 #### 1.2.2 Stratum 0 + repository
 
-A CernVM-FS ***repository*** is an instance of a CVMFS filesystem. A repository is hosted on one
-***Stratum 0*** server, which is the single authoritative source of content for the repository. 
+A CernVM-FS ***repository*** is an instance of a CernVM-FS filesystem. A repository is hosted on one
+***Stratum 0*** server, which is the single authoritative source of content for the repository.
 Multiple repositories can be hosted on the same Stratum 0 server.
 
-The data in a repository is stored using a [content-addressable storage](https://en.wikipedia.org/wiki/Content-addressable_storage) (CAS) scheme. 
+The data in a repository is stored using a [content-addressable storage](https://en.wikipedia.org/wiki/Content-addressable_storage) (CAS) scheme.
 All files written to a CernVM-FS repository must be converted into data chunks in the CAS store during the process of *publishing*,
-which involves creating catalogs which represent directory structure and metadata, and splitting files into chunks, compressing them, and calculating content hashes, etc.
-Publishing is done on a dedicated release manager machine or *publisher* system which interfaces with the stratum 0.
+which involves creating catalogs which represent directory structure and metadata, and splitting files into chunks, compressing them, calculating content hashes, etc.
+Publishing is done on a dedicated release manager machine or *publisher* system which interfaces with the Stratum 0 server.
 
-Read-write access to a CernVM-FS repository is only available on a stratum 0 system or publisher system
-(the publisher and stratum 0 could be the same system). 
+Read-write access to a CernVM-FS repository is only available on a Stratum 0 server or publisher
+(the publisher and Stratum 0 can be the same system).
 Write access is provided via a *union filesystem*, which overlays a writable scratch area and the read-only mount of the CernVM-FS repository.
 Publishing is an atomic operation: adding or changing files in a repository is done
-in a *transaction* that records and collectively commits a set of file system changes, 
+in a *transaction* that records and collectively commits a set of file system changes,
 preventing partial or incomplete updates of the repository and ensuring that changes are either applied completely, or not at all.
 
 In the [first hands-on part of this tutorial](02_stratum0_client.md)
@@ -124,14 +124,14 @@ to update the contents of a CernVM-FS repository.
 A ***Stratum 1 replica server*** is a *standard web server* that provides a ***read-only mirror***
 of a CernVM-FS repository served by a Stratum 0.
 
-The main purpose of a Stratum 1 is to improve reliability and capacity of the CernVM-FS network, 
+The main purpose of a Stratum 1 is to improve reliability and capacity of the CernVM-FS network,
 by distributing load across multiple servers and allowing clients to fail over if one is unavailable, and to relieve the Stratum 0 from serving client requests.
 Although clients can access a CernVM-FS repository via the Stratum 0, it is advisable to block external client access to the Stratum 0 with a firewall,
 and instead rely on the Stratum 1 replica servers to provide client access.
 
 There usually are multiple Stratum 1 servers in a CernVM-FS network, which are typically distributed across geographic regions.
-A repository may be replicated to arbitrarily many stratum 1 servers, but for reasons related to caching efficiency of HTTP proxies, it is best to use only a modest number of stratum 1 servers, not an excessive amount. 
-While it depends on the specific context and circumstances under consideration, a reasonable rule of thumb would be approximately one stratum 1 per continent for a deployment that is global in scope, and one stratum 1 per geographic region of a country for a deployment that is national in scope. 
+A repository may be replicated to arbitrarily many Stratum 1 servers, but for reasons related to caching efficiency of HTTP proxies, it is best to use only a modest number of Stratum 1 servers (in the 5-10 range), not an excessive amount.
+While it depends on the specific context and circumstances under consideration, a reasonable rule of thumb would be approximately one Stratum 1 per continent for a deployment that is global in scope, and one Stratum 1 per geographic region of a country for a deployment that is national in scope.
 
 Stratum 1 servers enable clients to determine which Stratum 1 is geographically closest to connect to,
 via the Geo API which uses a [GeoIP database](https://dev.maxmind.com/geoip/geoip2/geolite2/) that
@@ -142,9 +142,9 @@ and is also covered in detail in the [CernVM-FS documentation](https://cvmfs.rea
 
 #### 1.2.4 Squid proxies
 
-To further extend the scalability and hierarchical caching model of CVMFS, another layer is used between end clients and stratum 1 servers: forward caching HTTP proxies which reduce load on Stratum 1 servers and help reduce latency for clients. 
+To further extend the scalability and hierarchical caching model of CernVM-FS, another layer is used between end clients and Stratum 1 servers: forward caching HTTP proxies which reduce load on Stratum 1 servers and help reduce latency for clients.
 [Squid cache](http://www.squid-cache.org/) is commonly used for this.
-A Squid proxy caches content that has been accessed recently, and helps to reduce bandwidth and improve response times. 
+A Squid proxy caches content that has been accessed recently, and helps to reduce bandwidth and improve response times.
 
 It is particularly important to have caching proxies at large systems like HPC clusters where many worker nodes are accessing the
 CernVM-FS repository, and it is recommended to set up multiple Squid proxies for redundancy and capacity.
