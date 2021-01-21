@@ -489,6 +489,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#333-test-the-new-configuration" class="md-nav__link">
+    3.3.3 Test the new configuration
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -761,6 +768,13 @@
           <li class="md-nav__item">
   <a href="#332-use-the-squid-proxy" class="md-nav__link">
     3.3.2 Use the Squid proxy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#333-test-the-new-configuration" class="md-nav__link">
+    3.3.3 Test the new configuration
   </a>
   
 </li>
@@ -1041,14 +1055,22 @@ with IP address of your Squid proxy service, plus the (default) port 3128 at whi
 </code></pre></div>
 <p>More proxies can be added to that list by separating them with a pipe symbol.</p>
 <p>For more (complex) examples, see the <a href="https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#proxy-list-examples">CernVM-FS documentation</a>.</p>
+<h3 id="333-test-the-new-configuration">3.3.3 Test the new configuration<a class="headerlink" href="#333-test-the-new-configuration" title="Permanent link">&para;</a></h3>
+<p>Now you can test your new configuration by checking if you can still access the repository.
+Furthermore, you may want to check if you are really using your Squid proxy. You can do this by running:
+<div class="highlight"><pre><span></span><code>cvmfs_config stat -v repo.organization.tld
+</code></pre></div></p>
+<p>This should show a line that looks like:
+<div class="highlight"><pre><span></span><code>Connection: http://&lt;STRATUM1_IP&gt;/cvmfs/repo.organization.tld through proxy http://&lt;PROXY_IP&gt;:3128 (online)
+</code></pre></div>
+Make sure that it lists your proxy here (and not <code>DIRECT</code>), and that it is marked as <code>online</code>.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>1) Set up a Stratum 1 server. Make sure that it includes:
-- a proper Geo API license key;
-- cron jobs for automatically synchronizing the database and updating the Geo database;
+- a proper Geo API license key (if you do not want to request an account, you can use the described method to bypass this, but again: do not do this in production!);
+- cron job for automatically synchronizing the database;
 - properly configured Apache and Squid services;</p>
 <p>2) Set up a separate Squid proxy. Though it is recommended to at least have two in production, one is enough for now.</p>
-<p>3) Reconfigure the client that you set up in the previous section and make sure that it uses your Stratum 1 and Squid proxy.
-- #TODO: reuse or set up a new client?? Add firewall rules to the Stratum 0?</p>
+<p>3) Reconfigure the client that you set up in the previous section and make sure that it uses your Stratum 1 and Squid proxy.</p>
                 
                   
                     
