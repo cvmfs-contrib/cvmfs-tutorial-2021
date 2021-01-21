@@ -168,7 +168,7 @@ is accessible via the IP address you are using!*
 
 If you prefer not to create a MaxMind account and Geo API license key for the sake of this tutorial,
 you can bypass the "`CVMFS_GEO_LICENSE_KEY not set`" error message
-produced by `cvmfs_server add-replica` by setting the server variable `CVMFS_GEO_DB_FILE` 
+produced by `cvmfs_server add-replica` by setting the server variable `CVMFS_GEO_DB_FILE`
 to `NONE` before running the command:
 
 ```bash
@@ -201,12 +201,10 @@ Serving revision 2
 Fetched 2 new chunks out of 3 processed chunks
 ```
 
-### 3.1.7 Adding cron jobs
+### 3.1.7 Adding a synchronization cron job
 
 Whenever you make changes to the repository, the changes have to be synchronized to all Stratum 1 servers.
-Furthermore, the GeoIP database has to be updated regularly.
-
-Both tasks can be automated by setting up cron jobs that periodically run `cvmfs_server update-geodb` and `cvmfs_server snapshot -a`, where `-a` does the synchronization for all active repositories. This option will give an error if no log rotation has been configured for CernVM-FS, so we first have to create a file `/etc/logrotate.d/cvmfs` with the following contents:
+This task can be automated by setting up a cron job that periodically runs `cvmfs_server snapshot -a`, where `-a` does the synchronization for all active repositories. This option will give an error if no log rotation has been configured for CernVM-FS, so we first have to create a file `/etc/logrotate.d/cvmfs` with the following contents:
 
 ```
 /var/log/cvmfs/*.log {
@@ -216,15 +214,10 @@ Both tasks can be automated by setting up cron jobs that periodically run `cvmfs
 }
 ```
 
-Now we can make a cronjob `/etc/cron.d/cvmfs_stratum1_snapshot` for the snapshots:
+Now we can make a cron job `/etc/cron.d/cvmfs_stratum1_snapshot` for the snapshots:
 
 ```
 */5 * * * * root output=$(/usr/bin/cvmfs_server snapshot -a -i 2>&1) || echo "$output"
-```
-
-And another cronjob `/etc/cron.d/cvmfs_geoip_db_update` for updating the Geo database:
-```
-4 2 2 * * root /usr/bin/cvmfs_server update-geodb
 ```
 
 ## 3.2 Setting up a proxy
@@ -356,7 +349,7 @@ When you have more Stratum 1 servers inside the organization, you can make it a 
 In order to use the local cache layer of our proxy, we have to instruct the client to send all requests through the proxy.
 
 This needs one small change in `/etc/cvmfs/default.local`, where you will have to replace `DIRECT`
-with IP address of your Squid proxy service, plus the (default) port 3128 at which Squid is running: 
+with IP address of your Squid proxy service, plus the (default) port 3128 at which Squid is running:
 ```
 CVMFS_HTTP_PROXY="http://<PROXY_IP>:3128"
 ```
