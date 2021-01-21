@@ -28,7 +28,7 @@ Scalability and performance can be improved with proxies, which we will discuss 
 
 A Stratum 1 server has [similar requirements as a Stratum 0 in terms of resources](02_stratum0_client.md#211-requirements).
 
-In addition to port 80 (for the Apache web server0, port 8000 also has to be accessible for a Stratum 1
+In addition to port 80 (for the Apache web server), port 8000 also has to be accessible for a Stratum 1
 (for the Squid proxy frontend).
 
 Furthermore, you need a (free) license key for [Maxmind's Geo API](https://dev.maxmind.com/geoip/geoip2/geolite2/),
@@ -91,7 +91,7 @@ cache_mem 128 MB
 To clarify:
 
 - [`http_port`](http://www.squid-cache.org/Doc/config/http_port) specifies on which ports Squid will listen for HTTP requests;
-- [`http_access`](http://www.squid-cache.org/Doc/config/http_access) specifies access restrictions for HTT traffic (none, in this case);
+- [`http_access`](http://www.squid-cache.org/Doc/config/http_access) specifies access restrictions for HTTP traffic (none, in this case);
 - [`cache_peer`](http://www.squid-cache.org/Doc/config/cache_peer) specifies that the Apache web server is listening on port 8080;
 - [`acl`](http://www.squid-cache.org/Doc/config/acl) specifies the access list for CernVM-FS: only paths under `/cvmfs/*/api/` are relevant;
 - [`cache`](http://www.squid-cache.org/Doc/config/cache) specifies which paths should be cached by the Squid proxy (only
@@ -126,7 +126,7 @@ With all the required components in place, we can now really set up our Stratum 
 
 #### Create and add Geo API key (optional)
 
-We first add our Geo API key to the CernVM-FS server settings, by creating it via
+We first add our Geo API key to the CernVM-FS server settings, by creating it
 and then running these commands:
 
 ```bash
@@ -355,7 +355,7 @@ When you have more Stratum 1 servers inside the organization, you can make it a 
 
 In order to use the local cache layer of our proxy, we have to instruct the client to send all requests through the proxy.
 
-This needs two small change in `/etc/cvmfs/default.local`, where you will have to replace `DIRECT`
+This needs one small change in `/etc/cvmfs/default.local`, where you will have to replace `DIRECT`
 with IP address of your Squid proxy service, plus the (default) port 3128 at which Squid is running: 
 ```
 CVMFS_HTTP_PROXY="http://<PROXY_IP>:3128"
