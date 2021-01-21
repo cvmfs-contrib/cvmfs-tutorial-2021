@@ -1,4 +1,4 @@
-# 2. Stratum 0 + client
+# 2. Stratum 0 and client
 
 In order to get started with CernVM-FS, the first thing you need is a Stratum 0 server.
 
@@ -237,11 +237,11 @@ so we are going to connect directly to our Stratum 0 server instead. **You shoul
 A typical, minimal configuration should look as follows:
 
 ```
-CVMFS_SERVER_URL="http://<IP>/cvmfs/@fqrn@"
+CVMFS_SERVER_URL="http://<STRATUM0_IP>/cvmfs/@fqrn@"
 CVMFS_KEYS_DIR="/etc/cvmfs/keys/organization.tld"
 ```
 
-***Replace the ``<IP>`` part with the IP address of your Stratum 0 server!***
+***Replace the ``<STRATUM0_IP>`` part with the IP address of your Stratum 0 server!***
 
 Note that the `CVMFS_SERVER_URL` should include the part `/cvmfs/@fqrn@` exactly like that;
 the last part (`@fqrn@`) will be replaced automatically by the full name of your repository.
