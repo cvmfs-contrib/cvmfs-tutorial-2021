@@ -384,7 +384,7 @@ Make sure that it lists your proxy here (and not `DIRECT`), and that it is marke
 
 1) Set up a Stratum 1 server. Make sure that it includes:
 - a proper Geo API license key;
-- cron jobs for automatically synchronizing the database and updating the Geo database;
+- cron job for automatically synchronizing the database;
 - properly configured Apache and Squid services;
 
 2) Set up a separate Squid proxy. Though it is recommended to at least have two in production, one is enough for now.
