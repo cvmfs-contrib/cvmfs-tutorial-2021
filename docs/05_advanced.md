@@ -63,6 +63,37 @@ curl --proxy http://url-to-your-proxy:3128 --head http://url-to-your-stratum1/cv
 
 These commands should return `HTTP/1.1 200 OK`. If the first command returns something else, you should inspect your CernVM-FS, Apache, and Squid configuration (and log) files on the Stratum 1 server. If the first `curl` command does work, but the second does not, there is something wrong with your Squid proxy; make sure that it is running, configured, and able to access your Stratum 1 server.
 
+## Garbage collection
+As mentioned in [the section about publishing](04_publishing.md), the default configuration of a Stratum 0 enables automatic tagging,
+which automatically assigns a timestamped tag to each published transaction.
+However, by default, these automatically generated tags will not be removed automatically.
+This means, for instance, that files that you remove in later transactions will still take up space in your repository.
+
+### Setting the lifetime of automatically generated tags
+Instead of removing tags manually, you can automatically mark these automatically generated tags for removal after a certain period by setting the following variable
+in the file `/etc/cvmfs/repositories.d/repo.organization.tld/server.conf` on your Stratum 0:
+```
+CVMFS_AUTO_TAG_TIMESPAN="30 days ago"
+```
+This should be a string that can be parsed by the `date` command, and defines the lifetime of the tags.
+
+### Cleaning up tags marked for removal
+In order to actually clean up unreferenced data, garbage collection has to be enabled for this repository by setting `CVMFS_GARBAGE_COLLECTION=true` in the aforementioned server configuration file.
+
+The garbage collector of the CernVM-FS server can then be run using:
+```
+sudo cvmfs_server gc repo.organization.tld
+```
+
+The `gc` subcommand has several options; a useful way to run it is, especially if you want to do this with a cron job:
+```
+sudo cvmfs_server gc -a -l -f
+```
+The `-a` option will automatically run the garbage collection for all your repositories that have garbage collection enabled and log to `/var/log/cvmfs/gc.log`,
+the `-l` will print which objects are actually removed,
+while `-f` will not prompt for confirmation.
+
+Note that you cannot run the garbage collection while a publish operation is ongoing.
 
 ## Gateway and Publishers
 
