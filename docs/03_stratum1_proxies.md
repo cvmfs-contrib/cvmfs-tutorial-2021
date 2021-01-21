@@ -376,7 +376,7 @@ cvmfs_config stat -v repo.organization.tld
 
 This should show a line that looks like:
 ```
-Connection: http://STRATUM1_IP/cvmfs/repo.organization.tld through proxy http://PROXY_IP:3128 (online)
+Connection: http://<STRATUM1_IP>/cvmfs/repo.organization.tld through proxy http://<PROXY_IP>:3128 (online)
 ```
 Make sure that it lists your proxy here (and not `DIRECT`), and that it is marked as `online`.
 
