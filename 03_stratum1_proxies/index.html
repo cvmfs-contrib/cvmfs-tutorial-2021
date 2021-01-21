@@ -408,8 +408,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#317-adding-cron-jobs" class="md-nav__link">
-    3.1.7 Adding cron jobs
+  <a href="#317-adding-a-synchronization-cron-job" class="md-nav__link">
+    3.1.7 Adding a synchronization cron job
   </a>
   
 </li>
@@ -684,8 +684,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#317-adding-cron-jobs" class="md-nav__link">
-    3.1.7 Adding cron jobs
+  <a href="#317-adding-a-synchronization-cron-job" class="md-nav__link">
+    3.1.7 Adding a synchronization cron job
   </a>
   
 </li>
@@ -909,7 +909,7 @@ is accessible via the IP address you are using!</em></p>
 <h4 id="bypassing-the-geo-api-license-key">Bypassing the Geo API license key<a class="headerlink" href="#bypassing-the-geo-api-license-key" title="Permanent link">&para;</a></h4>
 <p>If you prefer not to create a MaxMind account and Geo API license key for the sake of this tutorial,
 you can bypass the "<code>CVMFS_GEO_LICENSE_KEY not set</code>" error message
-produced by <code>cvmfs_server add-replica</code> by setting the server variable <code>CVMFS_GEO_DB_FILE</code> 
+produced by <code>cvmfs_server add-replica</code> by setting the server variable <code>CVMFS_GEO_DB_FILE</code>
 to <code>NONE</code> before running the command:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># only do this if you do not want to provide a Geo API key (not recommended!)</span>
 <span class="nb">echo</span> <span class="s1">&#39;CVMFS_GEO_DB_FILE=NONE&#39;</span> <span class="p">|</span> sudo tee -a /etc/cvmfs/server.local
@@ -928,22 +928,18 @@ As there is not much in the repository yet, this should complete within a few se
 <div class="highlight"><pre><span></span><code>Serving revision 2
 Fetched 2 new chunks out of 3 processed chunks
 </code></pre></div>
-<h3 id="317-adding-cron-jobs">3.1.7 Adding cron jobs<a class="headerlink" href="#317-adding-cron-jobs" title="Permanent link">&para;</a></h3>
+<h3 id="317-adding-a-synchronization-cron-job">3.1.7 Adding a synchronization cron job<a class="headerlink" href="#317-adding-a-synchronization-cron-job" title="Permanent link">&para;</a></h3>
 <p>Whenever you make changes to the repository, the changes have to be synchronized to all Stratum 1 servers.
-Furthermore, the GeoIP database has to be updated regularly.</p>
-<p>Both tasks can be automated by setting up cron jobs that periodically run <code>cvmfs_server update-geodb</code> and <code>cvmfs_server snapshot -a</code>, where <code>-a</code> does the synchronization for all active repositories. This option will give an error if no log rotation has been configured for CernVM-FS, so we first have to create a file <code>/etc/logrotate.d/cvmfs</code> with the following contents:</p>
+This task can be automated by setting up a cron job that periodically runs <code>cvmfs_server snapshot -a</code>, where <code>-a</code> does the synchronization for all active repositories. This option will give an error if no log rotation has been configured for CernVM-FS, so we first have to create a file <code>/etc/logrotate.d/cvmfs</code> with the following contents:</p>
 <div class="highlight"><pre><span></span><code>/var/log/cvmfs/*.log {
     weekly
     missingok
     notifempty
 }
 </code></pre></div>
-<p>Now we can make a cronjob <code>/etc/cron.d/cvmfs_stratum1_snapshot</code> for the snapshots:</p>
+<p>Now we can make a cron job <code>/etc/cron.d/cvmfs_stratum1_snapshot</code> for the snapshots:</p>
 <div class="highlight"><pre><span></span><code>*/5 * * * * root output=$(/usr/bin/cvmfs_server snapshot -a -i 2&gt;&amp;1) || echo &quot;$output&quot;
 </code></pre></div>
-<p>And another cronjob <code>/etc/cron.d/cvmfs_geoip_db_update</code> for updating the Geo database:
-<div class="highlight"><pre><span></span><code>4 2 2 * * root /usr/bin/cvmfs_server update-geodb
-</code></pre></div></p>
 <h2 id="32-setting-up-a-proxy">3.2 Setting up a proxy<a class="headerlink" href="#32-setting-up-a-proxy" title="Permanent link">&para;</a></h2>
 <p>If you have a lot of local machines, e.g. an HPC cluster, that need to access your repositories, you also want another cache layer close to these machines.</p>
 <p>This can be done by adding one or more Squid proxies between your local machine(s) and the Stratum 1 server(s).
@@ -1036,7 +1032,7 @@ we have the (minimal) infrastructure in place for a production-ready CernVM-FS s
 <h3 id="332-use-the-squid-proxy">3.3.2 Use the Squid proxy<a class="headerlink" href="#332-use-the-squid-proxy" title="Permanent link">&para;</a></h3>
 <p>In order to use the local cache layer of our proxy, we have to instruct the client to send all requests through the proxy.</p>
 <p>This needs one small change in <code>/etc/cvmfs/default.local</code>, where you will have to replace <code>DIRECT</code>
-with IP address of your Squid proxy service, plus the (default) port 3128 at which Squid is running: 
+with IP address of your Squid proxy service, plus the (default) port 3128 at which Squid is running:
 <div class="highlight"><pre><span></span><code>CVMFS_HTTP_PROXY=&quot;http://&lt;PROXY_IP&gt;:3128&quot;
 </code></pre></div></p>
 <p><strong><em>Replace the <code>&lt;PROXY_IP&gt;</code> part with the IP address of your Squid proxy server!</em></strong></p>
