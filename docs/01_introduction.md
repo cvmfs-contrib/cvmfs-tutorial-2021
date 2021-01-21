@@ -101,7 +101,7 @@ A CernVM-FS ***repository*** is an instance of a CVMFS filesystem. A repository 
 Multiple repositories can be hosted on the same Stratum 0 server.
 
 The data in a repository is stored using a [content-addressable storage](https://en.wikipedia.org/wiki/Content-addressable_storage) (CAS) scheme. 
-All data written to a CernVM-FS repository must be converted into data chunks in the CAS store during the process of *publishing*,
+All files written to a CernVM-FS repository must be converted into data chunks in the CAS store during the process of *publishing*,
 which involves creating the file catalog(s), splitting files into chunks, compressing them, and calculating content hashes, etc.
 Publishing is done on a dedicated release manager machine or *publisher* system which interfaces with the stratum 0.
 
