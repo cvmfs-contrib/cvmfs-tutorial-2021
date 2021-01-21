@@ -8,7 +8,7 @@
 - exploding containers + use via Singularity
 	- demo
 
-## Automating the deployment of CernVM-FS servers
+## Automating the deployment of CernVM-FS servers and clients
 As you may have experienced during this workshop, it takes quite a bit of manual effort to deploy all the different CernVM-FS components, and you can easily make mistakes here.
 Therefore, we strongly recommend to automate this in a production setup with a tool like [Ansible](https://www.ansible.com/) or [Puppet](https://puppet.com/).
 
