@@ -383,7 +383,7 @@ Make sure that it lists your proxy here (and not `DIRECT`), and that it is marke
 ## Exercise
 
 1) Set up a Stratum 1 server. Make sure that it includes:
-- a proper Geo API license key;
+- a proper Geo API license key (if you do not want to request an account, you can use the described method to bypass this, but again: do not do this in production!);
 - cron job for automatically synchronizing the database;
 - properly configured Apache and Squid services;
 
