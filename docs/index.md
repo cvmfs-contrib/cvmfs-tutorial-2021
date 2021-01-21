@@ -78,6 +78,7 @@ You can use your own resources if you prefer doing so.
 * Jakob Blomer (CERN, Switzerland)
 * Bob Dröge (University of Groningen, The Netherlands)
 * Kenneth Hoste (HPC-UGent, Belgium)
+* Ryan Taylor (ComputeCanada)
 
 ## Additional resources
 
