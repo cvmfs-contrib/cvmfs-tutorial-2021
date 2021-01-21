@@ -8,6 +8,16 @@
 - exploding containers + use via Singularity
 	- demo
 
+## Automating the deployment of CernVM-FS servers and clients
+As you may have experienced during this workshop, it takes quite a bit of manual effort to deploy all the different CernVM-FS components, and you can easily make mistakes here.
+Therefore, we strongly recommend to automate this in a production setup with a tool like [Ansible](https://www.ansible.com/) or [Puppet](https://puppet.com/).
+
+For Ansible, you could take a look at [the playbooks of the EESSI project](https://github.com/EESSI/filesystem-layer), which use [the Ansible role from the Galaxy Project](https://github.com/galaxyproject/ansible-cvmfs) to install and configure both servers and clients.
+Compute Canada also offers [an Ansible role](https://git.computecanada.ca/cc-cvmfs-public/ansible-cvmfs-client) to configure CernVM-FS clients.
+
+For Puppet, Cern offers [its own module](https://github.com/cvmfs/puppet-cvmfs) that allows you to install and configure CernVM-FS servers and clients.
+
+
 ## Debugging issues
 If you are experiencing issues with your CernVM-FS setup, there are various ways to start debugging.
 Most issues are caused by wrongly configured clients (either a configuration issue, or a wrong public key) and connection or firewall issues.
