@@ -168,12 +168,12 @@ is accessible via the IP address you are using!*
 
 If you prefer not to create a MaxMind account and Geo API license key for the sake of this tutorial,
 you can bypass the "`CVMFS_GEO_LICENSE_KEY not set`" error message
-produced by `cvmfs_server add-replica` by defining the `$CVMFS_GEO_DB_FILE` environment variable
+produced by `cvmfs_server add-replica` by setting the server variable `CVMFS_GEO_DB_FILE` 
 to `NONE` before running the command:
 
 ```bash
 # only do this if you do not want to provide a Geo API key (not recommended!)
-export CVMFS_GEO_DB_FILE=NONE
+echo 'CVMFS_GEO_DB_FILE=NONE' | sudo tee -a /etc/cvmfs/server.local
 ```
 
 #### Remove the replica
