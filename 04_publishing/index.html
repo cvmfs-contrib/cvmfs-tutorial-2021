@@ -549,12 +549,12 @@ cvmfs_server tag -l repo.organization.tld
 configurations of software are located in their own separate subdirectory (as is common with a software installation
 tool like <a href="https://easybuild.io">EasyBuild</a>).</p>
 <p>Making nested catalogs manually can be done in two ways, which we will describe in more detail.</p>
-<div class="admonition note">
+<div class="admonition warning">
 <p class="admonition-title">Exceeding the limit</p>
-</div>
 <p>In case a catalog file does grow larger than the recommended limit of 200,000 entries, you will get a warning when publishing new changes:
-    <div class="highlight"><pre><span></span><code>WARNING: catalog at / has more than 200000 entries (300000). Large catalogs stress the CernVM-FS transport infrastructure. Please split it into nested catalogs or increase the limit.
+<div class="highlight"><pre><span></span><code>WARNING: catalog at / has more than 200000 entries (300000). Large catalogs stress the CernVM-FS transport infrastructure. Please split it into nested catalogs or increase the limit.
 </code></pre></div></p>
+</div>
 <h3 id="431-cvmfscatalog-files">4.3.1 <code>.cvmfscatalog</code> files<a class="headerlink" href="#431-cvmfscatalog-files" title="Permanent link">&para;</a></h3>
 <p>By adding an (empty, hidden) file named <code>.cvmfscatalog</code> into a directory of your repository, each following publish operation will automatically generate a nested catalog for the entire subtree in that directory. You can put these files at as many levels as you like, but do keep the recommendations mentioned above w.r.t. file and directory count in mind.</p>
 <h3 id="432-cvmfsdirtab-file">4.3.2 <code>.cvmfsdirtab</code> file<a class="headerlink" href="#432-cvmfsdirtab-file" title="Permanent link">&para;</a></h3>
