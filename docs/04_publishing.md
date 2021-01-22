@@ -1,7 +1,7 @@
 # 4. Publishing
 
 The previous sections were mostly about setting up the CernVM-FS infrastructure. Now that all the components for hosting and accessing your own CernVM-FS repository are in place, it is time to really start using it.
-In this section we will give some more details about add files to your repository, which is referred to as *publishing*.
+In this section we will give some more details about adding files to your repository, which is referred to as *publishing*.
 
 ## 4.1 Transactions
 
@@ -42,9 +42,9 @@ to your Stratum 0.
 Instead of manually starting a transaction, extracting the tarball and then publishing it,
 the `cvmfs_server` command offers a more efficient method for directly publishing the contents of a tarball:
 ```bash
-cvmfs_server ingest -b /some/path repo.organization.tld -t mytarball.tar
+cvmfs_server ingest -b some/path repo.organization.tld -t mytarball.tar
 ```
-The `-b` option expects the relative location in your repository where the contents of the tarball,
+The `-b` option expects the relative location (**without leading slash!**) in your repository where the contents of the tarball,
 specified with `-t`, should be extracted.
 
 So in this case the tarball gets extracted to `/cvmfs/repo.organization.tld/some/path`.
@@ -54,7 +54,7 @@ in CernVM-FS versions prior to 2.8.0 (see [here](https://github.com/cvmfs/cvmfs/
 In case you have a compressed tarball, you can use an appropriate decompression tool and write the output to `stdout`.
 This output can then be piped to `cvmfs_server` command while passing '`-`' to the `-t` option. For example, for a `.tar.gz` file:
 ```bash
-gunzip -c mytarball.tar.gz | cvmfs_server ingest -b /some/path -t -
+gunzip -c mytarball.tar.gz | cvmfs_server ingest -b some/path -t -
 ```
 
 
@@ -87,7 +87,16 @@ The general recommendation is to have more than 1,000 and fewer than 200,000 fil
 configurations of software are located in their own separate subdirectory (as is common with a software installation
 tool like [EasyBuild](https://easybuild.io)).
 
+
 Making nested catalogs manually can be done in two ways, which we will describe in more detail.
+
+!!! note "Exceeding the limit"
+
+    In case your catalog does grow larger than the recommended limit of 200,000 entries, you will get a warning when publishing new changes:
+    ```
+    WARNING: catalog at / has more than 200000 entries (300000). Large catalogs stress the CernVM-FS transport infrastructure. Please split it into nested catalogs or increase the limit.
+    ```
+
 
 ### 4.3.1 `.cvmfscatalog` files
 
@@ -126,6 +135,8 @@ For this repository the `.cvmfsdirtab` file may look like:
 # One nested catalog containing for all module files
 /modules
 ```
+
+**Note that here the (relative) paths do have to start with a leading slash!**
 
 After you have added this file to your repository, you should see automatically generated `.cvmfscatalog` files in all the specified directories (note that you can still place additional ones manually as well). You can also run `cvmfs_server list-catalogs` to get a full list of all the nested catalogs.
 
