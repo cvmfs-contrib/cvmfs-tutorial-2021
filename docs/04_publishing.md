@@ -48,8 +48,8 @@ The `-b` option expects the relative location in your repository where the conte
 specified with `-t`, should be extracted.
 
 So in this case the tarball gets extracted to `/cvmfs/repo.organization.tld/some/path`.
-Note that [passing `/` to the `-b` option does not work](https://github.com/cvmfs/cvmfs/pull/2581)
-in the latest CernVM-FS version (2.8.0), but it will be supported in a future release of CernVM-FS.
+Note that passing '`/`' to the `-b` option does not work
+in CernVM-FS versions prior to 2.8.0 (see [here](https://github.com/cvmfs/cvmfs/pull/2581)).
 
 In case you have a compressed tarball, you can use an appropriate decompression tool and write the output to `stdout`.
 This output can then be piped to `cvmfs_server` command while passing '`-`' to the `-t` option. For example, for a `.tar.gz` file:
@@ -97,23 +97,23 @@ By adding an (empty, hidden) file named `.cvmfscatalog` into a directory of your
 
 Instead of creating `.cvmfscatalog` files, you can also add a (hidden) file named `.cvmfsdirtab` to the root of your repository. In this file you can specify a list of relative directory paths (they all start from the root of your repository) that should get a nested catalog. You can also use wildcards to specify patterns and automatically include future contents, and use exclamation marks to exclude paths from a nested catalog.
 
-As an example, assume you have a typical HPC software module tree in your repository with the following structure:
+As an example, assume you have a typical HPC software module tree in your repository with the following
+structure (relative to the root of the repository):
 ```
-/
-├─ /software
-│  ├─ /software/app1
-│  │  ├─ /software/app1/1.0
-│  │  ├─ /software/app1/2.0
-│  ├─ /software/app2
-│  │  ├─ /software/app2/20201201
-│  │  ├─ /software/app2/20210125
-├─ /modules
-│  ├─ /modules/app1
-│  │  ├─ /modules/app1/1.0.lua
-│  │  ├─ /modules/app1/2.0.lua
-│  ├─ /modules/all/app2
-│  │  ├─ /modules/app2/20201201.lua
-│  │  ├─ /modules/app2/20210125.lua
+software
+├─ software/app1
+│  ├─ software/app1/1.0
+│  ├─ software/app1/2.0
+├─ software/app2
+│  ├─ software/app2/20201201
+│  ├─ software/app2/20210125
+modules
+├─ modules/app1
+│  ├─ modules/app1/1.0.lua
+│  ├─ modules/app1/2.0.lua
+├─ modules/all/app2
+│  ├─ modules/app2/20201201.lua
+│  ├─ modules/app2/20210125.lua
 ```
 
 For this repository the `.cvmfsdirtab` file may look like:
@@ -129,7 +129,9 @@ For this repository the `.cvmfsdirtab` file may look like:
 
 After you have added this file to your repository, you should see automatically generated `.cvmfscatalog` files in all the specified directories (note that you can still place additional ones manually as well). You can also run `cvmfs_server list-catalogs` to get a full list of all the nested catalogs.
 
-One final note: if you use a `.cvmfsdirtab` file, a tarball ingestion using the `cvmfs_server ingest` command will currently (in CernVM-FS 2.8.0) not automatically create the nested catalogs. You will need to do another (empty) transaction right after the ingestion to trigger the creation of the nested catalogs.
+One final note: if you use a `.cvmfsdirtab` file, a tarball ingestion using the `cvmfs_server ingest` command
+[will currently (in CernVM-FS 2.8.0) not automatically create the nested catalogs](https://sft.its.cern.ch/jira/browse/CVM-1968).
+You will need to do another (empty) transaction right after the ingestion to trigger the creation of the nested catalogs.
 
 
 ## Exercise
