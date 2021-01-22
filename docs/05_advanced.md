@@ -20,7 +20,7 @@ and connection or firewall issues.
 ### 5.2.1 Debugging with `cvmfs_config`
 
 In order to find the cause of the issue, you should first find out *where* the issue is being caused.
-You can start by checking the client configuration for syntax errors:
+You can start by checking the client configuration:
 
 ```bash
 sudo cvmfs_config chksetup
