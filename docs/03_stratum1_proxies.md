@@ -53,7 +53,14 @@ This is:
 - `mod_wsgi`: an Apache module that provides a WSGI compliant
   interface for hosting Python based web applications within Apache,
   which is required by CernVM-FS to query the Geo API (more on that later);
-- `squid`: the Squid proxy package;
+- `squid`: the Squid proxy package.
+
+!!! warning
+    The Squid package in the official CentOS 7 repository is version 3.5.20, **which is [deprecated](https://wiki.squid-cache.org/Squid-3.5)**.
+    It is not recommended to use this version ion production systems.
+    Squid 4 packages for CentOS 7 can be found in other repositories,
+    see the [Binary packages page on the Squid website](https://wiki.squid-cache.org/SquidFaq/BinaryPackages#CentOS).
+
 
 ### 3.1.3 Configuring Apache and Squid proxy
 
