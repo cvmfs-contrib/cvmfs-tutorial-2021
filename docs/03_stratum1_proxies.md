@@ -58,6 +58,9 @@ This is:
 ### 3.1.3 Configuring Apache and Squid proxy
 
 On the Stratum 1, we will be running Apache with a Squid frontend (reverse proxy).
+Squid is used to cache the calls to the Geo API, and it can also be helpful for setting up joined monitoring
+(for instance, see [the monitoring page of the Worldwide LHC Computing Grid project](http://wlcg-squid-monitor.cern.ch/)).
+We will be setting up a single Squid reverse proxy, but you could even have a load balancer that spreads the load over multiple instances.
 
 The Apache web server will be listening internally on port 8080,
 while the Squid proxy needs to listen (externally) on port 80 and 8000, which are the default Stratum 1 ports.
