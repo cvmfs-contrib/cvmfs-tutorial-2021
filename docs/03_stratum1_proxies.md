@@ -57,7 +57,7 @@ This is:
 
 !!! warning
     The Squid package in the official CentOS 7 repository is version 3.5.20, **which is [deprecated](https://wiki.squid-cache.org/Squid-3.5)**.
-    It is not recommended to use this version ion production systems.
+    It is not recommended to use this version in production systems.
     Squid 4 packages for CentOS 7 can be found in other repositories,
     see the [Binary packages page on the Squid website](https://wiki.squid-cache.org/SquidFaq/BinaryPackages#CentOS).
 
