@@ -93,7 +93,9 @@ Making nested catalogs manually can be done in two ways, which we will describe 
 !!! warning "Exceeding the limit"
     In case a catalog file does grow larger than the recommended limit of 200,000 entries, you will get a warning when publishing new changes:
     ```
-    WARNING: catalog at / has more than 200000 entries (300000). Large catalogs stress the CernVM-FS transport infrastructure. Please split it into nested catalogs or increase the limit.
+    WARNING: catalog at / has more than 200000 entries (1478305).
+    Large catalogs stress the CernVM-FS transport infrastructure.
+    Please split it into nested catalogs or increase the limit.
     ```
 
 
