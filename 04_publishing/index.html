@@ -58,7 +58,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#publishing" class="md-skip">
+        <a href="#4-publishing" class="md-skip">
           Skip to content
         </a>
       
@@ -306,16 +306,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#transactions" class="md-nav__link">
-    Transactions
+  <a href="#41-transactions" class="md-nav__link">
+    4.1 Transactions
   </a>
   
-    <nav class="md-nav" aria-label="Transactions">
+    <nav class="md-nav" aria-label="4.1 Transactions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ingesting-tarballs" class="md-nav__link">
-    Ingesting tarballs
+  <a href="#411-ingesting-tarballs" class="md-nav__link">
+    4.1.1 Ingesting tarballs
   </a>
   
 </li>
@@ -326,30 +326,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    Tags
+  <a href="#42-tags" class="md-nav__link">
+    4.2 Tags
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#catalogs" class="md-nav__link">
-    Catalogs
+  <a href="#43-catalogs" class="md-nav__link">
+    4.3 Catalogs
   </a>
   
-    <nav class="md-nav" aria-label="Catalogs">
+    <nav class="md-nav" aria-label="4.3 Catalogs">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cvmfscatalog-files" class="md-nav__link">
-    .cvmfscatalog files
+  <a href="#431-cvmfscatalog-files" class="md-nav__link">
+    4.3.1 .cvmfscatalog files
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#cvmfsdirtab" class="md-nav__link">
-    .cvmfsdirtab
+  <a href="#432-cvmfsdirtab-file" class="md-nav__link">
+    4.3.2 .cvmfsdirtab file
   </a>
   
 </li>
@@ -360,8 +360,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#homework" class="md-nav__link">
-    Homework
+  <a href="#exercise" class="md-nav__link">
+    Exercise
   </a>
   
 </li>
@@ -415,16 +415,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#transactions" class="md-nav__link">
-    Transactions
+  <a href="#41-transactions" class="md-nav__link">
+    4.1 Transactions
   </a>
   
-    <nav class="md-nav" aria-label="Transactions">
+    <nav class="md-nav" aria-label="4.1 Transactions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ingesting-tarballs" class="md-nav__link">
-    Ingesting tarballs
+  <a href="#411-ingesting-tarballs" class="md-nav__link">
+    4.1.1 Ingesting tarballs
   </a>
   
 </li>
@@ -435,30 +435,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    Tags
+  <a href="#42-tags" class="md-nav__link">
+    4.2 Tags
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#catalogs" class="md-nav__link">
-    Catalogs
+  <a href="#43-catalogs" class="md-nav__link">
+    4.3 Catalogs
   </a>
   
-    <nav class="md-nav" aria-label="Catalogs">
+    <nav class="md-nav" aria-label="4.3 Catalogs">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cvmfscatalog-files" class="md-nav__link">
-    .cvmfscatalog files
+  <a href="#431-cvmfscatalog-files" class="md-nav__link">
+    4.3.1 .cvmfscatalog files
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#cvmfsdirtab" class="md-nav__link">
-    .cvmfsdirtab
+  <a href="#432-cvmfsdirtab-file" class="md-nav__link">
+    4.3.2 .cvmfsdirtab file
   </a>
   
 </li>
@@ -469,8 +469,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#homework" class="md-nav__link">
-    Homework
+  <a href="#exercise" class="md-nav__link">
+    Exercise
   </a>
   
 </li>
@@ -492,34 +492,48 @@
                   </a>
                 
                 
-                <h1 id="publishing">Publishing<a class="headerlink" href="#publishing" title="Permanent link">&para;</a></h1>
-<p>The previous sections were mostly about setting up the infrastructure. Now that all the components for hosting and accessing your own CernVM-FS repositories are in place, it is time to really start using it.
-In this section we will give some more details about publishing files.</p>
-<h2 id="transactions">Transactions<a class="headerlink" href="#transactions" title="Permanent link">&para;</a></h2>
-<p>As we already showed in a previous section, the easiest way to add files to your repository is by opening and publishing a transaction on your Stratum 0 server.
-By default, your repository directory under <code>/cvmfs</code> is read-only, but by a transaction makes the directory writable for the user that is owner of the repository.
+                <h1 id="4-publishing">4. Publishing<a class="headerlink" href="#4-publishing" title="Permanent link">&para;</a></h1>
+<p>The previous sections were mostly about setting up the CernVM-FS infrastructure. Now that all the components for hosting and accessing your own CernVM-FS repository are in place, it is time to really start using it.
+In this section we will give some more details about add files to your repository, which is referred to as <em>publishing</em>.</p>
+<h2 id="41-transactions">4.1 Transactions<a class="headerlink" href="#41-transactions" title="Permanent link">&para;</a></h2>
+<p>As we already showed in the <a href="../02_stratum0_client/">first hands-on part of this tutorial</a>,
+the easiest way to add files to your repository is by starting a transaction on your Stratum 0 server
+and then publishing the changes.</p>
+<p>By default, your repository directory under <code>/cvmfs</code> is read-only, but a transaction makes the directory writable for the user that is owner of the repository. This is done by creating a union filesystem in the background
+with a writable overlay.</p>
+<p>To start a transaction, run:</p>
 <div class="highlight"><pre><span></span><code>cvmfs_server transaction repo.organization.tld
-</code></pre></div></p>
+</code></pre></div>
+<p>While the transaction is "open", you can make changes to your repository.</p>
 <p>Once you are done with making changes, be sure to change your working directory to somewhere outside of the
 repository (otherwise you will get an error), and publish your changes using:
 <div class="highlight"><pre><span></span><code>cvmfs_server publish repo.organization.tld
 </code></pre></div></p>
-<p>And you can always abort a transaction, which will undo all the non-published modifications:
+<p>You can always abort a transaction, which will undo all the non-published modifications:
 <div class="highlight"><pre><span></span><code>cvmfs_server abort repo.organization.tld
 </code></pre></div></p>
-<h3 id="ingesting-tarballs">Ingesting tarballs<a class="headerlink" href="#ingesting-tarballs" title="Permanent link">&para;</a></h3>
-<p>When you need to compile software that you want to add to your repository, you may want to do the actual compilation on a different machine than your Stratum 0 and copy the resulting installation as a tarball to your Stratum 0. Instead of manually extracting the tarball and doing a transaction, the <code>cvmfs_server</code> command offers a more efficient method for directly publishing the contents of a tarball:
+<p>After publishing or aborting a transaction, your repository will again be read-only.</p>
+<h3 id="411-ingesting-tarballs">4.1.1 Ingesting tarballs<a class="headerlink" href="#411-ingesting-tarballs" title="Permanent link">&para;</a></h3>
+<p>When you need to compile software that you want to add to your repository, you may want to do the actual
+compilation on a different system than your Stratum 0, and copy the resulting installation as a tarball
+to your Stratum 0.</p>
+<p>Instead of manually starting a transaction, extracting the tarball and then publishing it,
+the <code>cvmfs_server</code> command offers a more efficient method for directly publishing the contents of a tarball:
 <div class="highlight"><pre><span></span><code>cvmfs_server ingest -b /some/path repo.organization.tld -t mytarball.tar
 </code></pre></div>
-The <code>-b</code> expects the relative location in your repository where the contents of the tarball, specified with <code>-t</code>, will be extracted. So, in this case, the tarball gets extracted to <code>/cvmfs/repo.organization.tld/some/path</code>. Note that passing <code>/</code> to <code>-b</code> does not work at the moment, but will be supported in a future release of CernVM-FS.</p>
+The <code>-b</code> option expects the relative location in your repository where the contents of the tarball,
+specified with <code>-t</code>, should be extracted.</p>
+<p>So in this case the tarball gets extracted to <code>/cvmfs/repo.organization.tld/some/path</code>.
+Note that passing '<code>/</code>' to the <code>-b</code> option does not work
+in CernVM-FS versions prior to 2.8.0 (see <a href="https://github.com/cvmfs/cvmfs/pull/2581">here</a>).</p>
 <p>In case you have a compressed tarball, you can use an appropriate decompression tool and write the output to <code>stdout</code>.
-This output can then be piped to <code>cvmfs_server</code> by setting <code>-t -</code>, e.g. for a <code>.tar.gz</code> file:
-<div class="highlight"><pre><span></span><code>gunzip -c mytarball.tar.gz | cvmfs_server ingest -b /some/path -t -
+This output can then be piped to <code>cvmfs_server</code> command while passing '<code>-</code>' to the <code>-t</code> option. For example, for a <code>.tar.gz</code> file:
+<div class="highlight"><pre><span></span><code>gunzip -c mytarball.tar.gz <span class="p">|</span> cvmfs_server ingest -b /some/path -t -
 </code></pre></div></p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<p>By default, a newly published version of the repository will automatically get a tag with a timestamp in its name. This allows you to revert back to earlier versions.
+<h2 id="42-tags">4.2 Tags<a class="headerlink" href="#42-tags" title="Permanent link">&para;</a></h2>
+<p>By default, a newly published version of the repository will automatically get a <strong>tag</strong> with a timestamp in its name. This allows you to revert back to earlier versions.
 You can also set your own tag name and/or description upon publication:
-<div class="highlight"><pre><span></span><code>cvmfs_server publish [-a tag name] [-m tag description] repo.organization.tld
+<div class="highlight"><pre><span></span><code>cvmfs_server publish -a example_tag -m <span class="s2">&quot;Example description&quot;</span> repo.organization.tld
 </code></pre></div></p>
 <p>The <code>tag</code> subcommand for <code>cvmfs_server</code> allows you to create (<code>-a</code>), remove (<code>-r</code>), inspect (<code>-i</code>), or list (<code>-l</code>) tags of your repository, e.g.:
 <div class="highlight"><pre><span></span><code>cvmfs_server tag -a &quot;v1.0&quot; repo.organization.tld
@@ -528,32 +542,33 @@ cvmfs_server tag -l repo.organization.tld
 <p>With the <code>rollback</code> subcommand you can revert back to an earlier version. By default, this will be the previous version, but with <code>-t</code> you can specify a specific tag to revert to:
 <div class="highlight"><pre><span></span><code>cvmfs_server rollback -t &quot;v0.5&quot; repo.organization.tld
 </code></pre></div></p>
-<h2 id="catalogs">Catalogs<a class="headerlink" href="#catalogs" title="Permanent link">&para;</a></h2>
-<p>All metadata about files in your repository is stored in a file catalog, which is a SQLite database. When a client accesses the repository for the first time, it first needs to retrieve this catalog. Only then it can start fetching the files it actually needs. Clients also need to regularly check for new versions of the repository, and redownload it if it has changed.</p>
-<p>As this catalog can quickly become quite large when you start adding more and more files, just having a single one would cause significant overhead.  In order to keep them small, you can make use of nested catalogs by having several catalogs for different subtrees of your repository. All metadata for that part of the subtree will not be part of the main catalog anymore, and clients will only download the catalogs for the subtree(s) they are trying to access.</p>
-<p>The general recommendation is to have more than 1000 and fewer than 200,000 files/directories per (nested) catalog, and to bundle the files/directories that are often accessed together. For instance, it may make sense to make a catalog per installation directory of a specific version of some software in your repository.</p>
+<h2 id="43-catalogs">4.3 Catalogs<a class="headerlink" href="#43-catalogs" title="Permanent link">&para;</a></h2>
+<p>All metadata about files in your repository is stored in a file <strong>catalog</strong>, which is a SQLite database. When a client accesses the repository for the first time, it first needs to retrieve this catalog. Only then it can start fetching the files it actually needs. Clients also need to regularly check for new versions of the repository, and redownload the catalog if it has changed.</p>
+<p>As this catalog can quickly become quite large when you start adding more and more files (think millions), just having a single one would cause significant overhead.  In order to keep them small, you can make use of <strong>nested catalogs</strong> by having several catalogs for different subtrees of your repository. All metadata for that part of the subtree will not be part of the main catalog anymore, and clients will only download the catalogs for the subtree(s) they are trying to access.</p>
+<p>The general recommendation is to have more than 1,000 and fewer than 200,000 files and directories per (nested) catalog, and to bundle the files/directories that are often accessed together. For instance, it may make sense to provide a catalog per software installation directory, especially if different software versions or
+configurations of software are located in their own separate subdirectory (as is common with a software installation
+tool like <a href="https://easybuild.io">EasyBuild</a>).</p>
 <p>Making nested catalogs manually can be done in two ways, which we will describe in more detail.</p>
-<h3 id="cvmfscatalog-files">.cvmfscatalog files<a class="headerlink" href="#cvmfscatalog-files" title="Permanent link">&para;</a></h3>
-<p>By adding an (empty) file named <code>.cvmfscatalog</code> into a directory of your repository, each following publish operation will automatically generate a nested catalog for the entire subtree below that directory. You can put these files at as many levels as you like, but do keep the aforementioned recommendations in mind.</p>
-<h3 id="cvmfsdirtab">.cvmfsdirtab<a class="headerlink" href="#cvmfsdirtab" title="Permanent link">&para;</a></h3>
-<p>Instead of creating the <code>.cvmfscatalog</code> files manually, you can also add a file named <code>.cvmfsdirtab</code> to the root of your repository. In this file you can specify a list of relative directory paths (they all start from the root of your repository) that should get a nested catalog. You can also use wildcards to specify patterns and automatically include future contents, and use exclamation marks to exclude paths from a nested catalog.</p>
-<p>As an example, assume you have a typical HPC software module tree in your repository with the following structure:
-<div class="highlight"><pre><span></span><code>/
-├─ /software
-│  ├─ /software/app1
-│  │  ├─ /software/app1/1.0
-│  │  ├─ /software/app1/2.0
-│  ├─ /software/app2
-│  │  ├─ /software/app2/20201201
-│  │  ├─ /software/app2/20210125
-├─ /modules
-│  ├─ /modules/all
-│  │  ├─ /modules/all/app1
-│  │  │  ├─ /modules/all/app1/1.0.lua
-│  │  │  ├─ /modules/all/app1/2.0.lua
-│  │  ├─ /modules/all/app2
-│  │  │  ├─ /modules/all/app2/20201201.lua
-│  │  │  ├─ /modules/all/app2/20210125.lua
+<h3 id="431-cvmfscatalog-files">4.3.1 <code>.cvmfscatalog</code> files<a class="headerlink" href="#431-cvmfscatalog-files" title="Permanent link">&para;</a></h3>
+<p>By adding an (empty, hidden) file named <code>.cvmfscatalog</code> into a directory of your repository, each following publish operation will automatically generate a nested catalog for the entire subtree in that directory. You can put these files at as many levels as you like, but do keep the recommendations mentioned above w.r.t. file and directory count in mind.</p>
+<h3 id="432-cvmfsdirtab-file">4.3.2 <code>.cvmfsdirtab</code> file<a class="headerlink" href="#432-cvmfsdirtab-file" title="Permanent link">&para;</a></h3>
+<p>Instead of creating <code>.cvmfscatalog</code> files, you can also add a (hidden) file named <code>.cvmfsdirtab</code> to the root of your repository. In this file you can specify a list of relative directory paths (they all start from the root of your repository) that should get a nested catalog. You can also use wildcards to specify patterns and automatically include future contents, and use exclamation marks to exclude paths from a nested catalog.</p>
+<p>As an example, assume you have a typical HPC software module tree in your repository with the following
+structure (relative to the root of the repository):
+<div class="highlight"><pre><span></span><code>software
+├─ software/app1
+│  ├─ software/app1/1.0
+│  ├─ software/app1/2.0
+├─ software/app2
+│  ├─ software/app2/20201201
+│  ├─ software/app2/20210125
+modules
+├─ modules/app1
+│  ├─ modules/app1/1.0.lua
+│  ├─ modules/app1/2.0.lua
+├─ modules/all/app2
+│  ├─ modules/app2/20201201.lua
+│  ├─ modules/app2/20210125.lua
 </code></pre></div></p>
 <p>For this repository the <code>.cvmfsdirtab</code> file may look like:
 <div class="highlight"><pre><span></span><code># Nested catalog for each version of each application
@@ -561,12 +576,14 @@ cvmfs_server tag -l repo.organization.tld
 # One nested catalog for all software directories
 /software
 
-# Nested catalog containing for all modulefiles
+# One nested catalog containing for all module files
 /modules
 </code></pre></div></p>
 <p>After you have added this file to your repository, you should see automatically generated <code>.cvmfscatalog</code> files in all the specified directories (note that you can still place additional ones manually as well). You can also run <code>cvmfs_server list-catalogs</code> to get a full list of all the nested catalogs.</p>
-<p>One final note: if you use a <code>.cvmfsdirtab</code> file, a tarball ingestion using the <code>cvmfs_server ingest</code> command will not automatically create the nested catalogs. You will need to do another (empty) transaction right after the ingestion to trigger the creation of the nested catalogs.</p>
-<h2 id="homework">Homework<a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
+<p>One final note: if you use a <code>.cvmfsdirtab</code> file, a tarball ingestion using the <code>cvmfs_server ingest</code> command
+<a href="https://sft.its.cern.ch/jira/browse/CVM-1968">will currently (in CernVM-FS 2.8.0) not automatically create the nested catalogs</a>.
+You will need to do another (empty) transaction right after the ingestion to trigger the creation of the nested catalogs.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>We prepared a tarball that contains a tree with dummy software installations. You can find the tarball at:
 TODO: INSERT DETAILS</p>
 <ul>
@@ -583,7 +600,7 @@ TODO: INSERT DETAILS</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 19, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 22, 2021</span>
     
   </small>
 </div>
