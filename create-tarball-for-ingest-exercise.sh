@@ -16,7 +16,7 @@ APP3=arrr
 APP4=OpenPHOAN
 
 date
-echo "creating ~$((3 * $FILES_PER_EXAMPLE_SUBDIR)) files..."
+echo "creating ~$((3 * 3 * $FILES_PER_EXAMPLE_SUBDIR)) files..."
 
 for path in intel/haswell amd/rome arm64/thunderx2; do
     mkdir -p $WORKDIR/$path/{modules,software}/{$APP1,$APP2,$APP3,$APP4}
