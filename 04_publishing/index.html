@@ -494,7 +494,7 @@
                 
                 <h1 id="4-publishing">4. Publishing<a class="headerlink" href="#4-publishing" title="Permanent link">&para;</a></h1>
 <p>The previous sections were mostly about setting up the CernVM-FS infrastructure. Now that all the components for hosting and accessing your own CernVM-FS repository are in place, it is time to really start using it.
-In this section we will give some more details about add files to your repository, which is referred to as <em>publishing</em>.</p>
+In this section we will give some more details about adding files to your repository, which is referred to as <em>publishing</em>.</p>
 <h2 id="41-transactions">4.1 Transactions<a class="headerlink" href="#41-transactions" title="Permanent link">&para;</a></h2>
 <p>As we already showed in the <a href="../02_stratum0_client/">first hands-on part of this tutorial</a>,
 the easiest way to add files to your repository is by starting a transaction on your Stratum 0 server
@@ -519,16 +519,16 @@ compilation on a different system than your Stratum 0, and copy the resulting in
 to your Stratum 0.</p>
 <p>Instead of manually starting a transaction, extracting the tarball and then publishing it,
 the <code>cvmfs_server</code> command offers a more efficient method for directly publishing the contents of a tarball:
-<div class="highlight"><pre><span></span><code>cvmfs_server ingest -b /some/path repo.organization.tld -t mytarball.tar
+<div class="highlight"><pre><span></span><code>cvmfs_server ingest -b some/path repo.organization.tld -t mytarball.tar
 </code></pre></div>
-The <code>-b</code> option expects the relative location in your repository where the contents of the tarball,
+The <code>-b</code> option expects the relative location (<strong>without leading slash!</strong>) in your repository where the contents of the tarball,
 specified with <code>-t</code>, should be extracted.</p>
 <p>So in this case the tarball gets extracted to <code>/cvmfs/repo.organization.tld/some/path</code>.
 Note that passing '<code>/</code>' to the <code>-b</code> option does not work
 in CernVM-FS versions prior to 2.8.0 (see <a href="https://github.com/cvmfs/cvmfs/pull/2581">here</a>).</p>
 <p>In case you have a compressed tarball, you can use an appropriate decompression tool and write the output to <code>stdout</code>.
 This output can then be piped to <code>cvmfs_server</code> command while passing '<code>-</code>' to the <code>-t</code> option. For example, for a <code>.tar.gz</code> file:
-<div class="highlight"><pre><span></span><code>gunzip -c mytarball.tar.gz <span class="p">|</span> cvmfs_server ingest -b /some/path -t -
+<div class="highlight"><pre><span></span><code>gunzip -c mytarball.tar.gz <span class="p">|</span> cvmfs_server ingest -b some/path -t -
 </code></pre></div></p>
 <h2 id="42-tags">4.2 Tags<a class="headerlink" href="#42-tags" title="Permanent link">&para;</a></h2>
 <p>By default, a newly published version of the repository will automatically get a <strong>tag</strong> with a timestamp in its name. This allows you to revert back to earlier versions.
@@ -549,6 +549,12 @@ cvmfs_server tag -l repo.organization.tld
 configurations of software are located in their own separate subdirectory (as is common with a software installation
 tool like <a href="https://easybuild.io">EasyBuild</a>).</p>
 <p>Making nested catalogs manually can be done in two ways, which we will describe in more detail.</p>
+<div class="admonition note">
+<p class="admonition-title">Exceeding the limit</p>
+</div>
+<p>In case a catalog file does grow larger than the recommended limit of 200,000 entries, you will get a warning when publishing new changes:
+    <div class="highlight"><pre><span></span><code>WARNING: catalog at / has more than 200000 entries (300000). Large catalogs stress the CernVM-FS transport infrastructure. Please split it into nested catalogs or increase the limit.
+</code></pre></div></p>
 <h3 id="431-cvmfscatalog-files">4.3.1 <code>.cvmfscatalog</code> files<a class="headerlink" href="#431-cvmfscatalog-files" title="Permanent link">&para;</a></h3>
 <p>By adding an (empty, hidden) file named <code>.cvmfscatalog</code> into a directory of your repository, each following publish operation will automatically generate a nested catalog for the entire subtree in that directory. You can put these files at as many levels as you like, but do keep the recommendations mentioned above w.r.t. file and directory count in mind.</p>
 <h3 id="432-cvmfsdirtab-file">4.3.2 <code>.cvmfsdirtab</code> file<a class="headerlink" href="#432-cvmfsdirtab-file" title="Permanent link">&para;</a></h3>
@@ -579,6 +585,7 @@ modules
 # One nested catalog containing for all module files
 /modules
 </code></pre></div></p>
+<p><strong>Note that here the (relative) paths do have to start with a leading slash!</strong></p>
 <p>After you have added this file to your repository, you should see automatically generated <code>.cvmfscatalog</code> files in all the specified directories (note that you can still place additional ones manually as well). You can also run <code>cvmfs_server list-catalogs</code> to get a full list of all the nested catalogs.</p>
 <p>One final note: if you use a <code>.cvmfsdirtab</code> file, a tarball ingestion using the <code>cvmfs_server ingest</code> command
 <a href="https://sft.its.cern.ch/jira/browse/CVM-1968">will currently (in CernVM-FS 2.8.0) not automatically create the nested catalogs</a>.
