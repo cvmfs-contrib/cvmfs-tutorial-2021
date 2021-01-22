@@ -9,7 +9,7 @@ As we already showed in the [first hands-on part of this tutorial](02_stratum0_c
 the easiest way to add files to your repository is by starting a transaction on your Stratum 0 server
 and then publishing the changes.
 
-By default, your repository directory under `/cvmfs` is read-only, but by a transaction makes the directory writable for the user that is owner of the repository. This is done by creating a union filesystem in the background
+By default, your repository directory under `/cvmfs` is read-only, but a transaction makes the directory writable for the user that is owner of the repository. This is done by creating a union filesystem in the background
 with a writable overlay.
 
 To start a transaction, run:
