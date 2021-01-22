@@ -149,14 +149,14 @@ You will need to do another (empty) transaction right after the ingestion to tri
 We have prepared a tarball that contains a collection of dummy installations of
 (fictional) software applications: [`cvmfs-tutorial-ingest-example-720k-files.tar.gz`](https://raw.githubusercontent.com/cvmfs-contrib/cvmfs-tutorial-2021/master/cvmfs-tutorial-ingest-example-720k-files.tar.gz).
 
-You can download it easily onto your Stratum 0 via:
+You can download it easily onto your Stratum 0 via `curl`:
 
 ```bash
 curl -OL https://raw.githubusercontent.com/cvmfs-contrib/cvmfs-tutorial-2021/master/cvmfs-tutorial-ingest-example-720k-files.tar.gz
 ```
 
 !!! warning
-    In total this tarball includes about 720,000 files, so be careful if/where you unpack it!
+    This tarball includes over 720,000 files in total, so be careful if/where you unpack it!
 
 To give you a head start, here's an overview of the directory structure included in this tarball:
 
@@ -188,22 +188,35 @@ intel
 │  ├─ ... same structure as amd/rome ...
 ```
 
-- Insert this tarball to a directory named `easybuild` in your repository using the `ingest` subcommand (i.e. without actually extracting the tarball).
-- Note that you get some warnings about the catalog containing too many entries!
-- Think about where you would create `.cvmfscatalog` files yourself (but don't do so manually).
-- Fix the warning about the catalog being too big by adding a proper `.cvmfsdirtab` file to the root of your repo.
-- Make sure that the warning is gone when you publish this `.cvmfsdirtab` file.
+1. Insert this tarball to a directory named `easybuild` in your repository using the `ingest` subcommand
+  (without actually extracting the tarball manually).
+
+2. Note that you get some warnings about the catalog containing too many entries!
+
+3. Think about where you would create `.cvmfscatalog` files yourself (but don't do so manually).
+
+4. Fix the warning about the catalog being too big by adding a suitable `.cvmfsdirtab` file to the root of your
+   repository.
+
+5. Make sure that the warning is gone when you publish this `.cvmfsdirtab` file.
   You may see a message about the catalog being defragmented (because lots of entries were cleaned up).
-- In addition, make sure that no catalogs have more than 200,000 entries.
+
+6. Check if the mental exercise you did before adding the `.cvmfsdirtab` was correct,
+  by inspecting where the `.cvmfscatalog` files were created.
+  You can do this easily with `find`:
+  ```bash
+  find /cvmfs/repo.organization.tld -name .cvmfscatalog
+  ```
+
+7. In addition, make sure that no catalogs have more than 200,000 entries.
   You can check this with:
   ```bash
   cvmfs_server list-catalogs -e
   ```
-- Check if the mental exercise you did before adding the `.cvmfsdirtab` was correct,
-  by inspecting where the `.cvmfscatalog` files were created. Pro tip:
-  ```bash
-  find /cvmfs/repo.organization.tld -name .cvmfscatalog
-  ```
+  CernVM-FS is less strict about large catalogs for subdirectories:
+  up to 500,000 entries are allowed for non-root catalogs (by default),
+  so not getting a warning when ingesting the `.cvmfsdirtab` file does not
+  necessarily mean you solved the exercise correctly!
 
 
 
