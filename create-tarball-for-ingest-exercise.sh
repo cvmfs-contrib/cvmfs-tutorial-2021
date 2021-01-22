@@ -86,6 +86,7 @@ done
 date
 echo "creating tarball..."
 
-tar cfz ${WORKDIR}.tar.gz $WORKDIR
+cd $WORKDIR
+tar cfz ../${WORKDIR}.tar.gz *
 
 date
