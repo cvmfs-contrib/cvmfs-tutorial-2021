@@ -271,7 +271,12 @@ CVMFS_QUOTA_LIMIT=5000
 
 ### 2.2.3 Mounting the repositories
 
-When your client configuration is complete, you can run the following command as root to mount the repository:
+When your client configuration is complete, you can run the following command to check for common misconfigurations:
+```
+sudo cvmfs_config chksetup
+```
+
+If that returns `OK`, you can run the following command to mount the repository:
 
 ```
 sudo cvmfs_config setup
