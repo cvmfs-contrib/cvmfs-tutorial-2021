@@ -846,8 +846,15 @@ sudo yum install -y python3-mod_wsgi  <span class="c1"># on CenOS 8</span>
 <li><code>mod_wsgi</code>: an Apache module that provides a WSGI compliant
   interface for hosting Python based web applications within Apache,
   which is required by CernVM-FS to query the Geo API (more on that later);</li>
-<li><code>squid</code>: the Squid proxy package;</li>
+<li><code>squid</code>: the Squid proxy package.</li>
 </ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The Squid package in the official CentOS 7 repository is version 3.5.20, <strong>which is <a href="https://wiki.squid-cache.org/Squid-3.5">deprecated</a></strong>.
+It is not recommended to use this version in production systems.
+Squid 4 packages for CentOS 7 can be found in other repositories,
+see the <a href="https://wiki.squid-cache.org/SquidFaq/BinaryPackages#CentOS">Binary packages page on the Squid website</a>.</p>
+</div>
 <h3 id="313-configuring-apache-and-squid-proxy">3.1.3 Configuring Apache and Squid proxy<a class="headerlink" href="#313-configuring-apache-and-squid-proxy" title="Permanent link">&para;</a></h3>
 <p>On the Stratum 1, we will be running Apache with a Squid frontend (reverse proxy).
 Squid is mainly used to cache the calls to the Geo API, and it can also be helpful for setting up joint monitoring
