@@ -8,15 +8,15 @@ fi
 set -e
 
 WORKDIR=$1
-FILES_PER_EXAMPLE_SUBDIR=250000
+FILES_PER_EXAMPLE_SUBDIR=80000
 
 APP1=GROAPPLES
 APP2=FlensorStream
 APP3=arrr
-APP4=OpenPHAON
+APP4=OpenPHOAN
 
 date
-echo "creating ~$((4 * $FILES_PER_EXAMPLE_SUBDIR)) files..."
+echo "creating ~$((3 * $FILES_PER_EXAMPLE_SUBDIR)) files..."
 
 for path in intel/haswell amd/rome arm64/thunderx2; do
     mkdir -p $WORKDIR/$path/{modules,software}/{$APP1,$APP2,$APP3,$APP4}
@@ -76,8 +76,11 @@ for path in intel/haswell amd/rome arm64/thunderx2; do
         for lib in lib$APP4.a lib$APP4.so; do
           echo "$lib"  >> $WORKDIR/$path/software/$APP4/${version}/lib/$lib
         done
-        for i in $(seq 1 $FILES_PER_EXAMPLE_SUBDIR); do
-            echo $i > $WORKDIR/$path/software/$APP4/$version/examples/${i}.txt
+        for subdir in basic advanced real_world; do
+            mkdir -p $WORKDIR/$path/software/$APP4/$version/examples/$subdir
+            for i in $(seq 1 $FILES_PER_EXAMPLE_SUBDIR); do
+                echo $i > $WORKDIR/$path/software/$APP4/$version/examples/$subdir/${i}.txt
+            done
         done
     done
 
