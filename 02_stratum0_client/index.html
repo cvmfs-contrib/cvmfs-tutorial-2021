@@ -873,7 +873,10 @@ For example, to use a local cache of maximum 5GB:
 <div class="highlight"><pre><span></span><code>CVMFS_QUOTA_LIMIT=5000
 </code></pre></div></p>
 <h3 id="223-mounting-the-repositories">2.2.3 Mounting the repositories<a class="headerlink" href="#223-mounting-the-repositories" title="Permanent link">&para;</a></h3>
-<p>When your client configuration is complete, you can run the following command as root to mount the repository:</p>
+<p>When your client configuration is complete, you can run the following command to check for common misconfigurations:
+<div class="highlight"><pre><span></span><code>sudo cvmfs_config chksetup
+</code></pre></div></p>
+<p>If that returns <code>OK</code>, you can run the following command to mount the repository:</p>
 <div class="highlight"><pre><span></span><code>sudo cvmfs_config setup
 </code></pre></div>
 <p>This should not return any output or error messages.
@@ -905,7 +908,7 @@ Your repository will only be actually mounted when you access it, and may be unm
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 20, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 22, 2021</span>
     
   </small>
 </div>
