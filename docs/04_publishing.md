@@ -145,10 +145,81 @@ You will need to do another (empty) transaction right after the ingestion to tri
 
 
 ## Exercise
-We prepared a tarball that contains a tree with dummy software installations. You can find the tarball at:
-TODO: INSERT DETAILS
 
-- Insert this tarball to a directory named `software` in your repository using the `ingest` subcommand (i.e. without actually extracting the tarball);
-- Note that you get some warnings about the catalog containing too many entries;
-- Fix the catalog issue by adding a `.cvmfsdirtab` file to the root of your repo, which automatically makes a catalog for each software installation directory;
-- Make sure that the warning is gone when you publish this `.cvmfsdirtab` file. Instead, you may see a message about the catalog being defragmented (because lots of entries were cleaned up).
+We have prepared a tarball that contains a collection of dummy installations of
+(fictional) software applications: [`cvmfs-tutorial-ingest-example-720k-files.tar.gz`](https://raw.githubusercontent.com/cvmfs-contrib/cvmfs-tutorial-2021/master/cvmfs-tutorial-ingest-example-720k-files.tar.gz).
+
+You can download it easily onto your Stratum 0 via:
+
+```bash
+curl -OL https://raw.githubusercontent.com/cvmfs-contrib/cvmfs-tutorial-2021/master/cvmfs-tutorial-ingest-example-720k-files.tar.gz
+```
+
+!!! warning
+    In total this tarball includes about 720,000 files, so be careful if/where you unpack it!
+
+To give you a head start, here's an overview of the directory structure included in this tarball:
+
+```
+amd
+├─ rome
+│  ├─ modules
+|  │  ├─ ... module files for each of the software installations ...
+│  ├─ software
+│  |  ├─ arrr
+|  │  |  ├─ ... multiple versions, medium bin + lib subdir (20 files each) ...
+│  |  ├─ FlensorStream
+|  │  |  ├─ ... multiple versions, small bin + lib subdir (10 files each) ...
+│  |  ├─ GROAPPLES
+|  │  |  ├─ ... multiple versions, tiny bin + lib subdir (2 files each) ...
+│  |  ├─ OpenPHOAN
+|  │  |  ├─ 1.2-3
+|  |  │  |  ├─ bin
+|  |  |  │  |  ├─ ... 10 files ...
+|  |  │  |  ├─ examples
+|  |  |  │  |  ├─ ... 3 subdirs, each with 80,000 files! ...
+|  |  │  |  ├─ lib
+|  |  |  │  |  ├─ ... 10 files ...
+arm64
+├─ thunderx2
+│  ├─ ... same structure as amd/rome ...
+intel
+├─ haswell
+│  ├─ ... same structure as amd/rome ...
+```
+
+- Insert this tarball to a directory named `easybuild` in your repository using the `ingest` subcommand (i.e. without actually extracting the tarball).
+- Note that you get some warnings about the catalog containing too many entries!
+- Think about where you would create `.cvmfscatalog` files yourself (but don't do so manually).
+- Fix the warning about the catalog being too big by adding a proper `.cvmfsdirtab` file to the root of your repo.
+- Make sure that the warning is gone when you publish this `.cvmfsdirtab` file.
+  You may see a message about the catalog being defragmented (because lots of entries were cleaned up).
+- In addition, make sure that no catalogs have more than 200,000 entries.
+  You can check this with:
+  ```bash
+  cvmfs_server list-catalogs -e
+  ```
+- Check if the mental exercise you did before adding the `.cvmfsdirtab` was correct,
+  by inspecting where the `.cvmfscatalog` files were created. Pro tip:
+  ```bash
+  find /cvmfs/repo.organization.tld -name .cvmfscatalog
+  ```
+
+
+
+??? success "(click to show solution for the `.cvmfsdirtab` - no peeking!)"
+    ```
+    # For each microarchitecture subdirectory (/easybuild/*/*), create a nested catalog for:
+
+    # the modules dir;
+    /easybuild/*/*/modules
+
+    # the software dir;
+    /easybuild/*/*/software
+
+    # each version of each application;
+    /easybuild/*/*/software/*/*
+
+    # each example subdirectory of each OpenPHOAN installation;
+    /easybuild/*/*/software/OpenPHOAN/*/examples/*
+    ```
