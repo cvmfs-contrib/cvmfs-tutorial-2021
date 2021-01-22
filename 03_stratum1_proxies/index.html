@@ -849,7 +849,10 @@ sudo yum install -y python3-mod_wsgi  <span class="c1"># on CenOS 8</span>
 <li><code>squid</code>: the Squid proxy package;</li>
 </ul>
 <h3 id="313-configuring-apache-and-squid-proxy">3.1.3 Configuring Apache and Squid proxy<a class="headerlink" href="#313-configuring-apache-and-squid-proxy" title="Permanent link">&para;</a></h3>
-<p>On the Stratum 1, we will be running Apache with a Squid frontend (reverse proxy).</p>
+<p>On the Stratum 1, we will be running Apache with a Squid frontend (reverse proxy).
+Squid is mainly used to cache the calls to the Geo API, and it can also be helpful for setting up joint monitoring
+(for instance, see <a href="http://wlcg-squid-monitor.cern.ch/">the monitoring page of the Worldwide LHC Computing Grid project</a>).
+We will be setting up a single Squid reverse proxy, but you could even have a load balancer that spreads the load over multiple instances.</p>
 <p>The Apache web server will be listening internally on port 8080,
 while the Squid proxy needs to listen (externally) on port 80 and 8000, which are the default Stratum 1 ports.</p>
 <h4 id="apache-configuration">Apache configuration<a class="headerlink" href="#apache-configuration" title="Permanent link">&para;</a></h4>
@@ -1079,7 +1082,7 @@ Make sure that it lists your proxy here (and not <code>DIRECT</code>), and that 
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 21, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 22, 2021</span>
     
   </small>
 </div>
