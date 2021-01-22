@@ -87,6 +87,10 @@ for path in intel/haswell amd/rome arm64/thunderx2; do
 done
 
 date
+echo "fixing permissions on directories..."
+find $WORKDIR -type d | xargs chmod a+w
+
+date
 echo "creating tarball..."
 
 cd $WORKDIR
