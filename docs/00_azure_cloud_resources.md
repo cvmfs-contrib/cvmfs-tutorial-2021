@@ -143,7 +143,7 @@ To start a single node after suspending it, select it and use `Actions` -> `Star
 <img src="../img/cyclecloud_start_node.png" alt="CycleCloud start node" width="350px"/>
 </p>
 
-Shorly after, the node should be fully operational again (with the same IP).
+Shortly after, the node should be fully operational again (with the same IP).
 
 ### Suspending all nodes
 
@@ -169,7 +169,7 @@ To restart all suspended nodes, select them all and use `Actions` -> `Start`.
 <img src="../img/cyclecloud_restart_all_nodes.png" alt="CycleCloud restart all nodes" width="350px"/>
 </p>
 
-Shorly after, all nodes should be fully operational again (with the same IPs).
+Shortly after, all nodes should be fully operational again (with the same IPs).
 
 ### Resetting a single node
 
