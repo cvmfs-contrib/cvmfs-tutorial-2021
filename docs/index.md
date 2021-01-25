@@ -52,7 +52,7 @@ More information about the CernVM-FS tutorial sessions is available at [https://
 
 **[Registration](https://easybuild.io/eum/#registration) for this tutorial is required in order to get access to the provided cloud resources!**
 
-<img src="img/microsoft_azure_logo.png" alt="Microsoft Azure logo" width="150px"/></br>
+<img src="img/microsoft_azure_logo.png" alt="Microsoft Azure logo" width="250px"/></br>
 
 Dedicated cloud resources in **[Microsoft Azure](https://azure.microsoft.com)** (sponsored by Microsoft) will be available *only
 to registered tutorial attendees* for working on the hands-on exercises during the the week of Jan 25-29 2021.
