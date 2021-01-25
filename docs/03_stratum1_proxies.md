@@ -366,11 +366,11 @@ CVMFS_HTTP_PROXY="http://<PROXY_IP>:3128"
 
 ***Replace the ``<PROXY_IP>`` part with the IP address of your Squid proxy server!***
 
-After changing the local configuration file, unmount and probe the repository to enable the new configuration:
+After changing the local configuration file, make sure the repository is mounted (e.g. by doing an `ls`) and reload the configuration:
 
 ```bash
-sudo cvmfs_config umount repo.organization.tld
-sudo cvmfs_config probe repo.organization.tld
+ls /cvmfs/repo.organization.tld
+sudo cvmfs_config reload repo.organization.tld
 ```
 
 More proxies can be added to `CVMFS_HTTP_PROXY` by separating them with a pipe symbol.
