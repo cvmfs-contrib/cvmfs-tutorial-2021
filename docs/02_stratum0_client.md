@@ -50,7 +50,7 @@ Installing CernVM-FS is simple and only requires some packages to be installed.
 You can easily do this by adding the CernVM-FS repository and install the packages through your package manager:
 
 ```bash
- sudo yum install -y epel-release  # not needed on CentOS 8
+sudo yum install -y epel-release  # not needed on CentOS 8
 sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
 sudo yum install -y cvmfs cvmfs-server
 ```
