@@ -40,11 +40,11 @@ by CernVM-FS to allow clients to determine which Stratum 1 server is geographica
 For the Stratum 1 you need to install the following packages:
 
 ```bash
-# sudo yum install -y epel-release  # only needed on CentOS 7
+sudo yum install -y epel-release  # not needed on CentOS 8
 sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
 sudo yum install -y cvmfs-server squid
-# sudo yum install -y mod_wsgi # on CentOS 7
-sudo yum install -y python3-mod_wsgi  # on CenOS 8
+sudo yum install -y mod_wsgi # on CentOS 7
+# sudo yum install -y python3-mod_wsgi  # on CenOS 8
 ```
 
 This is:
