@@ -103,73 +103,16 @@ You will need to confirm the host key fingerprint the first time you log in (ent
 
 Once you're logged in, you are ready to get started with the hands-on parts of the tutorial!
 
-## Suspend unused nodes!
+## Don't suspend unused nodes!
 
-To limit the resources you consume, we ask that you **suspend** the nodes that you are not actively using.
+The virtual machines do ***not*** have a fixed IP address.
 
-See below for detailed instructions on suspending a single nodes, or all nodes at once.
+This means that their IP address will change if you suspend the machines while not using them
+and restart them later, and you will have to reconfigure your CernVM-FS services.
 
-Suspended nodes can later be restarted, and no data or configuration settings should be lost.
-All nodes will also still be using the same IP address.
-
-**Keep in mind to suspend all nodes each day after finishing the exercise for that part of the tutorial!**
+Therefore **we recommend to leave all your nodes running for the duration of the workshop.**
 
 ## Other actions
-
-### Suspending a single node
-
-To suspend a single node, select it and use `Actions` -> `Shut down`:
-
-<p align="center">
-<img src="../img/cyclecloud_suspend_node_step_1_of_2.png" alt="CycleCloud suspend node (step 1 of 2)" width="350px"/>
-</p>
-
-**Select the `Deallocate ...` option**.
-
-If you don't use the `Deallocate` option all data will be lost on that data, and you'll need to start over
-again!
-
-<p align="center">
-<img src="../img/cyclecloud_suspend_node_step_2_of_2.png" alt="CycleCloud suspend node (step 2 of 2)" width="400px"/>
-</p>
-
-Click `Shut down` to suspend the node.
-
-### Starting a single node
-
-To start a single node after suspending it, select it and use `Actions` -> `Start`.
-
-<p align="center">
-<img src="../img/cyclecloud_start_node.png" alt="CycleCloud start node" width="350px"/>
-</p>
-
-Shortly after, the node should be fully operational again (with the same IP).
-
-### Suspending all nodes
-
-To suspend *all* nodes at once, you can select them all before using `Actions` -> `Shut down`:
-
-<p align="center">
-<img src="../img/cyclecloud_suspend_all_nodes_step_1_of_2.png" alt="CycleCloud suspend all nodes (1/2)" width="350px"/>
-</p>
-
-**Make sure to use the `Deallocate ...` option**, or *all* your data and configuration will be lost!
-
-<p align="center">
-<img src="../img/cyclecloud_suspend_all_nodes_step_2_of_2.png" alt="CycleCloud suspend all nodes (2/2)" width="400px"/>
-</p>
-
-Click `Shut down` to suspend all nodes.
-
-### Restarting all nodes
-
-To restart all suspended nodes, select them all and use `Actions` -> `Start`.
-
-<p align="center">
-<img src="../img/cyclecloud_restart_all_nodes.png" alt="CycleCloud restart all nodes" width="350px"/>
-</p>
-
-Shortly after, all nodes should be fully operational again (with the same IPs).
 
 ### Resetting a single node
 
@@ -196,6 +139,8 @@ you can do so as follows:
   <img src="../img/cyclecloud_reset_node_step_3_of_3.png" alt="CycleCloud reset node (3/3)" width="300px"/>
   </p>
 
+Keep in mind that this implies that this node will have a different IP address afterwards!
+
 ### Resetting all nodes (entire cluster)
 
 If you want to restart from scratch on *all* nodes, you can do so to.
@@ -213,3 +158,5 @@ Once the cluster is fully shut down (all node status bars are gray), you can sta
 <p align="center">
 <img src="../img/cyclecloud_reset_cluster_step_2_of_2.png" alt="CycleCloud reset cluster (2/2)" width="350px"/>
 </p>
+
+Keep in mind that this implies that all nodes will have a different IP address afterwards!
