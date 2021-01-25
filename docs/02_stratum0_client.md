@@ -36,7 +36,7 @@ To change these locations, you can create either of the paths as a symbolic link
 Several (popular) Linux distributions are supported by CernVM-FS,
 see [the Getting Started page of the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-quickstart.html#getting-the-software) for a full list.
 
-In this tutorial we will use CentOS 8 on ``x86_64``, but it should be relatively straightforward to use another OS or CPU architecture instead.
+In this tutorial we will use CentOS 7 on ``x86_64`` (with some pointers for CentOS 8), but it should be relatively straightforward to use another OS or CPU architecture instead.
 
 CernVM-FS supports for hosting the repository contents in S3 compatible storage, but for this tutorial we will focus on storing the files locally
 on the Stratum 0 server.
@@ -50,7 +50,7 @@ Installing CernVM-FS is simple and only requires some packages to be installed.
 You can easily do this by adding the CernVM-FS repository and install the packages through your package manager:
 
 ```bash
-# sudo yum install -y epel-release  # only needed on CentOS 7
+sudo yum install -y epel-release  # not needed on CentOS 8
 sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
 sudo yum install -y cvmfs cvmfs-server
 ```
@@ -200,7 +200,6 @@ The installation is the same as for the Stratum 0, except that you only need the
 (we don't need to CernVM-FS server component on the client):
 
 ```bash
-# sudo yum install -y epel-release  # only needed on CentOS 7
 sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
 sudo yum install -y cvmfs
 ```
