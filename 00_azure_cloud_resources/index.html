@@ -219,9 +219,93 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          0. Azure cloud resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         0. Azure cloud resources
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-0-log-in-to-cyclecloud" class="md-nav__link">
+    Step 0: Log in to CycleCloud
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-add-ssh-public-key" class="md-nav__link">
+    Step 1: Add SSH public key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-start-cluster" class="md-nav__link">
+    Step 2: Start cluster
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-ssh-into-a-node" class="md-nav__link">
+    Step 3: SSH into a node
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dont-suspend-unused-nodes" class="md-nav__link">
+    Don't suspend unused nodes!
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-actions" class="md-nav__link">
+    Other actions
+  </a>
+  
+    <nav class="md-nav" aria-label="Other actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resetting-a-single-node" class="md-nav__link">
+    Resetting a single node
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resetting-all-nodes-entire-cluster" class="md-nav__link">
+    Resetting all nodes (entire cluster)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -325,6 +409,76 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-0-log-in-to-cyclecloud" class="md-nav__link">
+    Step 0: Log in to CycleCloud
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-add-ssh-public-key" class="md-nav__link">
+    Step 1: Add SSH public key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-start-cluster" class="md-nav__link">
+    Step 2: Start cluster
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-ssh-into-a-node" class="md-nav__link">
+    Step 3: SSH into a node
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dont-suspend-unused-nodes" class="md-nav__link">
+    Don't suspend unused nodes!
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-actions" class="md-nav__link">
+    Other actions
+  </a>
+  
+    <nav class="md-nav" aria-label="Other actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resetting-a-single-node" class="md-nav__link">
+    Resetting a single node
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resetting-all-nodes-entire-cluster" class="md-nav__link">
+    Resetting all nodes (entire cluster)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -341,9 +495,140 @@
                 
                 
                 <h1 id="0-azure-cloud-resources">0. Azure cloud resources<a class="headerlink" href="#0-azure-cloud-resources" title="Permanent link">&para;</a></h1>
+<p align="center">
+<img src="../img/microsoft_azure_logo.png" alt="CycleCloud login" width=300px"/>
+</p>
+
+<p>For <strong>registered</strong> attendees of the <a href="https://easybuild.io/eum/#cvmfs-tutorial">CernVM-FS tutorial at the 6th EasyBuild User Meeting (Jan 25-29 2021)</a>,
+a small cluster of virtual machines is available in Microsoft Azure to use for the hands-on parts of the tutorial.</p>
+<p><strong>These resources are sponsored by Microsoft.</strong></p>
+<h2 id="step-0-log-in-to-cyclecloud">Step 0: Log in to CycleCloud<a class="headerlink" href="#step-0-log-in-to-cyclecloud" title="Permanent link">&para;</a></h2>
+<p>To get started, you should log into the Azure CycleCloud web portal, where you can manage the virtual machine cluster
+that was prepared for you.</p>
+<p>Visit <a href="https://cvmfstutorial.westeurope.cloudapp.azure.com">https://cvmfstutorial.westeurope.cloudapp.azure.com</a>,
+and log in <strong>with the user name (<code>cvmfs0XY</code>) and the password that you received via email</strong> (don't try using
+<code>cvmfs001</code> as shown in the screenshot below, that will not work).</p>
+<p align="center">
+<img src="../img/cyclecloud_login.png" alt="CycleCloud login" width="450px"/>
+</p>
+
+<p>You will need to create and confirm a new password in order to login in.</p>
+<p><strong>Make sure you use a password you can remember!</strong>.</p>
+<p align="center">
+<img src="../img/cyclecloud_password.png" alt="CycleCloud password" width="450px"/>
+</p>
+
+<p>If you need a password reset, either contact <a href="mailto:eum@lists.ugent.be">eum@lists.ugent.be</a>,
+or ask in the <a href="https://easybuild.slack.com/archives/C01KFR7MPE1"><code>#eum21-cvmfs-tutorial</code></a> channel in the EasyBuild Slack.</p>
+<h2 id="step-1-add-ssh-public-key">Step 1: Add SSH public key<a class="headerlink" href="#step-1-add-ssh-public-key" title="Permanent link">&para;</a></h2>
+<p>Before you do anything with the nodes in the cluster, make sure you add your SSH public key into your CycleCloud
+account.</p>
+<p><strong>Note: this <em>must</em> be an RSA SSH public key (<code>ed25519</code> will not work)!</strong></p>
+<p>Use <code>My Profile</code> which you can access by clicking your name in the top right corner:</p>
+<p align="center">
+<img src="../img/cyclecloud_profile.png" alt="CycleCloud access profile" width="200px"/>
+</p>
+
+<p>Then click <code>Edit Profile</code>:</p>
+<p align="center">
+<img src="../img/cyclecloud_edit_profile.png" alt="CycleCloud edit profile" width="450px"/>
+</p>
+
+<p>Add your SSH public key (<strong>must be RSA!</strong>), and click <code>Save</code>.</p>
+<p align="center">
+<img src="../img/cyclecloud_add_ssh_pubkey.png" alt="CycleCloud add SSH public key" width="450px"/>
+</p>
+
+<p>Then use the <code>Back to cluster</code> link at the top left corner to return to the previous screen.</p>
+<h2 id="step-2-start-cluster">Step 2: Start cluster<a class="headerlink" href="#step-2-start-cluster" title="Permanent link">&para;</a></h2>
+<p>Once you have added your SSH public key, you can start the cluster using the <code>Start</code> "play" button:</p>
+<p align="center">
+<img src="../img/cyclecloud_start_cluster.png" alt="CycleCloud start cluster" width="450px"/>
+</p>
+
+<p>Shortly after, you should see that all nodes were started (green status bar):</p>
+<p align="center">
+<img src="../img/cyclecloud_cluster_started.png" alt="CycleCloud cluster started" width="350px"/>
+</p>
+
+<h2 id="step-3-ssh-into-a-node">Step 3: SSH into a node<a class="headerlink" href="#step-3-ssh-into-a-node" title="Permanent link">&para;</a></h2>
+<p>Once a node is started, you can SSH into it using your <code>cvmfs0XY</code> user name and the public IP address of the node.</p>
+<p>To determine the IP address of a node, select it in the <code>Nodes</code> overview: the IP address will be shown in
+the <code>Host/IP</code> column in the detailed view at the bottom:</p>
+<p align="center">
+<img src="../img/cyclecloud_find_ip.png" alt="CycleCloud find IP address" width="350px"/>
+</p>
+
+<p>To log into the node, use the <code>ssh</code> command from a Linux or macOS system:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># change accordingly for your user name and IP address!</span>
+$ ssh cvmfs001@51.145.228.229
+The authenticity of host <span class="s1">&#39;51.145.228.229 (51.145.228.229)&#39;</span> can<span class="s1">&#39;t be established.</span>
+<span class="s1">ECDSA key fingerprint is SHA256:Lv19NNnDJlMEcJskqS9tU7SlyLibD3u1vKSc7HJqlAM.</span>
+<span class="s1">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span>
+<span class="s1">Warning: Permanently added &#39;</span><span class="m">51</span>.145.228.229<span class="err">&#39;</span> <span class="o">(</span>ECDSA<span class="o">)</span> to the list of known hosts.
+<span class="o">[</span>cvmfs001@ip-0A000009 ~<span class="o">]</span>$
+</code></pre></div>
+<p>(or use <code>PuTTy</code> on Windows).</p>
+<p>You will need to confirm the host key fingerprint the first time you log in (enter <code>yes</code> as shown above).</p>
+<p>Once you're logged in, you are ready to get started with the hands-on parts of the tutorial!</p>
+<h2 id="dont-suspend-unused-nodes">Don't suspend unused nodes!<a class="headerlink" href="#dont-suspend-unused-nodes" title="Permanent link">&para;</a></h2>
+<p>The virtual machines do <strong><em>not</em></strong> have a fixed IP address.</p>
+<p>This means that their IP address will change if you suspend the machines while not using them
+and restart them later, and you will have to reconfigure your CernVM-FS services.</p>
+<p>Therefore <strong>we recommend to leave all your nodes running for the duration of the workshop.</strong></p>
+<h2 id="other-actions">Other actions<a class="headerlink" href="#other-actions" title="Permanent link">&para;</a></h2>
+<h3 id="resetting-a-single-node">Resetting a single node<a class="headerlink" href="#resetting-a-single-node" title="Permanent link">&para;</a></h3>
+<p>If you have made some mistakes, and would like to <em>reset</em> a node to start from a blank slate,
+you can do so as follows:</p>
 <ul>
-<li>details on accessing Azure VMs go here...</li>
+<li>
+<p>Select the node and use <code>Actions</code> -&gt; <code>Shut Down</code>:
+<br />
+<p align="center">
+  <img src="../img/cyclecloud_reset_node_step_1_of_3.png" alt="CycleCloud reset node (1/3)" width="400px"/>
+  </p>
+</p>
+</li>
+<li>
+<p>Use the <code>Terminate ...</code> option (the default). <strong>Do keep in mind that this will erase all data and configuration for that node!</strong>
+<br />
+<p align="center">
+  <img src="../img/cyclecloud_reset_node_step_2_of_3.png" alt="CycleCloud reset node (2/3)" width="350px"/>
+  </p>
+</p>
+</li>
+<li>
+<p>Click <code>Shut down</code>, and wait until the node is fully off (gray status bar):
+<br />
+<p align="center">
+  <img src="../img/cyclecloud_node_deallocated.png" alt="CycleCloud node deallocated" width="350px"/>
+  </p>
+</p>
+</li>
+<li>
+<p>Finally, start the node again to complete the reset cycle:
+<br />
+<p align="center">
+  <img src="../img/cyclecloud_reset_node_step_3_of_3.png" alt="CycleCloud reset node (3/3)" width="300px"/>
+  </p>
+</p>
+</li>
 </ul>
+<p>Keep in mind that this implies that this node will have a different IP address afterwards!</p>
+<h3 id="resetting-all-nodes-entire-cluster">Resetting all nodes (entire cluster)<a class="headerlink" href="#resetting-all-nodes-entire-cluster" title="Permanent link">&para;</a></h3>
+<p>If you want to restart from scratch on <em>all</em> nodes, you can do so to.</p>
+<p><strong>Keep in mind that all data and configuration on <em>all</em> nodes will be lost when doing this.</strong></p>
+<p>Terminate the entire cluster using the <code>Terminate</code> button just below the cluster name (same as your user name):</p>
+<p align="center">
+<img src="../img/cyclecloud_reset_cluster_step_1_of_2.png" alt="CycleCloud reset cluster (1/2)" width="350px"/>
+</p>
+
+<p>Once the cluster is fully shut down (all node status bars are gray), you can start it again:</p>
+<p align="center">
+<img src="../img/cyclecloud_reset_cluster_step_2_of_2.png" alt="CycleCloud reset cluster (2/2)" width="350px"/>
+</p>
+
+<p>Keep in mind that this implies that all nodes will have a different IP address afterwards!</p>
                 
                   
                     
@@ -352,7 +637,7 @@
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 19, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 25, 2021</span>
     
   </small>
 </div>

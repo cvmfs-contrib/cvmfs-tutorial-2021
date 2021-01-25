@@ -725,14 +725,14 @@ To change these locations, you can create either of the paths as a symbolic link
 <h4 id="operating-system">Operating system<a class="headerlink" href="#operating-system" title="Permanent link">&para;</a></h4>
 <p>Several (popular) Linux distributions are supported by CernVM-FS,
 see <a href="https://cvmfs.readthedocs.io/en/stable/cpt-quickstart.html#getting-the-software">the Getting Started page of the CernVM-FS documentation</a> for a full list.</p>
-<p>In this tutorial we will use CentOS 8 on <code>x86_64</code>, but it should be relatively straightforward to use another OS or CPU architecture instead.</p>
+<p>In this tutorial we will use CentOS 7 on <code>x86_64</code> (with some pointers for CentOS 8), but it should be relatively straightforward to use another OS or CPU architecture instead.</p>
 <p>CernVM-FS supports for hosting the repository contents in S3 compatible storage, but for this tutorial we will focus on storing the files locally
 on the Stratum 0 server.</p>
 <p>For this we need an Apache (web)server on the host, and port 80 must be open.</p>
 <h3 id="212-installing-cernvm-fs">2.1.2 Installing CernVM-FS<a class="headerlink" href="#212-installing-cernvm-fs" title="Permanent link">&para;</a></h3>
 <p>Installing CernVM-FS is simple and only requires some packages to be installed.</p>
 <p>You can easily do this by adding the CernVM-FS repository and install the packages through your package manager:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># sudo yum install -y epel-release  # only needed on CentOS 7</span>
+<div class="highlight"><pre><span></span><code>sudo yum install -y epel-release  <span class="c1"># not needed on CentOS 8</span>
 sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
 sudo yum install -y cvmfs cvmfs-server
 </code></pre></div>
@@ -832,8 +832,7 @@ on the same system...</p>
 <h3 id="221-installing-the-client-package">2.2.1 Installing the client package<a class="headerlink" href="#221-installing-the-client-package" title="Permanent link">&para;</a></h3>
 <p>The installation is the same as for the Stratum 0, except that you only need the <code>cvmfs</code> package
 (we don't need to CernVM-FS server component on the client):</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># sudo yum install -y epel-release  # only needed on CentOS 7</span>
-sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
+<div class="highlight"><pre><span></span><code>sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
 sudo yum install -y cvmfs
 </code></pre></div>
 <h3 id="222-configuring-the-client">2.2.2 Configuring the client<a class="headerlink" href="#222-configuring-the-client" title="Permanent link">&para;</a></h3>
@@ -908,7 +907,7 @@ Your repository will only be actually mounted when you access it, and may be unm
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 22, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 25, 2021</span>
     
   </small>
 </div>

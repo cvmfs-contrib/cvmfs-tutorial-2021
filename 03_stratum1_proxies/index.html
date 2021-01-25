@@ -834,11 +834,11 @@ which you can obtain by <a href="https://www.maxmind.com/en/geolite2/signup/">si
 by CernVM-FS to allow clients to determine which Stratum 1 server is geographically located closest.</p>
 <h3 id="312-installation">3.1.2 Installation<a class="headerlink" href="#312-installation" title="Permanent link">&para;</a></h3>
 <p>For the Stratum 1 you need to install the following packages:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># sudo yum install -y epel-release  # only needed on CentOS 7</span>
+<div class="highlight"><pre><span></span><code>sudo yum install -y epel-release  <span class="c1"># not needed on CentOS 8</span>
 sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
 sudo yum install -y cvmfs-server squid
-<span class="c1"># sudo yum install -y mod_wsgi # on CentOS 7</span>
-sudo yum install -y python3-mod_wsgi  <span class="c1"># on CenOS 8</span>
+sudo yum install -y mod_wsgi <span class="c1"># on CentOS 7</span>
+<span class="c1"># sudo yum install -y python3-mod_wsgi  # on CenOS 8</span>
 </code></pre></div>
 <p>This is:</p>
 <ul>
@@ -1089,7 +1089,7 @@ Make sure that it lists your proxy here (and not <code>DIRECT</code>), and that 
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 22, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 25, 2021</span>
     
   </small>
 </div>
