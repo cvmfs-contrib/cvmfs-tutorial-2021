@@ -73,6 +73,13 @@ You can use your own resources if you prefer doing so.
 
 *(sections indicated with* ``(*)`` *involve hands-on exercises)*
 
+## Slides
+
+The (minimal) slides used to guide the tutorial are available [here](eum21-cvmfs-tutorial-slides.pdf).
+
+*Note: these slides are updated daily through the week of Jan 25-29, as the different parts
+of the tutorial are covered.*
+
 ## Contributors
 
 * Jakob Blomer (CERN, Switzerland)
