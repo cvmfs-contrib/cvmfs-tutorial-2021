@@ -99,7 +99,7 @@ This includes laptops or personal workstations who need access to the provided s
 but also High-Performance Computing (HPC) clusters, virtual machines running in a cloud environment, etc.
 
 Clients only have *read-only* access to the files included in a CernVM-FS repository,
-and are automatically notified when the contents of the filesystem has changed.
+and are automatically notified and updated when the contents of the filesystem have changed.
 
 The filesystem that is mounted on a client (under ``/cvmfs``) is a virtual filesystem, in the sense that
 *data is only (down)loaded when it is actually accessed* (and cached aggressively to ensure good performance).
