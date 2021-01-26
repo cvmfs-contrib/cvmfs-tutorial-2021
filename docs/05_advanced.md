@@ -92,6 +92,20 @@ curl --proxy http://<PROXY_IP>:3128 --head http://url-to-your-stratum1/cvmfs/rep
 
 These commands should return `HTTP/1.1 200 OK`. If the first command returns something else, you should inspect your CernVM-FS, Apache, and Squid configuration (and log) files on the Stratum 1 server. If the first `curl` command does work, but the second does not, there is something wrong with your Squid proxy; make sure that it is running, configured, and able to access your Stratum 1 server.
 
+
+### 5.2.3 Checking the logs of CernVM-FS services
+
+Besides the client log file that we already explained, there are some other log files that you can inspect on the different servers.
+
+On the Stratum 0, the main log files are the Apache access and error files, which you can find (on CentOS) in `/var/log/apache2`.
+
+The Stratum 1 has several services, and, hence, several log files that can be of interest: just like on the Stratum 0, there are the Apache log files.
+Besides those, also Squid has access and cache log files, which can be found in `/var/log/squid`.
+The `cvmfs_server snapshot` commands will log to `/var/log/cvmfs/snapshots.log`.
+
+Finally, the only relevant service on the proxy server is Squid itself, so `/var/log/squid` is again the place to find the log files.
+
+
 ## 5.3 Garbage collection
 
 As mentioned in [the section about publishing](04_publishing.md), the default configuration of a Stratum 0 enables automatic tagging,
