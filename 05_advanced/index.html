@@ -350,6 +350,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#523-checking-the-logs-of-cernvm-fs-services" class="md-nav__link">
+    5.2.3 Checking the logs of CernVM-FS services
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -541,6 +548,13 @@
           <li class="md-nav__item">
   <a href="#522-debugging-connection-issues" class="md-nav__link">
     5.2.2 Debugging connection issues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#523-checking-the-logs-of-cernvm-fs-services" class="md-nav__link">
+    5.2.3 Checking the logs of CernVM-FS services
   </a>
   
 </li>
@@ -752,6 +766,13 @@ curl --head http://&lt;STRATUM1_IP&gt;/cvmfs/repo.organization.tld/.cvmfspublish
 curl --proxy http://&lt;PROXY_IP&gt;:3128 --head http://url-to-your-stratum1/cvmfs/repo.organization.tld/.cvmfspublished
 </code></pre></div>
 <p>These commands should return <code>HTTP/1.1 200 OK</code>. If the first command returns something else, you should inspect your CernVM-FS, Apache, and Squid configuration (and log) files on the Stratum 1 server. If the first <code>curl</code> command does work, but the second does not, there is something wrong with your Squid proxy; make sure that it is running, configured, and able to access your Stratum 1 server.</p>
+<h3 id="523-checking-the-logs-of-cernvm-fs-services">5.2.3 Checking the logs of CernVM-FS services<a class="headerlink" href="#523-checking-the-logs-of-cernvm-fs-services" title="Permanent link">&para;</a></h3>
+<p>Besides the client log file that we already explained, there are some other log files that you can inspect on the different servers.</p>
+<p>On the Stratum 0, the main log files are the Apache access and error files, which you can find (on CentOS) in <code>/var/log/apache2</code>.</p>
+<p>The Stratum 1 has several services, and, hence, several log files that can be of interest: just like on the Stratum 0, there are the Apache log files.
+Besides those, also Squid has access and cache log files, which can be found in <code>/var/log/squid</code>.
+The <code>cvmfs_server snapshot</code> commands will log to <code>/var/log/cvmfs/snapshots.log</code>.</p>
+<p>Finally, the only relevant service on the proxy server is Squid itself, so <code>/var/log/squid</code> is again the place to find the log files.</p>
 <h2 id="53-garbage-collection">5.3 Garbage collection<a class="headerlink" href="#53-garbage-collection" title="Permanent link">&para;</a></h2>
 <p>As mentioned in <a href="../04_publishing/">the section about publishing</a>, the default configuration of a Stratum 0 enables automatic tagging,
 which automatically assigns a timestamped tag to each published transaction.
@@ -893,7 +914,7 @@ stored the keys in the previous step.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 22, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 26, 2021</span>
     
   </small>
 </div>
