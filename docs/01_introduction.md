@@ -1,5 +1,18 @@
 # 1. Introduction to CernVM-FS
 
+## 1.0 Introductory talk by Jakob Blomer
+
+The best possible introduction to CernVM-FS is the talk by Jakob Blomer (CERN, lead developer)
+at the 6th EasyBuild User Meeting.
+
+The slides for this talk are available [here](cvmfs-eum21.pdf).
+
+The recording of this presentation is available on YouTube:
+
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lxZLS3O9wo4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 ## 1.1 What is CernVM-FS?
 
 Let's get started with explaining in detail what CernVM-FS is...
