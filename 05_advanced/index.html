@@ -734,8 +734,13 @@ Probing /cvmfs/repo.organization.tld... OK
 <p>However, since you are debugging a problem, it probably returns an error...</p>
 <p>So, let's enable some debugging output by adding the following line to your <code>/etc/cvmfs/default.local</code>:
 <div class="highlight"><pre><span></span><code>CVMFS_DEBUGLOG=/path/to/cvmfs.log
-</code></pre></div>
-Now we unmount the repository, re-run the setup step, and try to probe it again:</p>
+</code></pre></div></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Make sure that the <code>cvmfs</code> user has write permission to the location specified with <code>CVMFS_DEBUGLOG</code>.
+Otherwise you will not only get no log file, but it will also lead to client failures.</p>
+</div>
+<p>Now we unmount the repository, re-run the setup step, and try to probe it again:</p>
 <div class="highlight"><pre><span></span><code>sudo cvmfs_config umount
 sudo cvmfs_config setup
 cvmfs_config probe repo.organization.tld
