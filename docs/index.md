@@ -45,7 +45,7 @@ or another CPU architecture like Arm 64-bit (`aarch64`).
 
 ## Practical information
 
-This tutorial is being organised during the **[4th EasyBuild User Meeting](https://easybuild.io/eum/) (Jan 25-29 2021)**.
+This tutorial is being organised during the **[6th EasyBuild User Meeting](https://easybuild.io/eum/) (Jan 25-29 2021)**.
 
 More information about the CernVM-FS tutorial sessions is available at [https://easybuild.io/eum/#cvmfs-tutorial](https://easybuild.io/eum/#cvmfs-tutorial).
 
