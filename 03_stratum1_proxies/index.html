@@ -1060,10 +1060,11 @@ with IP address of your Squid proxy service, plus the (default) port 3128 at whi
 <div class="highlight"><pre><span></span><code>CVMFS_HTTP_PROXY=&quot;http://&lt;PROXY_IP&gt;:3128&quot;
 </code></pre></div></p>
 <p><strong><em>Replace the <code>&lt;PROXY_IP&gt;</code> part with the IP address of your Squid proxy server!</em></strong></p>
-<p>After changing the local configuration file, make sure to reload the CernVM-FS client configuration:</p>
-<div class="highlight"><pre><span></span><code>sudo cvmfs_config reload repo.organization.tld
+<p>After changing the local configuration file, make sure the repository is mounted (e.g. by doing an <code>ls</code>) and reload the configuration:</p>
+<div class="highlight"><pre><span></span><code>ls /cvmfs/repo.organization.tld
+sudo cvmfs_config reload repo.organization.tld
 </code></pre></div>
-<p>More proxies can be added to that list by separating them with a pipe symbol.</p>
+<p>More proxies can be added to <code>CVMFS_HTTP_PROXY</code> by separating them with a pipe symbol.</p>
 <p>For more (complex) examples, see the <a href="https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#proxy-list-examples">CernVM-FS documentation</a>.</p>
 <h3 id="333-test-the-new-configuration">3.3.3 Test the new configuration<a class="headerlink" href="#333-test-the-new-configuration" title="Permanent link">&para;</a></h3>
 <p>Now you can test your new configuration by checking if you can still access the repository.
@@ -1089,7 +1090,7 @@ Make sure that it lists your proxy here (and not <code>DIRECT</code>), and that 
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 25, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 26, 2021</span>
     
   </small>
 </div>
