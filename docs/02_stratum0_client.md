@@ -79,7 +79,7 @@ In the simplest way, this can be done by running the following command, which wi
 sudo cvmfs_server mkfs -o $USER repo.organization.tld
 ```
 
-The full repository name (here `repo.organization.tld`) resembles a DNS name, but the `organization.tld` domain does not actually need to exist.
+The full repository name (here `repo.organization.tld`) resembles a DNS name, but is not. The `organization.tld` domain does not actually need to exist in DNS.
 
 It is recommended to give all the repositories belonging to the same project or organization the same `.organization.tld` domain.
 This makes the client configuration much easier, also in case new repositories will be added later on.
@@ -118,12 +118,14 @@ A new repository automatically gets a file named `new_repository` in its root (`
 
 For now it is enough to just run the following commands to add a simple `hello.sh` script to your repository.
 
-First, start the transaction via `cvmfs_server transaction <name_of_repo>`:
+First, set an environment variable for convenience: 
 
 ```bash
 # Change this to your repository/domain name!
 MY_REPO_NAME=repo.organization.tld
 ```
+
+Then start the transaction:
 
 ```bash
 cvmfs_server transaction ${MY_REPO_NAME}
@@ -153,7 +155,7 @@ This whitelist has an expiration time of (by default) 30 days, so you regularly 
 There are several ways to do this, see for instance [the page about master keys](https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#sct-master-keys)
 in the CernVM-FS documentation.
 
-If you keep the master key on our Stratum 0 sever, you can set up a simple cronjob for resigning the whitelist. For instance, make a file `/etc/cron.d/cvmfs_resign` with the following content to do this every Monday at 11:00:
+If you keep the master key on the Stratum 0 server, you can set up a simple cronjob for resigning the whitelist. For instance, make a file `/etc/cron.d/cvmfs_resign` with the following content to do this every Monday at 11:00:
 ```
 0 11 * * 1 root /usr/bin/cvmfs_server resign repo.organization.tld
 ```
@@ -222,6 +224,8 @@ We will discuss them one by one, where we use `repo.organization.tld` as reposit
 This file contains the public key of the repository you want to access.
 
 You can copy this file from your Stratum 0 server, where it is stored under `/etc/cvmfs/keys/`.
+Note that verification of the integrity of the repository content relies on securely distributing this public key to client nodes,
+so in production you should take care to e.g. confirm the fingerprint or checksum of this key.
 
 #### Main repository configuration
 
@@ -243,9 +247,7 @@ CVMFS_KEYS_DIR="/etc/cvmfs/keys/organization.tld"
 ***Replace the ``<STRATUM0_IP>`` part with the IP address of your Stratum 0 server!***
 
 Note that the `CVMFS_SERVER_URL` should include the part `/cvmfs/@fqrn@` exactly like that;
-the last part (`@fqrn@`) will be replaced automatically by the full name of your repository.
-
-
+the last part (`@fqrn@`) substitutes in the fully-qualified repository name when a repository is mounted.
 
 #### Local client configuration
 

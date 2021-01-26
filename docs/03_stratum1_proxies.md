@@ -29,7 +29,7 @@ Scalability and performance can be improved with proxies, which we will discuss 
 A Stratum 1 server has [similar requirements as a Stratum 0 in terms of resources](02_stratum0_client.md#211-requirements).
 
 In addition to port 80 (for the Apache web server), port 8000 also has to be accessible for a Stratum 1
-(for the Squid proxy frontend).
+(for the Squid proxy frontend). 
 
 Furthermore, you need a (free) license key for [Maxmind's Geo API](https://dev.maxmind.com/geoip/geoip2/geolite2/),
 which you can obtain by [signing up for an account](https://www.maxmind.com/en/geolite2/signup/). This is used
@@ -44,7 +44,7 @@ sudo yum install -y epel-release  # not needed on CentOS 8
 sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
 sudo yum install -y cvmfs-server squid
 sudo yum install -y mod_wsgi # on CentOS 7
-# sudo yum install -y python3-mod_wsgi  # on CenOS 8
+# sudo yum install -y python3-mod_wsgi  # on CentOS 8
 ```
 
 This is:
@@ -70,7 +70,8 @@ Squid is mainly used to cache the calls to the Geo API, and it can also be helpf
 We will be setting up a single Squid reverse proxy, but you could even have a load balancer that spreads the load over multiple instances.
 
 The Apache web server will be listening internally on port 8080,
-while the Squid proxy needs to listen (externally) on port 80 and 8000, which are the default Stratum 1 ports.
+while the Squid proxy will be set up to listen (externally) on port 80 and 8000. 
+Port 80 is of course the default HTTP port, and port 8000 is a somewhat de facto standard commonly used for CVMFS stratum 1 servers.
 
 #### Apache configuration
 
@@ -121,10 +122,9 @@ sudo systemctl enable httpd
 sudo systemctl enable squid
 ```
 
-
 ### 3.1.4 DNS cache
 
-As a Stratum 1 server does a lot of DNS lookups, it is recommended to have a local DNS caching server on that same
+As the GeoAPI on a Stratum 1 server does a lot of DNS lookups, it is recommended to have a local DNS caching service on that same
 system.
 
 We will not discuss this topic any further here, but you can use `dnsmasq`, `bind`, or `systemd-resolved`.
@@ -158,7 +158,7 @@ This can be done by copying the `.pub` file(s) from `/etc/cvmfs/keys` on the Str
 #### Create replica
 
 Now we make the replica by giving the URL to the repository on the Stratum 0 server
-(which is always like `http://host:port/cvmfs/repository`, with the `:port` part optional)
+(which is always like `http://host:port/cvmfs/repository`, with the `:port` part optional in this tutorial since the default HTTP port 80 is used)
 and the path to the corresponding public master key:
 
 ```bash
@@ -240,11 +240,11 @@ It is recommended to have at least two proxies, for reliability and load-balanci
 ### 3.2.1 Requirements
 
 Just as with the other components, the Squid proxy server does not need a lot of resources.
-Just a few cores and few gigabytes of memory should be enough. The more disk space you allocate
-for this machine, the larger the cache can be, and the better the performance will be.
+Just a few cores and few gigabytes of memory should be enough, although extra RAM can be used to cache more content.
+Similarly the more disk space you allocate for this machine, the larger the cache can be, and the better the performance will be.
 
 Note that this system will only store a part of the (deduplicated and compressed) repository,
-so it does not need as much storage space as Stratum 0 or Stratum 1 server.
+so it does not need as much storage space as the Stratum 0 or Stratum 1 server.
 
 ### 3.2.2 Installation
 
@@ -289,7 +289,7 @@ maximum_object_size_in_memory 128 KB
 cache_dir ufs /var/spool/squid 5000 16 256
 ```
 
-In this template, there are a two things you must change in the Access Control List (ACL) settings:
+In this template, there are two things you must change in the Access Control List (ACL) settings:
 
 - The line starting with `acl local_nodes` specifies which clients are allowed to use this proxy.
   You can use [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation).
@@ -299,16 +299,17 @@ In this template, there are a two things you must change in the Access Control L
   acl local_nodes src 1.2.3.4
   ```
 
-- You will need to add a line starting with `acl stratum_ones` to specify an ACL for
-  the allowed destination domains.
-  For the sake of this tutorial, we can just "hardcode" this to our Stratum 1 server via `dst` (destination):
+- Add a line starting with `acl stratum_ones` to specify an ACL for
+  the allowed destination domains. 
+  For the sake of this tutorial, we can just hardcode this to our Stratum 1 server via `dst` (destination):
   ```
   acl stratum_ones dst <STRATUM1_IP>
   ```
   (where you need to change `<STRATUM1_IP>` with the IP address of your Stratum 1 server)
 
 The `stratum_ones` ACL you defined is used to specify that the Squid should only cache the Stratum 1 server,
-via the first `http_access deny` line.
+via the first `http_access deny` line. (Although restricting the destination is not strictly required for functionality,
+ this can be beneficial for security to prevent misuse of the proxy server.)
 
 More information about Squid ACLs can be found in the [Squid documentation](http://www.squid-cache.org/Doc/config/acl/).
 
@@ -352,7 +353,7 @@ CVMFS_SERVER_URL="http://<STRATUM1_IP>/cvmfs/@fqrn@"
 
 ***Replace the ``<STRATUM1_IP>`` part with the IP address of your Stratum 1 server!***
 
-When you have more Stratum 1 servers inside the organization, you can make it a semicolon-separated list of servers. The Geo API will make sure that your client always connects to the geographically closest Stratum 1 server.
+When you have more Stratum 1 servers inside the organization, you can make it a semicolon-separated list of servers. The Geo API will make sure that your client always connects to the geographically closest Stratum 1 server (if ``CVMFS_USE_GEOAPI=yes``).
 
 ### 3.3.2 Use the Squid proxy
 
@@ -366,21 +367,19 @@ CVMFS_HTTP_PROXY="http://<PROXY_IP>:3128"
 
 ***Replace the ``<PROXY_IP>`` part with the IP address of your Squid proxy server!***
 
-After changing the local configuration file, make sure the repository is mounted (e.g. by doing an `ls`) and reload the configuration:
+After changing the `default.local` configuration file, if the repository is currently mounted, do `sudo cvmfs_config reload repo.organization.tld`
+to apply the new configuration. If it is not currently mounted, the updated configuration will be automatically used 
+the next time the repository is mounted (you can do `ls /cvmfs/repo.organization.tld` to cause autofs to mount it).
 
-```bash
-ls /cvmfs/repo.organization.tld
-sudo cvmfs_config reload repo.organization.tld
-```
-
-More proxies can be added to `CVMFS_HTTP_PROXY` by separating them with a pipe symbol.
-
-For more (complex) examples, see the [CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#proxy-list-examples).
+More proxies can be added to `CVMFS_HTTP_PROXY` by separating them with a pipe or semicolon symbol.
+See the [CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#proxy-list-examples) for examples.
 
 ### 3.3.3 Test the new configuration
 
-Now you can test your new configuration by checking if you can still access the repository.
-Furthermore, you may want to check if you are really using your Squid proxy. You can do this by running:
+Now you can test your new configuration by checking if you can still access the repository. 
+Do `sudo cvmfs_config chksetup` to again test the configuration, 
+including access to all configured stratum 1 servers through all configured proxy servers.
+Furthermore, to confirm you are really using your Squid proxy (and to see which if there are more than one), you can do:
 ```
 cvmfs_config stat -v repo.organization.tld
 ```
