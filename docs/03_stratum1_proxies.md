@@ -353,7 +353,7 @@ CVMFS_SERVER_URL="http://<STRATUM1_IP>/cvmfs/@fqrn@"
 
 ***Replace the ``<STRATUM1_IP>`` part with the IP address of your Stratum 1 server!***
 
-When you have more Stratum 1 servers inside the organization, you can make it a semicolon-separated list of servers. The Geo API will make sure that your client always connects to the geographically closest Stratum 1 server (if ``CVMFS_USE_GEOAPI=yes``).
+When you have more Stratum 1 servers inside the organization, you can make it a semicolon-separated list of servers. The Geo API will make sure that your client always connects to the geographically closest Stratum 1 server (if `CVMFS_USE_GEOAPI=yes`).
 
 ### 3.3.2 Use the Squid proxy
 
