@@ -1,4 +1,4 @@
-# 2. Stratum 0 + client
+# 2. Stratum 0 and client
 
 In order to get started with CernVM-FS, the first thing you need is a Stratum 0 server.
 
@@ -36,7 +36,7 @@ To change these locations, you can create either of the paths as a symbolic link
 Several (popular) Linux distributions are supported by CernVM-FS,
 see [the Getting Started page of the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-quickstart.html#getting-the-software) for a full list.
 
-In this tutorial we will use CentOS 8 on ``x86_64``, but it should be relatively straightforward to use another OS or CPU architecture instead.
+In this tutorial we will use CentOS 7 on ``x86_64`` (with some pointers for CentOS 8), but it should be relatively straightforward to use another OS or CPU architecture instead.
 
 CernVM-FS supports for hosting the repository contents in S3 compatible storage, but for this tutorial we will focus on storing the files locally
 on the Stratum 0 server.
@@ -50,7 +50,7 @@ Installing CernVM-FS is simple and only requires some packages to be installed.
 You can easily do this by adding the CernVM-FS repository and install the packages through your package manager:
 
 ```bash
-# sudo yum install -y epel-release  # only needed on CentOS 7
+sudo yum install -y epel-release  # not needed on CentOS 8
 sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
 sudo yum install -y cvmfs cvmfs-server
 ```
@@ -200,7 +200,6 @@ The installation is the same as for the Stratum 0, except that you only need the
 (we don't need to CernVM-FS server component on the client):
 
 ```bash
-# sudo yum install -y epel-release  # only needed on CentOS 7
 sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
 sudo yum install -y cvmfs
 ```
@@ -237,11 +236,11 @@ so we are going to connect directly to our Stratum 0 server instead. **You shoul
 A typical, minimal configuration should look as follows:
 
 ```
-CVMFS_SERVER_URL="http://<IP>/cvmfs/@fqrn@"
+CVMFS_SERVER_URL="http://<STRATUM0_IP>/cvmfs/@fqrn@"
 CVMFS_KEYS_DIR="/etc/cvmfs/keys/organization.tld"
 ```
 
-***Replace the ``<IP>`` part with the IP address of your Stratum 0 server!***
+***Replace the ``<STRATUM0_IP>`` part with the IP address of your Stratum 0 server!***
 
 Note that the `CVMFS_SERVER_URL` should include the part `/cvmfs/@fqrn@` exactly like that;
 the last part (`@fqrn@`) will be replaced automatically by the full name of your repository.
@@ -271,14 +270,20 @@ CVMFS_QUOTA_LIMIT=5000
 
 ### 2.2.3 Mounting the repositories
 
-When your client configuration is complete, you can run the following command as root to mount the repository:
+When your client configuration is complete, you can try to set up the client:
 
 ```
 sudo cvmfs_config setup
 ```
 
 This should not return any output or error messages.
-after).
+
+You can then run the following command to checks for common misconfigurations:
+```
+sudo cvmfs_config chksetup
+```
+
+This command should return `OK`.
 
 If you do run into a problem, check out
 [the debugging section on the Advanced topics page](05_advanced.md#debugging-issues).

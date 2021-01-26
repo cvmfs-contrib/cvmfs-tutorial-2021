@@ -45,14 +45,14 @@ or another CPU architecture like Arm 64-bit (`aarch64`).
 
 ## Practical information
 
-This tutorial is being organised during the **[4th EasyBuild User Meeting](https://easybuild.io/eum/) (Jan 25-29 2021)**.
+This tutorial is being organised during the **[6th EasyBuild User Meeting](https://easybuild.io/eum/) (Jan 25-29 2021)**.
 
 More information about the CernVM-FS tutorial sessions is available at [https://easybuild.io/eum/#cvmfs-tutorial](https://easybuild.io/eum/#cvmfs-tutorial).
 
 
 **[Registration](https://easybuild.io/eum/#registration) for this tutorial is required in order to get access to the provided cloud resources!**
 
-<img src="img/microsoft_azure_logo.png" alt="Microsoft Azure logo" width="150px"/></br>
+<img src="img/microsoft_azure_logo.png" alt="Microsoft Azure logo" width="250px"/></br>
 
 Dedicated cloud resources in **[Microsoft Azure](https://azure.microsoft.com)** (sponsored by Microsoft) will be available *only
 to registered tutorial attendees* for working on the hands-on exercises during the the week of Jan 25-29 2021.
@@ -66,18 +66,26 @@ You can use your own resources if you prefer doing so.
 
 - [0. Azure cloud resources](00_azure_cloud_resources.md)
 - [1. Introduction to CernVM-FS](01_introduction.md)
-- [2. Stratum 0 + client](02_stratum0_client.md) ``(*)``
-- [3. Stratum 1 + proxies](03_stratum1_proxies.md) ``(*)``
+- [2. Stratum 0 and client](02_stratum0_client.md) ``(*)``
+- [3. Stratum 1 and proxies](03_stratum1_proxies.md) ``(*)``
 - [4. Publishing](04_publishing.md) ``(*)``
 - [5. Advanced topics](05_advanced.md)
 
 *(sections indicated with* ``(*)`` *involve hands-on exercises)*
+
+## Slides
+
+The (minimal) slides used to guide the tutorial are available [here](eum21-cvmfs-tutorial-slides.pdf).
+
+*Note: these slides are updated daily through the week of Jan 25-29, as the different parts
+of the tutorial are covered.*
 
 ## Contributors
 
 * Jakob Blomer (CERN, Switzerland)
 * Bob Dröge (University of Groningen, The Netherlands)
 * Kenneth Hoste (HPC-UGent, Belgium)
+* Ryan Taylor (ComputeCanada)
 
 ## Additional resources
 
