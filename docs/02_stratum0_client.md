@@ -270,19 +270,20 @@ CVMFS_QUOTA_LIMIT=5000
 
 ### 2.2.3 Mounting the repositories
 
-When your client configuration is complete, you can run the following command to check for common misconfigurations:
-```
-sudo cvmfs_config chksetup
-```
-
-If that returns `OK`, you can run the following command to mount the repository:
+When your client configuration is complete, you can try to set up the client:
 
 ```
 sudo cvmfs_config setup
 ```
 
 This should not return any output or error messages.
-after).
+
+You can then run the following command to checks for common misconfigurations:
+```
+sudo cvmfs_config chksetup
+```
+
+This command should return `OK`.
 
 If you do run into a problem, check out
 [the debugging section on the Advanced topics page](05_advanced.md#debugging-issues).
