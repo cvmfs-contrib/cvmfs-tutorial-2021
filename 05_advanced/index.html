@@ -708,7 +708,8 @@
 <p>As you may have experienced during this tutorial, it takes quite a bit of manual effort to deploy all the different CernVM-FS components, and you can easily make mistakes.
 Therefore, we strongly recommend to automate this in a production setup with a tool like <a href="https://www.ansible.com/">Ansible</a> or <a href="https://puppet.com/">Puppet</a>.</p>
 <p>For Ansible, you could take a look at <a href="https://github.com/EESSI/filesystem-layer">the playbooks of the EESSI project</a>, which use <a href="https://github.com/galaxyproject/ansible-cvmfs">the Ansible role from the Galaxy Project</a> to install and configure both servers and clients.
-Compute Canada also offers <a href="https://git.computecanada.ca/cc-cvmfs-public/ansible-cvmfs-client">an Ansible role</a> to configure CernVM-FS clients.</p>
+Compute Canada also offers <a href="https://git.computecanada.ca/cc-cvmfs-public/ansible-cvmfs-client">an Ansible role</a> to configure CernVM-FS clients,
+and a demo release of <a href="https://github.com/ComputeCanada/ansible-cvmfs-server">an Ansible role for Stratum servers</a>.</p>
 <p>CERN offers <a href="https://github.com/cvmfs/puppet-cvmfs">its own Puppet module</a> that allows you to install and configure CernVM-FS servers and clients.</p>
 <h2 id="52-debugging-issues">5.2 Debugging issues<a class="headerlink" href="#52-debugging-issues" title="Permanent link">&para;</a></h2>
 <p>If you are experiencing issues with your CernVM-FS setup, there are various ways to start debugging.

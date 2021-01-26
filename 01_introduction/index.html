@@ -598,7 +598,7 @@ for optimal performance.</p>
 This includes laptops or personal workstations who need access to the provided software installations,
 but also High-Performance Computing (HPC) clusters, virtual machines running in a cloud environment, etc.</p>
 <p>Clients only have <em>read-only</em> access to the files included in a CernVM-FS repository,
-and are automatically notified when the contents of the filesystem has changed.</p>
+and are automatically notified and updated when the contents of the filesystem have changed.</p>
 <p>The filesystem that is mounted on a client (under <code>/cvmfs</code>) is a virtual filesystem, in the sense that
 <em>data is only (down)loaded when it is actually accessed</em> (and cached aggressively to ensure good performance).</p>
 <p>Mounting a CernVM-FS repository on a client will be covered in the <a href="../02_stratum0_client/">first hands-on part of this tutorial</a>.
