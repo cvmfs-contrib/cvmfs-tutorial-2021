@@ -366,13 +366,14 @@ CVMFS_HTTP_PROXY="http://<PROXY_IP>:3128"
 
 ***Replace the ``<PROXY_IP>`` part with the IP address of your Squid proxy server!***
 
-After changing the local configuration file, make sure to reload the CernVM-FS client configuration:
+After changing the local configuration file, make sure the repository is mounted (e.g. by doing an `ls`) and reload the configuration:
 
 ```bash
+ls /cvmfs/repo.organization.tld
 sudo cvmfs_config reload repo.organization.tld
 ```
 
-More proxies can be added to that list by separating them with a pipe symbol.
+More proxies can be added to `CVMFS_HTTP_PROXY` by separating them with a pipe symbol.
 
 For more (complex) examples, see the [CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#proxy-list-examples).
 
