@@ -51,6 +51,11 @@ So, let's enable some debugging output by adding the following line to your `/et
 ```
 CVMFS_DEBUGLOG=/path/to/cvmfs.log
 ```
+
+!!! warning
+    Make sure that the `cvmfs` user has write permission to the location specified with `CVMFS_DEBUGLOG`.
+    Otherwise you will not only get no log file, but it will also lead to client failures.
+
 Now we unmount the repository, re-run the setup step, and try to probe it again:
 
 ```
@@ -60,6 +65,8 @@ cvmfs_config probe repo.organization.tld
 ```
 
 You can now check your debug log file, and look for any error messages near the bottom of the file; they may reveal more details about the issue.
+
+
 
 
 ### 5.2.2 Debugging connection issues
