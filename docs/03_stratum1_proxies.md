@@ -71,7 +71,7 @@ We will be setting up a single Squid reverse proxy, but you could even have a lo
 
 The Apache web server will be listening internally on port 8080,
 while the Squid proxy will be set up to listen (externally) on port 80 and 8000. 
-Port 80 is of course the default HTTP port, and port 8000 is a somewhat de facto standard commonly used for CVMFS stratum 1 servers.
+Port 80 is the default HTTP port, and port 8000 is a somewhat de facto standard commonly used for CernVM-FS Stratum 1 servers.
 
 #### Apache configuration
 
