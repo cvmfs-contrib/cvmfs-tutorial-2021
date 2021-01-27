@@ -312,7 +312,7 @@ cvmfs_server publish repo.organization.tld
 In the [first hands-on part of this tutorial](02_stratum0_client.md#22-setting-up-a-client) we have manually
 configured our CernVM-FS client.
 
-Although that was not a very complicated, we did have to make sure that different things were
+Although that was not very complicated, we did have to make sure that different things were
 in the right place and properly named in order to successfully mount the repository.
 We had to copy the public key of the repository under `/etc/cvmfs/key/<domain>`,
 and create a configuration file in `/etc/cvmfs/config.d/<reponame>.<domain>.conf`
