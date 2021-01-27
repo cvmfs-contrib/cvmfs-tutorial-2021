@@ -172,12 +172,12 @@ Therefore, use it at your own risk!
 
 ### 5.4.1 Gateway
 
-#### Requirements
+***Requirements***
 
 The gateway system has the same requirements as a standard Stratum 0 server, except that it also needs
 an additional port for the gateway service. This port is configurable, but by default port 4929 is used.
 
-#### Installation
+***Installation***
 
 Perform the installation steps for the Stratum 0, which can be found in an
 [earlier section](02_stratum0_client.md#212-installing-cernvm-fs).
@@ -193,7 +193,7 @@ Then create the repository [just like we did on Stratum 0](02_stratum0_client.md
 sudo cvmfs_server mkfs -o $USER repo.organization.tld
 ```
 
-#### Configuration
+***Configuration***
 
 The gateway requires you to set up a configuration file `/etc/cvmfs/gateway/repo.json`.
 This is a JSON file containing the name of the repository, the keys that can be used by publishers to get
@@ -242,7 +242,7 @@ Finally, there is a second configuration file `/etc/cvmfs/gateway/user.json`.
 This is where you can, for instance, change the port of the gateway service and the maximum length of
 an acquired lease. Assuming you do not have to change the port, you can leave it as it is.
 
-#### Starting the service
+***Starting the service***
 
 To start the gateway service, use:
 
@@ -255,11 +255,11 @@ or you may corrupt the repository. If you do want to open a transaction, stop th
 
 ### 5.4.2 Publisher
 
-#### Requirements
+***Requirements***
 
 There a no special requirements for a publisher system with respect to resources.
 
-#### Installation
+***Installation***
 
 The publisher only needs to have the `cvmfs-server` package installed:
 ```
@@ -267,7 +267,7 @@ sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release
 sudo yum install -y cvmfs-server
 ```
 
-#### Configuration
+***Configuration***
 
 The publisher machine only needs three files with keys:
 
@@ -280,7 +280,7 @@ The latter can be created manually and should just contain the secret that was u
 
 All these files should be placed in some (temporary) directory on the publisher system.
 
-#### Creating the repository
+***Creating the repository***
 
 We can now create the repository available for writing on our publisher machine by running:
 
@@ -294,7 +294,7 @@ Replace `<STRATUM0_IP>` with the IP address (or hostname) of your gateway / Stra
 (and change 4929 in case you changed the gateway port), and `/path/to/keys/dir` by the path where you
 stored the keys in the previous step.
 
-#### Start publishing!
+***Start publishing!***
 
 You should now be able to make changes to the repository by starting a transaction:
 ```bash
@@ -306,3 +306,63 @@ making some changes to the repository at `/cvmfs/repo.organization.tld`, and the
 ```bash
 cvmfs_server publish repo.organization.tld
 ```
+
+## 5.5 Using a configuration repository
+
+In the [first hands-on part of this tutorial](02_stratum0_client.md#22-setting-up-a-client) we have manually
+configured our CernVM-FS client.
+
+Although that was not a very complicated, we did have to make sure that different things were
+in the right place and properly named in order to successfully mount the repository.
+We had to copy the public key of the repository under `/etc/cvmfs/key/<domain>`,
+and create a configuration file in `/etc/cvmfs/config.d/<reponame>.<domain>.conf`
+that specifies the location of the key
+as well as the IP(s) of (eventually) the [Stratum 1 servers](03_stratum1_proxies.md#331-connect-to-the-stratum-1)
+that are available for this repository.
+
+Next to the manual aspect, there is also a **maintenance issue** here: if the list of Stratum 1 servers
+changes, for example if additional servers are added to the network,
+we have know/remember to update our configuration file. Also, if additional repositories are created
+under the same "domain", served by the same Stratum 0 server (via the same Stratum 1 servers),
+we have to take additional action.
+
+CernVM-FS provides an easy way to prevent these issues, by using a so-called
+[*configuration repository*](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#the-config-repository).
+This is a standard CernVM-FS repository which is mounted under `/etc/cvmfs`. It provides the
+public keys and configuration of different CernVM-FS repositories, and it is updated automatically
+when changes are made to it. So there is no more need for manually maintaining or updating for the
+provided software repositories.
+
+One limitation in CernVM-FS is that you can only use *one* configuration repository at a time.
+If you want to mount additional software repositories for which the public key and configuration is
+not included in the configuration repository you are using, you have to statically configure those repositories,
+and maintain those configurations yourself somehow, either manually or by making sure you update
+the package that provides the configuration.
+
+### `cvmfs-contrib`
+
+Several CernVM-FS configuration repositories, which collect the public keys and configuration
+for a couple of major organizations, are available via the [`cvmfs-contrib` GitHub organisation]();
+see the [website](https://cvmfs-contrib.github.io) and [`cvmfs-contrib/config-repo`](https://github.com/cvmfs-contrib/config-repo) GitHub repository.
+
+Easy-to-install packages for different CernVM-FS configuration repositories are available via both a `yum` and `apt` repository.
+
+### EESSI
+
+The [EESSI project](https://www.eessi-hpc.org/) also provides easy-to-install packages for
+its CernVM-FS configuration repository, which are available through the [`EESSI/filesystem-layer`](https://github.com/EESSI/filesystem-layer/releases) GitHub repository.
+
+For example, to install the EESSI CernVM-FS configuration repository on CentOS 7 or 8:
+
+```bash
+sudo yum install -y https://github.com/EESSI/filesystem-layer/releases/download/v0.2.3/cvmfs-config-eessi-0.2.3-1.noarch.rpm
+```
+
+After installing this package, you will have the CernVM-FS configuration repository for EESSI available:
+
+```bash
+$ ls /cvmfs/cvmfs-config.eessi-hpc.org/etc/cvmfs
+contact  default.conf  domain.d  keys
+```
+
+And as a result, you can also access the EESSI pilot software repository at `/cvmfs/pilot.eessi-hpc.org`!
