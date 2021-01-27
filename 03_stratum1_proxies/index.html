@@ -893,6 +893,13 @@ sudo systemctl start squid
 sudo systemctl <span class="nb">enable</span> httpd
 sudo systemctl <span class="nb">enable</span> squid
 </code></pre></div>
+<p>To make sure both the Apache and Squid services are running, you can check with:</p>
+<p><div class="highlight"><pre><span></span><code>sudo systemctl status httpd
+</code></pre></div>
+and
+<div class="highlight"><pre><span></span><code>sudo systemctl status squid
+</code></pre></div></p>
+<p>Look for <code>active (running)</code> (in green) in the output.</p>
 <h3 id="314-dns-cache">3.1.4 DNS cache<a class="headerlink" href="#314-dns-cache" title="Permanent link">&para;</a></h3>
 <p>As the GeoAPI on a Stratum 1 server does a lot of DNS lookups, it is recommended to have a local DNS caching service on that same
 system.</p>
