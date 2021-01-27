@@ -390,12 +390,16 @@ Connection: http://<STRATUM1_IP>/cvmfs/repo.organization.tld through proxy http:
 ```
 Make sure that it lists your proxy here (and not `DIRECT`), and that it is marked as `online`.
 
+If you run into any issues, the [Debugging section on the Advanced topics page](05_advanced.md#debugging-issues) may provide some
+useful information for finding the cause.
+
 ## Exercise
 
 1) Set up a Stratum 1 server. Make sure that it includes:
-- a proper Geo API license key (if you do not want to request an account, you can use the described method to bypass this, but again: do not do this in production!);
-- cron job for automatically synchronizing the database;
-- properly configured Apache and Squid services;
+
+ - a proper Geo API license key (if you do not want to request an account, you can use the described method to bypass this, but again: do not do this in production!);
+ - cron job for automatically synchronizing the repository (e.g. once every 10 minutes);
+ - properly configured Apache and Squid services;
 
 2) Set up a separate Squid proxy. Though it is recommended to at least have two in production, one is enough for now.
 
