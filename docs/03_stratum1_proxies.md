@@ -204,6 +204,8 @@ sudo cvmfs_server snapshot repo.organization.tld
 ```
 As there is not much in the repository yet, this should complete within a few seconds.
 
+Note that we need to use `sudo` here because the snapshot needs to make changes related to using the GeoIP database.
+
 The output should end with something like:
 
 ```
