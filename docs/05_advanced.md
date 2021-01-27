@@ -56,11 +56,10 @@ CVMFS_DEBUGLOG=/path/to/cvmfs.log
     Make sure that the `cvmfs` user has write permission to the location specified with `CVMFS_DEBUGLOG`.
     Otherwise you will not only get no log file, but it will also lead to client failures.
 
-Now we unmount the repository, re-run the setup step, and try to probe it again:
+Now we unmount the repository and try to probe it again, so that the configuration gets reloaded and the debug log gets created:
 
 ```
 sudo cvmfs_config umount
-sudo cvmfs_config setup
 cvmfs_config probe repo.organization.tld
 ```
 
@@ -104,7 +103,7 @@ These commands should return `HTTP/1.1 200 OK`. If the first command returns som
 
 Besides the client log file that we already explained, there are some other log files that you can inspect on the different servers.
 
-On the Stratum 0, the main log files are the Apache access and error files, which you can find (on CentOS) in `/var/log/apache2`.
+On the Stratum 0, the main log files are the Apache access and error files, which you can find (on CentOS) in `/var/log/httpd`.
 
 The Stratum 1 has several services, and, hence, several log files that can be of interest: just like on the Stratum 0, there are the Apache log files.
 Besides those, also Squid has access and cache log files, which can be found in `/var/log/squid`.
