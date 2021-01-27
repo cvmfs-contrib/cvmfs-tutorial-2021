@@ -326,7 +326,7 @@ we have know/remember to update our configuration file.
 
 CernVM-FS provides an easy way to prevent these issues, by using a so-called
 [*configuration repository*](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#the-config-repository).
-This is a standard CernVM-FS repository which is mounted under `/etc/cvmfs`. It provides the
+This is a standard CernVM-FS repository which is mounted under `/cvmfs`, and contains an `etc/cvmfs` subdirectory with the same structure as the regular `/etc/cvmfs`. It provides the
 public keys and configuration of different CernVM-FS repositories, and it is updated automatically
 when changes are made to it. So there is no more need for manually maintaining or updating for the
 provided software repositories.
