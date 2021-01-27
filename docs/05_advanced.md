@@ -322,9 +322,7 @@ that are available for this repository.
 
 Next to the manual aspect, there is also a **maintenance issue** here: if the list of Stratum 1 servers
 changes, for example if additional servers are added to the network,
-we have know/remember to update our configuration file. Also, if additional repositories are created
-under the same "domain", served by the same Stratum 0 server (via the same Stratum 1 servers),
-we have to take additional action.
+we have know/remember to update our configuration file.
 
 CernVM-FS provides an easy way to prevent these issues, by using a so-called
 [*configuration repository*](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#the-config-repository).
