@@ -1071,11 +1071,15 @@ Furthermore, to confirm you are really using your Squid proxy (and to see which 
 <div class="highlight"><pre><span></span><code>Connection: http://&lt;STRATUM1_IP&gt;/cvmfs/repo.organization.tld through proxy http://&lt;PROXY_IP&gt;:3128 (online)
 </code></pre></div>
 Make sure that it lists your proxy here (and not <code>DIRECT</code>), and that it is marked as <code>online</code>.</p>
+<p>If you run into any issues, the <a href="../05_advanced/#debugging-issues">Debugging section on the Advanced topics page</a> may provide some
+useful information for finding the cause.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
-<p>1) Set up a Stratum 1 server. Make sure that it includes:
-- a proper Geo API license key (if you do not want to request an account, you can use the described method to bypass this, but again: do not do this in production!);
-- cron job for automatically synchronizing the database;
-- properly configured Apache and Squid services;</p>
+<p>1) Set up a Stratum 1 server. Make sure that it includes:</p>
+<ul>
+<li>a proper Geo API license key (if you do not want to request an account, you can use the described method to bypass this, but again: do not do this in production!);</li>
+<li>cron job for automatically synchronizing the repository (e.g. once every 10 minutes);</li>
+<li>properly configured Apache and Squid services;</li>
+</ul>
 <p>2) Set up a separate Squid proxy. Though it is recommended to at least have two in production, one is enough for now.</p>
 <p>3) Reconfigure the client that you set up in the previous section and make sure that it uses your Stratum 1 and Squid proxy.</p>
                 
@@ -1086,7 +1090,7 @@ Make sure that it lists your proxy here (and not <code>DIRECT</code>), and that 
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 26, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 27, 2021</span>
     
   </small>
 </div>
