@@ -741,9 +741,8 @@ Probing /cvmfs/repo.organization.tld... OK
 <p>Make sure that the <code>cvmfs</code> user has write permission to the location specified with <code>CVMFS_DEBUGLOG</code>.
 Otherwise you will not only get no log file, but it will also lead to client failures.</p>
 </div>
-<p>Now we unmount the repository, re-run the setup step, and try to probe it again:</p>
+<p>Now we unmount the repository and try to probe it again, so that the configuration gets reloaded and the debug log gets created:</p>
 <div class="highlight"><pre><span></span><code>sudo cvmfs_config umount
-sudo cvmfs_config setup
 cvmfs_config probe repo.organization.tld
 </code></pre></div>
 <p>You can now check your debug log file, and look for any error messages near the bottom of the file; they may reveal more details about the issue.</p>
@@ -767,7 +766,7 @@ curl --proxy http://&lt;PROXY_IP&gt;:3128 --head http://url-to-your-stratum1/cvm
 <p>These commands should return <code>HTTP/1.1 200 OK</code>. If the first command returns something else, you should inspect your CernVM-FS, Apache, and Squid configuration (and log) files on the Stratum 1 server. If the first <code>curl</code> command does work, but the second does not, there is something wrong with your Squid proxy; make sure that it is running, configured, and able to access your Stratum 1 server.</p>
 <h3 id="523-checking-the-logs-of-cernvm-fs-services">5.2.3 Checking the logs of CernVM-FS services<a class="headerlink" href="#523-checking-the-logs-of-cernvm-fs-services" title="Permanent link">&para;</a></h3>
 <p>Besides the client log file that we already explained, there are some other log files that you can inspect on the different servers.</p>
-<p>On the Stratum 0, the main log files are the Apache access and error files, which you can find (on CentOS) in <code>/var/log/apache2</code>.</p>
+<p>On the Stratum 0, the main log files are the Apache access and error files, which you can find (on CentOS) in <code>/var/log/httpd</code>.</p>
 <p>The Stratum 1 has several services, and, hence, several log files that can be of interest: just like on the Stratum 0, there are the Apache log files.
 Besides those, also Squid has access and cache log files, which can be found in <code>/var/log/squid</code>.
 The <code>cvmfs_server snapshot</code> commands will log to <code>/var/log/cvmfs/snapshots.log</code>.</p>
@@ -913,7 +912,7 @@ stored the keys in the previous step.</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 26, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 27, 2021</span>
     
   </small>
 </div>
