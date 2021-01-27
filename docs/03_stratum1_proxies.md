@@ -394,7 +394,7 @@ Now you can test your new configuration by checking if you can still access the 
 Do `sudo cvmfs_config chksetup` to again test the configuration, 
 including access to all configured Stratum 1 servers through all configured proxy servers.
 Furthermore, to confirm you are really using your Squid proxy (and to see which if there are more than one),
-mount your repository (e.g. by doing an `ls`) and then run:
+make sure your repository is mounted (e.g. by doing an `ls`) and then run:
 ```
 cvmfs_config stat -v repo.organization.tld
 ```
