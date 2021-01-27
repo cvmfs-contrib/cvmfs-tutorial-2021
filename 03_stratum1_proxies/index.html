@@ -949,6 +949,7 @@ You can do this by running the following command:</p>
 <p><div class="highlight"><pre><span></span><code>sudo cvmfs_server snapshot repo.organization.tld
 </code></pre></div>
 As there is not much in the repository yet, this should complete within a few seconds.</p>
+<p>Note that we need to use <code>sudo</code> here because the snapshot needs to make changes related to using the GeoIP database.</p>
 <p>The output should end with something like:</p>
 <div class="highlight"><pre><span></span><code>Serving revision 2
 Fetched 2 new chunks out of 3 processed chunks
@@ -1071,7 +1072,8 @@ See the <a href="https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#proxy
 <p>Now you can test your new configuration by checking if you can still access the repository. 
 Do <code>sudo cvmfs_config chksetup</code> to again test the configuration, 
 including access to all configured Stratum 1 servers through all configured proxy servers.
-Furthermore, to confirm you are really using your Squid proxy (and to see which if there are more than one), you can do:
+Furthermore, to confirm you are really using your Squid proxy (and to see which if there are more than one),
+make sure your repository is mounted (e.g. by doing an <code>ls</code>) and then run:
 <div class="highlight"><pre><span></span><code>cvmfs_config stat -v repo.organization.tld
 </code></pre></div></p>
 <p>This should show a line that looks like:
