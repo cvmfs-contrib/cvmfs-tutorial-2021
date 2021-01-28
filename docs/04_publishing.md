@@ -42,7 +42,7 @@ to your Stratum 0.
 Instead of manually starting a transaction, extracting the tarball and then publishing it,
 the `cvmfs_server` command offers a more efficient method for directly publishing the contents of a tarball:
 ```bash
-cvmfs_server ingest -b some/path repo.organization.tld -t mytarball.tar
+cvmfs_server ingest -t mytarball.tar -b some/path repo.organization.tld
 ```
 The `-b` option expects the relative location (**without leading slash!**) in your repository where the contents of the tarball,
 specified with `-t`, should be extracted.
