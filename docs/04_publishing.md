@@ -33,6 +33,11 @@ cvmfs_server abort repo.organization.tld
 
 After publishing or aborting a transaction, your repository will again be read-only.
 
+!!! note
+Changes that you have made to the repository will not show up on the client instantly.
+The changes first have to be synchronized to your Stratum 1 server(s). How long this takes, depends on how much has changed, and when your `snapshot` cron job runs.
+Furthermore, client will only regularly look for changes. By default, this is set to 4 minutes with the server parameter `CVMFS_REPOSITORY_TTL`.
+
 ### 4.1.1 Ingesting tarballs
 
 When you need to compile software that you want to add to your repository, you may want to do the actual
