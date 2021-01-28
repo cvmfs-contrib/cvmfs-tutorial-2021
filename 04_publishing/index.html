@@ -559,7 +559,7 @@ Please split it into nested catalogs or increase the limit.
 <h3 id="431-cvmfscatalog-files">4.3.1 <code>.cvmfscatalog</code> files<a class="headerlink" href="#431-cvmfscatalog-files" title="Permanent link">&para;</a></h3>
 <p>By adding an (empty, hidden) file named <code>.cvmfscatalog</code> into a directory of your repository, each following publish operation will automatically generate a nested catalog for the entire subtree in that directory. You can put these files at as many levels as you like, but do keep the recommendations mentioned above w.r.t. file and directory count in mind.</p>
 <h3 id="432-cvmfsdirtab-file">4.3.2 <code>.cvmfsdirtab</code> file<a class="headerlink" href="#432-cvmfsdirtab-file" title="Permanent link">&para;</a></h3>
-<p>Instead of creating <code>.cvmfscatalog</code> files, you can also add a (hidden) file named <code>.cvmfsdirtab</code> to the root of your repository. In this file you can specify a list of relative directory paths (they all start from the root of your repository) that should get a nested catalog. You can also use wildcards to specify patterns and automatically include future contents, and use exclamation marks to exclude paths from a nested catalog.</p>
+<p>Instead of creating <code>.cvmfscatalog</code> files, you can also add a (hidden) file named <code>.cvmfsdirtab</code> to the root of your repository. In this file you can specify a list of relative directory paths (they all start from the root of your repository) that should get a nested catalog. You can also use wildcards (both <code>*</code> and <code>?</code>) to specify patterns and automatically include future contents, and use exclamation marks to exclude paths from a nested catalog.</p>
 <p>As an example, assume you have a typical HPC software module tree in your repository with the following
 structure (relative to the root of the repository):
 <div class="highlight"><pre><span></span><code>software
@@ -591,6 +591,11 @@ modules
 <p>One final note: if you use a <code>.cvmfsdirtab</code> file, a tarball ingestion using the <code>cvmfs_server ingest</code> command
 <a href="https://sft.its.cern.ch/jira/browse/CVM-1968">will currently (in CernVM-FS 2.8.0) not automatically create the nested catalogs</a>.
 You will need to do another (empty) transaction right after the ingestion to trigger the creation of the nested catalogs.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you change <code>.cvmfsdirtab</code> later on and exclude certain paths from the structure, either directly or indirectly,  previously generated <code>.cvmfscatalog</code> files will not be automatically removed.
+You have to remove those manually in order to really get rid of these nested catalogs.</p>
+</div>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>We have prepared a tarball that contains a collection of dummy installations of
 (fictional) software applications: <a href="https://raw.githubusercontent.com/cvmfs-contrib/cvmfs-tutorial-2021/master/cvmfs-tutorial-ingest-example-720k-files.tar.gz"><code>cvmfs-tutorial-ingest-example-720k-files.tar.gz</code></a>.</p>
