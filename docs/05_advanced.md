@@ -320,7 +320,7 @@ and add the right configuration files and public keys for the repositories.
 Furthermore, you need two make two directories on the host system that will store the CernVM-FS cache and sockets;
 these need to be made available via a bind mount inside the container at `/var/lib/cvmfs` and `/var/run/cvmfs`, respectively.
 
-As an example, you can run the [EESSI pilot client container](https://eessi.github.io/docs/pilot/#accessing-the-eessi-pilot-repository-through-singularity) using Singularity by doing:
+As an example, you can run the [EESSI pilot client container](https://eessi.github.io/docs/pilot/#accessing-the-eessi-pilot-repository-through-singularity) (which was built using [this Dockerfile](https://github.com/EESSI/filesystem-layer/blob/master/containers/Dockerfile.EESSI-client-pilot-centos7-x86_64)) using Singularity by doing:
 ```
 mkdir -p /tmp/$USER/{var-lib-cvmfs,var-run-cvmfs}
 export SINGULARITY_BIND="/tmp/$USER/var-run-cvmfs:/var/run/cvmfs,/tmp/$USER/var-lib-cvmfs:/var/lib/cvmfs"
