@@ -512,7 +512,7 @@ compilation on a different system than your Stratum 0, and copy the resulting in
 to your Stratum 0.</p>
 <p>Instead of manually starting a transaction, extracting the tarball and then publishing it,
 the <code>cvmfs_server</code> command offers a more efficient method for directly publishing the contents of a tarball:
-<div class="highlight"><pre><span></span><code>cvmfs_server ingest -b some/path repo.organization.tld -t mytarball.tar
+<div class="highlight"><pre><span></span><code>cvmfs_server ingest -t mytarball.tar -b some/path repo.organization.tld
 </code></pre></div>
 The <code>-b</code> option expects the relative location (<strong>without leading slash!</strong>) in your repository where the contents of the tarball,
 specified with <code>-t</code>, should be extracted.</p>
@@ -682,7 +682,7 @@ intel
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 22, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 28, 2021</span>
     
   </small>
 </div>
