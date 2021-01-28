@@ -506,6 +506,12 @@ repository (otherwise you will get an error), and publish your changes using:
 <div class="highlight"><pre><span></span><code>cvmfs_server abort repo.organization.tld
 </code></pre></div></p>
 <p>After publishing or aborting a transaction, your repository will again be read-only.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>Changes that you have made to the repository will not show up on the client instantly.
+The changes first have to be synchronized to your Stratum 1 server(s). How long this takes, depends on how much has changed, and when your <code>snapshot</code> cron job runs.
+Furthermore, client will only regularly look for changes. By default, this is set to 4 minutes with the server parameter <code>CVMFS_REPOSITORY_TTL</code>.</p>
 <h3 id="411-ingesting-tarballs">4.1.1 Ingesting tarballs<a class="headerlink" href="#411-ingesting-tarballs" title="Permanent link">&para;</a></h3>
 <p>When you need to compile software that you want to add to your repository, you may want to do the actual
 compilation on a different system than your Stratum 0, and copy the resulting installation as a tarball
