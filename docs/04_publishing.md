@@ -105,7 +105,7 @@ By adding an (empty, hidden) file named `.cvmfscatalog` into a directory of your
 
 ### 4.3.2 `.cvmfsdirtab` file
 
-Instead of creating `.cvmfscatalog` files, you can also add a (hidden) file named `.cvmfsdirtab` to the root of your repository. In this file you can specify a list of relative directory paths (they all start from the root of your repository) that should get a nested catalog. You can also use wildcards to specify patterns and automatically include future contents, and use exclamation marks to exclude paths from a nested catalog.
+Instead of creating `.cvmfscatalog` files, you can also add a (hidden) file named `.cvmfsdirtab` to the root of your repository. In this file you can specify a list of relative directory paths (they all start from the root of your repository) that should get a nested catalog. You can also use wildcards (both `*` and `?`) to specify patterns and automatically include future contents, and use exclamation marks to exclude paths from a nested catalog.
 
 As an example, assume you have a typical HPC software module tree in your repository with the following
 structure (relative to the root of the repository):
@@ -145,6 +145,9 @@ One final note: if you use a `.cvmfsdirtab` file, a tarball ingestion using the 
 [will currently (in CernVM-FS 2.8.0) not automatically create the nested catalogs](https://sft.its.cern.ch/jira/browse/CVM-1968).
 You will need to do another (empty) transaction right after the ingestion to trigger the creation of the nested catalogs.
 
+!!! warning
+    If you change `.cvmfsdirtab` later on and exclude certain paths from the structure, either directly or indirectly,  previously generated `.cvmfscatalog` files will not be automatically removed.
+    You have to remove those manually in order to really get rid of these nested catalogs.
 
 ## Exercise
 
