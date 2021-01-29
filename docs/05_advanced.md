@@ -340,7 +340,7 @@ either in a user's own file space or even under `/cvmfs`.
 An advantage of this method is that the cache can be shared by several processes running on the same machines, even if you bind the mountpoint into multiple container instances.
 
 !!! note
-This currently only works on RHEL 6/7/8 and its derivatives, and SUSE 15 and its derivatives.
+    This currently only works on RHEL 6/7/8 and its derivatives, and SUSE 15 and its derivatives.
 
 Besides the `cvmfsexec` script itself, there is also a `singcvmfs` script that can be used to easily launch Singularity containers with a CernVM-FS mount;
 this also uses the aforementiond `--fusemount` flag.
