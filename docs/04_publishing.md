@@ -59,7 +59,7 @@ in CernVM-FS versions prior to 2.8.0 (see [here](https://github.com/cvmfs/cvmfs/
 In case you have a compressed tarball, you can use an appropriate decompression tool and write the output to `stdout`.
 This output can then be piped to `cvmfs_server` command while passing '`-`' to the `-t` option. For example, for a `.tar.gz` file:
 ```bash
-gunzip -c mytarball.tar.gz | cvmfs_server ingest -b some/path -t -
+gunzip -c mytarball.tar.gz | cvmfs_server ingest -t - -b some/path repo.organization.tld
 ```
 
 
