@@ -278,7 +278,11 @@ The publisher machine only needs three files with keys:
  - the gateway API key stored in a file named `repo.organization.tld.gw`.
 
 The first two files can be taken from `/etc/cvmfs/keys` on your Stratum 0 server.
-The latter can be created manually and should just contain the secret that was used in the gateway configuration.
+The latter can be created manually and should just contain the following:
+```
+plain_text <KEY_ID> <SECRET>
+```
+Make sure that `<KEY_ID>` and `<SECRET>` correspond to the values you have entered in the gateway configuration.
 
 All these files should be placed in some (temporary) directory on the publisher system.
 
@@ -303,7 +307,12 @@ You should now be able to make changes to the repository by starting a transacti
 cvmfs_server transaction repo.organization.tld
 ```
 
-making some changes to the repository at `/cvmfs/repo.organization.tld`, and then publishing the changes:
+You can also request a lock on only a subtree of the repository, so that others can still change other parts of the repository:
+```bash
+cvmfs_server transaction repo.organization.tld /some/subdir
+```
+
+When you are done, publish the changes:
 
 ```bash
 cvmfs_server publish repo.organization.tld
