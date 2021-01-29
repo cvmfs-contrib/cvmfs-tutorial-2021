@@ -342,7 +342,7 @@ An advantage of this method is that the cache can be shared by several processes
 !!! note
 This currently only works on RHEL 6/7/8 and its derivatives, and SUSE 15 and its derivatives.
 
-Besides `cvmfsexec` itself, the project also offers a `singcvmfs` script that can be used to easily launch Singularity containers with a CernVM-FS mount;
+Besides the `cvmfsexec` script itself, there is also a `singcvmfs` script that can be used to easily launch Singularity containers with a CernVM-FS mount;
 this also uses the aforementiond `--fusemount` flag.
 More information about this script can be found on the [README page of the GitHub repository](https://github.com/cvmfs/cvmfsexec#singcvmfs-command).
 
