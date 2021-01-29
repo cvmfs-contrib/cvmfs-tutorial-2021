@@ -307,7 +307,7 @@ You should now be able to make changes to the repository by starting a transacti
 cvmfs_server transaction repo.organization.tld
 ```
 
-You can also request a lock on only a subtree of the repository, so that others can still change other parts of the repository:
+You can also request a lock on only a subtree of the repository, so that other publishers can still change different parts of the repository:
 ```bash
 cvmfs_server transaction repo.organization.tld /some/subdir
 ```
