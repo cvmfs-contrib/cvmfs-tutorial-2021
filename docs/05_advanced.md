@@ -309,7 +309,7 @@ cvmfs_server transaction repo.organization.tld
 
 You can also request a lock on only a subtree of the repository, so that other publishers can still change different parts of the repository:
 ```bash
-cvmfs_server transaction repo.organization.tld /some/subdir
+cvmfs_server transaction repo.organization.tld/some/subdir
 ```
 
 When you are done, publish the changes:
