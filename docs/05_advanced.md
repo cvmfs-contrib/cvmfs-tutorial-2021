@@ -17,10 +17,10 @@ If you are experiencing issues with your CernVM-FS setup, there are various ways
 Most issues are caused by wrongly configured clients (either a configuration issue, or a wrong public key)
 and connection or firewall issues.
 
-### 5.2.1 Debugging with `cvmfs_config`
+### 5.2.1 Debugging with `cvmfs_config` on the client machine
 
 In order to find the cause of the issue, you should first find out *where* the issue is being caused.
-You can start by checking the client configuration:
+You can start by checking the configuration on your client machine by running:
 
 ```bash
 sudo cvmfs_config chksetup
@@ -47,7 +47,7 @@ Probing /cvmfs/repo.organization.tld... OK
 
 However, since you are debugging a problem, it probably returns an error...
 
-So, let's enable some debugging output by adding the following line to your `/etc/cvmfs/default.local`:
+So, let's enable some debugging output by adding the following line to your client's `/etc/cvmfs/default.local`:
 ```
 CVMFS_DEBUGLOG=/path/to/cvmfs.log
 ```
@@ -74,7 +74,7 @@ If the problem turns out to be some kind of connection issue, you can trace it d
 by manually checking the connections from your client to the proxy and/or Stratum 1 server.
 
 First, let's rule out that it is some kind of firewall issue by verifying that you can actually
-connect to the appropriate ports on those servers:
+connect from your client to the appropriate ports on those servers:
 
 ```bash
 telnet <PROXY_IP> 3128
@@ -83,8 +83,8 @@ telnet <STRATUM1_IP> 80
 
 If this does work, probably something is wrong with the services running on these machines.
 
-Every CernVM-FS repository has a file named `.cvmfspublished`, and you can try to fetch it manually
-using `curl`, both directly from the Stratum 1 and via your proxy:
+Every CernVM-FS repository has a file named `.cvmfspublished`, and you can use `curl` on your client 
+to fetch it manually, both directly from the Stratum 1 and via your proxy:
 
 ```bash
 # Without your own proxy, so directly to the Stratum 1:
