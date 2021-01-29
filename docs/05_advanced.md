@@ -249,8 +249,10 @@ To start the gateway service, use:
 systemctl start cvmfs-gateway
 ```
 
-Note that once this service is running you should *not* open transactions on this Stratum 0 server anymore,
-or you may corrupt the repository. If you do want to open a transaction, stop the gateway service first!
+!!! warning
+    If you do run the gateway service on a different machine than the Stratum 0,
+    make sure to *not* open transactions on your Stratum 0 server anymore, unless you stop the gateway service first. 
+    Otherwise, you may corrupt the repository.
 
 ### 5.4.2 Publisher
 
