@@ -229,7 +229,7 @@ It should look like this:
             "type" : "plain_text",
             "id" : "keyid2",
             "secret" : "SOME_OTHER_SECRET"
-        },
+        }
     ]
 }
 ```
