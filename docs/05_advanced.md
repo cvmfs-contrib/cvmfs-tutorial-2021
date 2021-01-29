@@ -262,10 +262,11 @@ There a no special requirements for a publisher system with respect to resources
 
 ***Installation***
 
-The publisher only needs to have the `cvmfs-server` package installed:
+The publisher needs to have the `cvmfs` and `cvmfs-server` packages installed:
 ```
+sudo yum install -y epel-release  # not needed on CentOS 8
 sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
-sudo yum install -y cvmfs-server
+sudo yum install -y cvmfs-server cvmfs
 ```
 
 ***Configuration***
