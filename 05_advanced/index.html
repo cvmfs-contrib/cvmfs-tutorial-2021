@@ -330,8 +330,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#521-debugging-with-cvmfs_config" class="md-nav__link">
-    5.2.1 Debugging with cvmfs_config
+  <a href="#521-debugging-with-cvmfs_config-on-the-client-machine" class="md-nav__link">
+    5.2.1 Debugging with cvmfs_config on the client machine
   </a>
   
 </li>
@@ -511,8 +511,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#521-debugging-with-cvmfs_config" class="md-nav__link">
-    5.2.1 Debugging with cvmfs_config
+  <a href="#521-debugging-with-cvmfs_config-on-the-client-machine" class="md-nav__link">
+    5.2.1 Debugging with cvmfs_config on the client machine
   </a>
   
 </li>
@@ -673,9 +673,9 @@ and a demo release of <a href="https://github.com/ComputeCanada/ansible-cvmfs-se
 <p>If you are experiencing issues with your CernVM-FS setup, there are various ways to start debugging.
 Most issues are caused by wrongly configured clients (either a configuration issue, or a wrong public key)
 and connection or firewall issues.</p>
-<h3 id="521-debugging-with-cvmfs_config">5.2.1 Debugging with <code>cvmfs_config</code><a class="headerlink" href="#521-debugging-with-cvmfs_config" title="Permanent link">&para;</a></h3>
+<h3 id="521-debugging-with-cvmfs_config-on-the-client-machine">5.2.1 Debugging with <code>cvmfs_config</code> on the client machine<a class="headerlink" href="#521-debugging-with-cvmfs_config-on-the-client-machine" title="Permanent link">&para;</a></h3>
 <p>In order to find the cause of the issue, you should first find out <em>where</em> the issue is being caused.
-You can start by checking the client configuration:</p>
+You can start by checking the configuration on your client machine by running:</p>
 <div class="highlight"><pre><span></span><code>sudo cvmfs_config chksetup
 </code></pre></div>
 <p>This should print <code>OK</code>.</p>
@@ -691,7 +691,7 @@ you can dump the effective configuration for your repository:</p>
 Probing /cvmfs/repo.organization.tld... OK
 </code></pre></div></p>
 <p>However, since you are debugging a problem, it probably returns an error...</p>
-<p>So, let's enable some debugging output by adding the following line to your <code>/etc/cvmfs/default.local</code>:
+<p>So, let's enable some debugging output by adding the following line to your client's <code>/etc/cvmfs/default.local</code>:
 <div class="highlight"><pre><span></span><code>CVMFS_DEBUGLOG=/path/to/cvmfs.log
 </code></pre></div></p>
 <div class="admonition warning">
@@ -708,13 +708,13 @@ cvmfs_config probe repo.organization.tld
 <p>If the problem turns out to be some kind of connection issue, you can trace it down further
 by manually checking the connections from your client to the proxy and/or Stratum 1 server.</p>
 <p>First, let's rule out that it is some kind of firewall issue by verifying that you can actually
-connect to the appropriate ports on those servers:</p>
+connect from your client to the appropriate ports on those servers:</p>
 <div class="highlight"><pre><span></span><code>telnet &lt;PROXY_IP&gt; <span class="m">3128</span>
 telnet &lt;STRATUM1_IP&gt; <span class="m">80</span>
 </code></pre></div>
 <p>If this does work, probably something is wrong with the services running on these machines.</p>
-<p>Every CernVM-FS repository has a file named <code>.cvmfspublished</code>, and you can try to fetch it manually
-using <code>curl</code>, both directly from the Stratum 1 and via your proxy:</p>
+<p>Every CernVM-FS repository has a file named <code>.cvmfspublished</code>, and you can use <code>curl</code> on your client 
+to fetch it manually, both directly from the Stratum 1 and via your proxy:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Without your own proxy, so directly to the Stratum 1:</span>
 curl --head http://&lt;STRATUM1_IP&gt;/cvmfs/repo.organization.tld/.cvmfspublished
 </code></pre></div>
@@ -825,15 +825,20 @@ an acquired lease. Assuming you do not have to change the port, you can leave it
 <p>To start the gateway service, use:</p>
 <div class="highlight"><pre><span></span><code>systemctl start cvmfs-gateway
 </code></pre></div>
-<p>Note that once this service is running you should <em>not</em> open transactions on this Stratum 0 server anymore,
-or you may corrupt the repository. If you do want to open a transaction, stop the gateway service first!</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you do run the gateway service on a different machine than the Stratum 0,
+make sure to <em>not</em> open transactions on your Stratum 0 server anymore, unless you stop the gateway service first. 
+Otherwise, you may corrupt the repository.</p>
+</div>
 <h3 id="542-publisher">5.4.2 Publisher<a class="headerlink" href="#542-publisher" title="Permanent link">&para;</a></h3>
 <p><strong><em>Requirements</em></strong></p>
 <p>There a no special requirements for a publisher system with respect to resources.</p>
 <p><strong><em>Installation</em></strong></p>
-<p>The publisher only needs to have the <code>cvmfs-server</code> package installed:
-<div class="highlight"><pre><span></span><code>sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
-sudo yum install -y cvmfs-server
+<p>The publisher needs to have the <code>cvmfs</code> and <code>cvmfs-server</code> packages installed:
+<div class="highlight"><pre><span></span><code>sudo yum install -y epel-release  # not needed on CentOS 8
+sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
+sudo yum install -y cvmfs-server cvmfs
 </code></pre></div></p>
 <p><strong><em>Configuration</em></strong></p>
 <p>The publisher machine only needs three files with keys:</p>
@@ -843,7 +848,10 @@ sudo yum install -y cvmfs-server
 <li>the gateway API key stored in a file named <code>repo.organization.tld.gw</code>.</li>
 </ul>
 <p>The first two files can be taken from <code>/etc/cvmfs/keys</code> on your Stratum 0 server.
-The latter can be created manually and should just contain the secret that was used in the gateway configuration.</p>
+The latter can be created manually and should just contain the following:
+<div class="highlight"><pre><span></span><code>plain_text &lt;KEY_ID&gt; &lt;SECRET&gt;
+</code></pre></div>
+Make sure that <code>&lt;KEY_ID&gt;</code> and <code>&lt;SECRET&gt;</code> correspond to the values you have entered in the gateway configuration.</p>
 <p>All these files should be placed in some (temporary) directory on the publisher system.</p>
 <p><strong><em>Creating the repository</em></strong></p>
 <p>We can now create the repository available for writing on our publisher machine by running:</p>
@@ -859,7 +867,10 @@ stored the keys in the previous step.</p>
 <p>You should now be able to make changes to the repository by starting a transaction:
 <div class="highlight"><pre><span></span><code>cvmfs_server transaction repo.organization.tld
 </code></pre></div></p>
-<p>making some changes to the repository at <code>/cvmfs/repo.organization.tld</code>, and then publishing the changes:</p>
+<p>You can also request a lock on only a subtree of the repository, so that other publishers can still change different parts of the repository:
+<div class="highlight"><pre><span></span><code>cvmfs_server transaction repo.organization.tld/some/subdir
+</code></pre></div></p>
+<p>When you are done, publish the changes:</p>
 <div class="highlight"><pre><span></span><code>cvmfs_server publish repo.organization.tld
 </code></pre></div>
 <h2 id="55-mounting-cernvm-fs-repositories-as-an-unprivileged-user">5.5 Mounting CernVM-FS repositories as an unprivileged user<a class="headerlink" href="#55-mounting-cernvm-fs-repositories-as-an-unprivileged-user" title="Permanent link">&para;</a></h2>
