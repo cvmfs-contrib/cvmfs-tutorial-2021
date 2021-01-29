@@ -527,7 +527,7 @@ Note that passing '<code>/</code>' to the <code>-b</code> option does not work
 in CernVM-FS versions prior to 2.8.0 (see <a href="https://github.com/cvmfs/cvmfs/pull/2581">here</a>).</p>
 <p>In case you have a compressed tarball, you can use an appropriate decompression tool and write the output to <code>stdout</code>.
 This output can then be piped to <code>cvmfs_server</code> command while passing '<code>-</code>' to the <code>-t</code> option. For example, for a <code>.tar.gz</code> file:
-<div class="highlight"><pre><span></span><code>gunzip -c mytarball.tar.gz <span class="p">|</span> cvmfs_server ingest -b some/path -t -
+<div class="highlight"><pre><span></span><code>gunzip -c mytarball.tar.gz <span class="p">|</span> cvmfs_server ingest -t - -b some/path repo.organization.tld
 </code></pre></div></p>
 <h2 id="42-tags">4.2 Tags<a class="headerlink" href="#42-tags" title="Permanent link">&para;</a></h2>
 <p>By default, a newly published version of the repository will automatically get a <strong>tag</strong> with a timestamp in its name. This allows you to revert back to earlier versions.
@@ -693,7 +693,7 @@ intel
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 28, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 29, 2021</span>
     
   </small>
 </div>
