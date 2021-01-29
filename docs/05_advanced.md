@@ -17,10 +17,10 @@ If you are experiencing issues with your CernVM-FS setup, there are various ways
 Most issues are caused by wrongly configured clients (either a configuration issue, or a wrong public key)
 and connection or firewall issues.
 
-### 5.2.1 Debugging with `cvmfs_config`
+### 5.2.1 Debugging with `cvmfs_config` on the client machine
 
 In order to find the cause of the issue, you should first find out *where* the issue is being caused.
-You can start by checking the client configuration:
+You can start by checking the configuration on your client machine by running:
 
 ```bash
 sudo cvmfs_config chksetup
@@ -47,7 +47,7 @@ Probing /cvmfs/repo.organization.tld... OK
 
 However, since you are debugging a problem, it probably returns an error...
 
-So, let's enable some debugging output by adding the following line to your `/etc/cvmfs/default.local`:
+So, let's enable some debugging output by adding the following line to your client's `/etc/cvmfs/default.local`:
 ```
 CVMFS_DEBUGLOG=/path/to/cvmfs.log
 ```
@@ -74,7 +74,7 @@ If the problem turns out to be some kind of connection issue, you can trace it d
 by manually checking the connections from your client to the proxy and/or Stratum 1 server.
 
 First, let's rule out that it is some kind of firewall issue by verifying that you can actually
-connect to the appropriate ports on those servers:
+connect from your client to the appropriate ports on those servers:
 
 ```bash
 telnet <PROXY_IP> 3128
@@ -83,8 +83,8 @@ telnet <STRATUM1_IP> 80
 
 If this does work, probably something is wrong with the services running on these machines.
 
-Every CernVM-FS repository has a file named `.cvmfspublished`, and you can try to fetch it manually
-using `curl`, both directly from the Stratum 1 and via your proxy:
+Every CernVM-FS repository has a file named `.cvmfspublished`, and you can use `curl` on your client 
+to fetch it manually, both directly from the Stratum 1 and via your proxy:
 
 ```bash
 # Without your own proxy, so directly to the Stratum 1:
@@ -249,8 +249,10 @@ To start the gateway service, use:
 systemctl start cvmfs-gateway
 ```
 
-Note that once this service is running you should *not* open transactions on this Stratum 0 server anymore,
-or you may corrupt the repository. If you do want to open a transaction, stop the gateway service first!
+!!! warning
+    If you do run the gateway service on a different machine than the Stratum 0,
+    make sure to *not* open transactions on your Stratum 0 server anymore, unless you stop the gateway service first. 
+    Otherwise, you may corrupt the repository.
 
 ### 5.4.2 Publisher
 
@@ -260,10 +262,11 @@ There a no special requirements for a publisher system with respect to resources
 
 ***Installation***
 
-The publisher only needs to have the `cvmfs-server` package installed:
+The publisher needs to have the `cvmfs` and `cvmfs-server` packages installed:
 ```
+sudo yum install -y epel-release  # not needed on CentOS 8
 sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
-sudo yum install -y cvmfs-server
+sudo yum install -y cvmfs-server cvmfs
 ```
 
 ***Configuration***
@@ -275,7 +278,11 @@ The publisher machine only needs three files with keys:
  - the gateway API key stored in a file named `repo.organization.tld.gw`.
 
 The first two files can be taken from `/etc/cvmfs/keys` on your Stratum 0 server.
-The latter can be created manually and should just contain the secret that was used in the gateway configuration.
+The latter can be created manually and should just contain the following:
+```
+plain_text <KEY_ID> <SECRET>
+```
+Make sure that `<KEY_ID>` and `<SECRET>` correspond to the values you have entered in the gateway configuration.
 
 All these files should be placed in some (temporary) directory on the publisher system.
 
@@ -300,7 +307,12 @@ You should now be able to make changes to the repository by starting a transacti
 cvmfs_server transaction repo.organization.tld
 ```
 
-making some changes to the repository at `/cvmfs/repo.organization.tld`, and then publishing the changes:
+You can also request a lock on only a subtree of the repository, so that other publishers can still change different parts of the repository:
+```bash
+cvmfs_server transaction repo.organization.tld/some/subdir
+```
+
+When you are done, publish the changes:
 
 ```bash
 cvmfs_server publish repo.organization.tld
