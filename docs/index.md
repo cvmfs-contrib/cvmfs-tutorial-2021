@@ -77,8 +77,6 @@ You can use your own resources if you prefer doing so.
 
 The (minimal) slides used to guide the tutorial are available [here](eum21-cvmfs-tutorial-slides.pdf).
 
-*Note: these slides are updated daily through the week of Jan 25-29, as the different parts
-of the tutorial are covered.*
 
 ## Contributors
 
