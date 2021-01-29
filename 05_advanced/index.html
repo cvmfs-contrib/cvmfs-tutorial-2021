@@ -410,11 +410,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#55-using-a-configuration-repository" class="md-nav__link">
-    5.5 Using a configuration repository
+  <a href="#55-mounting-cernvm-fs-repositories-as-an-unprivileged-user" class="md-nav__link">
+    5.5 Mounting CernVM-FS repositories as an unprivileged user
   </a>
   
-    <nav class="md-nav" aria-label="5.5 Using a configuration repository">
+    <nav class="md-nav" aria-label="5.5 Mounting CernVM-FS repositories as an unprivileged user">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#551-singularity" class="md-nav__link">
+    5.5.1 Singularity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#552-cvmfsexec" class="md-nav__link">
+    5.5.2 cvmfsexec
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#56-using-a-configuration-repository" class="md-nav__link">
+    5.6 Using a configuration repository
+  </a>
+  
+    <nav class="md-nav" aria-label="5.6 Using a configuration repository">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -564,11 +591,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#55-using-a-configuration-repository" class="md-nav__link">
-    5.5 Using a configuration repository
+  <a href="#55-mounting-cernvm-fs-repositories-as-an-unprivileged-user" class="md-nav__link">
+    5.5 Mounting CernVM-FS repositories as an unprivileged user
   </a>
   
-    <nav class="md-nav" aria-label="5.5 Using a configuration repository">
+    <nav class="md-nav" aria-label="5.5 Mounting CernVM-FS repositories as an unprivileged user">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#551-singularity" class="md-nav__link">
+    5.5.1 Singularity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#552-cvmfsexec" class="md-nav__link">
+    5.5.2 cvmfsexec
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#56-using-a-configuration-repository" class="md-nav__link">
+    5.6 Using a configuration repository
+  </a>
+  
+    <nav class="md-nav" aria-label="5.6 Using a configuration repository">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -808,7 +862,38 @@ stored the keys in the previous step.</p>
 <p>making some changes to the repository at <code>/cvmfs/repo.organization.tld</code>, and then publishing the changes:</p>
 <div class="highlight"><pre><span></span><code>cvmfs_server publish repo.organization.tld
 </code></pre></div>
-<h2 id="55-using-a-configuration-repository">5.5 Using a configuration repository<a class="headerlink" href="#55-using-a-configuration-repository" title="Permanent link">&para;</a></h2>
+<h2 id="55-mounting-cernvm-fs-repositories-as-an-unprivileged-user">5.5 Mounting CernVM-FS repositories as an unprivileged user<a class="headerlink" href="#55-mounting-cernvm-fs-repositories-as-an-unprivileged-user" title="Permanent link">&para;</a></h2>
+<p>The default way of installing and configuring the CernVM-FS client requires you to have root privileges.
+In case you want to use CernVM-FS repositories on systems where you do not have these, there are still some ways to install the client and mount repositories.
+We will show two different methods: using a <a href="https://sylabs.io/singularity/">Singularity</a> container, and <a href="https://github.com/cvmfs/cvmfsexec">cvmfsexec</a>.</p>
+<h3 id="551-singularity">5.5.1 Singularity<a class="headerlink" href="#551-singularity" title="Permanent link">&para;</a></h3>
+<p>Recent versions of Singularity offer a <code>--fusemount</code> option that allow you to mount CernVM-FS repositories.
+In order for this to work, you will need to install the <code>cvmfs</code> and <code>cvmfs-fuse3</code> package inside your container,
+and add the right configuration files and public keys for the repositories.
+Furthermore, you need two make two directories on the host system that will store the CernVM-FS cache and sockets;
+these need to be made available via a bind mount inside the container at <code>/var/lib/cvmfs</code> and <code>/var/run/cvmfs</code>, respectively.</p>
+<p>As an example, you can run the <a href="https://eessi.github.io/docs/pilot/#accessing-the-eessi-pilot-repository-through-singularity">EESSI pilot client container</a> (which was built using <a href="https://github.com/EESSI/filesystem-layer/blob/master/containers/Dockerfile.EESSI-client-pilot-centos7-x86_64">this Dockerfile</a>) using Singularity by doing:
+<div class="highlight"><pre><span></span><code>mkdir -p /tmp/$USER/{var-lib-cvmfs,var-run-cvmfs}
+export SINGULARITY_BIND=&quot;/tmp/$USER/var-run-cvmfs:/var/run/cvmfs,/tmp/$USER/var-lib-cvmfs:/var/lib/cvmfs&quot;
+export EESSI_CONFIG=&quot;container:cvmfs2 cvmfs-config.eessi-hpc.org /cvmfs/cvmfs-config.eessi-hpc.org&quot;
+export EESSI_PILOT=&quot;container:cvmfs2 pilot.eessi-hpc.org /cvmfs/pilot.eessi-hpc.org&quot;
+singularity shell --fusemount &quot;$EESSI_CONFIG&quot; --fusemount &quot;$EESSI_PILOT&quot; docker://eessi/client-pilot:centos7-$(uname -m)
+</code></pre></div></p>
+<p>Note that you have to be careful when launching multiple containers on the same machine:
+in this case, they all need a separate location for the cache, as it cannot be shared across containers.</p>
+<h3 id="552-cvmfsexec">5.5.2 cvmfsexec<a class="headerlink" href="#552-cvmfsexec" title="Permanent link">&para;</a></h3>
+<p>As an alternative, especially when Singularity is not available on your host system, you can try <a href="https://github.com/cvmfs/cvmfsexec">cvmfsexec</a>.
+Depending on the availability of <code>fusermount</code> and user namespaces on the host system, it has several mechanisms for mounting CernVM-FS repositories,
+either in a user's own file space or even under <code>/cvmfs</code>.</p>
+<p>An advantage of this method is that the cache can be shared by several processes running on the same machines, even if you bind the mountpoint into multiple container instances.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This currently only works on RHEL 6/7/8 and its derivatives, and SUSE 15 and its derivatives.</p>
+</div>
+<p>Besides the <code>cvmfsexec</code> script itself, there is also a <code>singcvmfs</code> script that can be used to easily launch Singularity containers with a CernVM-FS mount;
+this also uses the aforementiond <code>--fusemount</code> flag.
+More information about this script can be found on the <a href="https://github.com/cvmfs/cvmfsexec#singcvmfs-command">README page of the <code>cvmfsexec</code> GitHub repository</a>.</p>
+<h2 id="56-using-a-configuration-repository">5.6 Using a configuration repository<a class="headerlink" href="#56-using-a-configuration-repository" title="Permanent link">&para;</a></h2>
 <p>In the <a href="../02_stratum0_client/#22-setting-up-a-client">first hands-on part of this tutorial</a> we have manually
 configured our CernVM-FS client.</p>
 <p>Although that was not very complicated, we did have to make sure that different things were
@@ -856,7 +941,7 @@ contact  default.conf  domain.d  keys
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 27, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 29, 2021</span>
     
   </small>
 </div>
